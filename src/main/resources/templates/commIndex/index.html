@@ -1,0 +1,711 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>活动指标</title>
+<link th:href="@{bootstrap/css/bootstrap.css}" rel="stylesheet" />
+<link th:href="@{bootstrap/css/bootstrap-responsive.css}" rel="stylesheet" />
+<link th:href="@{css/main.css}" rel="stylesheet" />
+<link th:href="@{layer/theme/default/layer.css}" rel="stylesheet" />
+
+<script th:src="@{jquery.js}" type="text/javascript"></script>
+<script th:src="@{js/comm.js}" type="text/javascript"></script>
+<script th:src="@{bootstrap/js/bootstrap.js}" type="text/javascript"></script>
+<script th:src="@{layer/layer.js}" type="text/javascript"></script>
+<script th:src="@{laydate/laydate.js}" type="text/javascript"></script>
+<script th:src="@{echarts/echarts.min.js}" type="text/javascript"></script>
+<script th:src="@{js/commIndex/index.js}" type="text/javascript"></script>
+</head>
+<body>
+	<div class="container-fluid">
+<!-- 	    <button id="paoshu">跑数</button> -->
+		<div class="headTitle">活动指标平台一</div>
+		<div class="fullWth">
+			<!--活动相册信息-->
+			<div class="block h300" style="width: 25%; float: left;">
+				<img style="display: block; width: 100%" th:src="@{img/tmp.png}" alt=""/>
+				<div class="">
+					<span class="title">相册活动信息</span>
+					<ul class="inline wrapLine">
+						<li>活动相册ID:<span id="groupid"></span></li>
+						<li>活动相册名称:<span id="gname"></span></li>
+						<li>活动开始时间:<span id="startTime"></span></li>
+						<li>活动结束时间:<span id="endTime"></span></li>
+						<li>活动方式:<span id="type"></span></li>
+						<li>活动周期:<span id="actCyc"></span></li>
+						<li>活动状态:<span id="actStatus"></span></li>
+					</ul>
+				</div>
+			</div>
+
+			<!--活动相册列表&用户活跃度-->
+			<div class="block h300" style="width: 50%">
+				<div style="margin-left: 10px;">
+					<span class="title">活动相册列表</span>
+					<ul class="ullst" id="listActAll">
+						
+					</ul>
+					<span class="title" style="display: block">活动相册-用户活跃度（前一天有行为用户数/参与活动用户数）</span>
+					<div id="actline" class="actline"></div>
+				</div>
+			</div>
+
+			<!--活动状态&邀请-->
+			<div class="block h300" style="width: 25%; float: right;">
+				<div>
+					<span>活动选择:</span>
+					<select class="ipt" id="actSelect">
+						
+					</select> 
+					
+					<span>时间选择:</span>
+					<input type="text" class="ipt" id="timeSelect"/>
+<!-- 					<input type="text" class="ipt" id="beginDate"/> -->
+<!-- 					<input type="text" class="ipt" id="endDate"/> -->
+					<input type="button" id="searchIndex" value="查询" class="searchBtn"/>
+				</div>
+
+				<div>
+					<div class="t1">
+						<span class="c-tt">活动开始至今</span>
+					</div>
+					<div class="area"></div>
+					<div style="width: 95%; float: right;">
+						<span class="title1">活动状态</span>
+						<ul class="inline wrapLine" id="userTarget">
+							<li>参与活动总用户数:<span><i id="usersTotal"></i>（老:<i id="userTotalOld"></i>&nbsp;新:<i id="userTotalNew"></i>）</span></li>
+							<li>参与活动有行为用户数:<span><i id="usersActiviteAll"></i></span></li>
+							<li>活动相册有行为用户数:<span><i id="usersHavhctionTotal"></i>（老:<i id="usersHavhctionOld"></i>&nbsp;新:<i id="usersHavhctionNew"></i>）</span></li>
+							<li>活动相册上传动态数:<i id="usersEventTotal"></i></li>
+							<li>活动相册评论数:<i id="usersCommentTotal"></i></li>
+							<li>活动相册点赞数:<i id="likesTotal"></i></li>
+						</ul>
+						<div class="area"></div>
+						<span class="title1">邀请</span>
+						<ul class="inline wrapLine" id="invite">
+							<li><span class="itmsp">活动相册: </span><span>（老）邀请人数:<i id="usersInviteHdOld"></i>  邀请数：<i id="invitesCountHdOld"></i></span>
+								<br/>
+								<span class="pdsp">（新）邀请人数:<i id="usersInviteHdNew"></i> 邀请数：<i id="invitesCountHdNew"></i></span>
+							</li>
+							<li><span class="itmsp">私密相册: </span><span>（老）邀请人数:<i id="usersInviteSmOld"></i>  邀请数：<i id="invitesCountSmOld"></i></span>
+								<br/>
+								<span class="pdsp">（新）邀请人数:<i id="usersInviteSmNew"></i>  邀请数：<i id="invitesCountSmNew"></i></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="fullWth" style="margin-top: 75px;">
+			<div class="fullWth block  h300">
+
+
+				<div class="block indexArea" style="width: 100%;">
+					<div style="margin-left: 10%; margin-right: 10%;">
+						<div class="block bk-light-y tb-cell"
+							style="width: 26%; float: left;">-活动开始-</div>
+						<div class="block"
+							style="width: 2%; height: 25px; background-color: #FFF;"></div>
+						<div class="block bk-light-y tb-cell"
+							style="width: 72%; float: right;">-活动期间-</div>
+					</div>
+					<div class="area"></div>
+					<div style="margin-left: 10%; margin-right: 10%;">
+						<div class="block bk-light-d tb-cell1"
+							style="width: 46%; float: left;">-老用户-</div>
+						<div class="block bk-light-d tb-cell1"
+							style="width: 26%; margin-left: 1%;">-新用户-</div>
+						<div class="block bk-light-d tb-cell1"
+							style="width: 26%; float: right;">-总体-</div>
+					</div>
+
+					<div>
+						<span class="title">相册指标</span>
+					</div>
+					<div class="index fullWth">
+						<div style="width: 10%; float: left;">
+							<div class="stitle">
+								<span>用户数:</span><br/> <span>（按创建相册数区间）</span>
+							</div>
+						</div>
+						<div style="width: 80%; display: inherit;">
+							<div class="block" style="clear: both; width: 46%; float: left">
+								<div style="width: 49%; float: left;">
+									<table width="100%" class="userGroupCnt">
+										<thead></thead>
+										<tbody></tbody>
+									</table>
+									<ul id="groupCnt1">
+										<li>创建人数比:<span class="index1"></span></li>
+										<li>人均创建数:<span class="index2"></span></li>
+										<li>创建相册数:<span class="index3"></span></li>
+									</ul>
+								</div>
+
+								<div style="width: 49%; float: right;">
+									<table width="100%" class="userGroupCnt">
+										<thead></thead>
+										<tbody></tbody>
+									</table>
+									<ul id="groupCnt2">
+										<li>创建人数比:<span class="index1"></span></li>
+										<li>人均创建数:<span class="index2"></span></li>
+										<li>创建相册数:<span class="index3"></span></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="block" style="width: 26%; margin-left: 1%;">
+								<table width="100%" class="userGroupCnt">
+									<thead></thead>
+									<tbody></tbody>
+								</table>
+								<ul id="groupCnt3">
+									<li>创建人数比:<span class="index1"></span></li>
+									<li>人均创建数:<span class="index2"></span></li>
+									<li>创建用户数:<span class="index3"></span></li>
+									<li>创建相册数:<span class="index4"></span></li>
+								</ul>
+							</div>
+
+							<div class="block"
+								style="width: 26%;float: right;">
+								<table width="100%" class="userGroupCnt">
+									<thead></thead>
+									<tbody></tbody>
+								</table>
+								<ul id="groupCnt4">
+									<li>创建人数比:<span class="index1"></span></li>
+									<li>人均创建数:<span class="index2"></span></li>
+									<li>创建相册数:<span class="index3"></span></li>
+									<li>新老用户创建比:<span class="index4"></span></li>
+								</ul>
+							</div>
+						</div>
+						<div class="block rightItem">
+							<span class="act">&bull;私密相册</span>
+						</div>
+					</div>
+
+				<div style="background:#f7f7f7ed;margin-top:10px;">
+					<div class="index fullWth" style="padding-top:0">
+						<div style="width: 10%; float: left;">
+							<div class="stitle">
+								<span>相册数:</span>
+								<br/> 
+								<span>（按相册成员数区间）</span>
+								<br/> 
+								<span>（相册数成员数少于1000）</span>
+							</div>
+						</div>
+						<div class="grid1">
+							<div class="block groupUserCntDiv" style="clear: both; width: 46%; float: left">
+								<div style="width: 49%; float: left;">
+									<table width="100%" class="groupUserCnt">
+										<thead></thead>
+										<tbody></tbody>
+									</table>
+									<ul>
+										<li>创建相册数:<span class="index"></span></li>
+									</ul>
+								</div>
+
+								<div class="groupUserCntDiv" style="width: 49%; float: right;">
+									<table width="100%" class="groupUserCnt">
+										<thead></thead>
+										<tbody></tbody>
+									</table>
+									<ul>
+										<li>创建相册数:<span class="index"></span></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="block groupUserCntDiv" style="width: 26%; margin-left: 1%;">
+								<table width="100%" class="groupUserCnt">
+										<thead></thead>
+										<tbody></tbody>
+									</table>
+								<ul>
+									<li>创建相册数:<span class="index"></span></li>
+								</ul>
+							</div>
+
+							<div class="block groupUserCntDiv"
+								style="width: 26%;float: right;">
+								<table width="100%" class="groupUserCnt">
+										<thead></thead>
+										<tbody></tbody>
+								</table>
+								<ul>
+									<li>创建相册数:<span class="index"></span></li>
+								</ul>
+							</div>
+						</div>
+						<div class="block rightItem">
+							<span class="act">&bull;私密相册</span>
+						</div>
+					</div>
+
+
+					<div class="index fullWth" style="padding-top:0">
+						<div style="width: 10%; float: left;">
+							<div class="stitle"></div>
+						</div>
+						<div class="grid1">
+							<div class="block" style="clear: both; width: 50%; float: left">
+								<div style="width: 40%; float: left;"></div>
+
+								<div style="width: 60%; float: right;">
+									<span class="block" style="float: right;width: 100%;">
+										<span class="block">创建相册精准度</span>
+										<span class="block">&nbsp;&nbsp;创建相册类型:
+											<select class="inline typeSel" id="groupType"></select>
+										</span>
+									</span>
+									<table id="createAccCutTb1" style="margin-top: 40px;"  class="createAccCut" width="100%">
+										<thead>
+											<tr>
+												<th>相册人数分组</th>
+												<th>指定相册类型</th>
+												<th>其他相册类型</th>
+												<th>相册总数</th>
+											</tr>
+										</thead>
+										<tbody></tbody>
+									</table>
+								</div>
+							</div>
+
+							<div class="block" style="width: 49%; margin-left: 1%;">
+								<span>相册数(按用户/照片数分组)</span><i style="color:red;font-weight:bold;"> 注：格式为 相册数(照片数)</i>
+								<br/>
+								<span class="col">照片数分组</span>
+								<table  class="createAccCut" id="groupsUserCut" width="100%">
+										<thead>
+											<tr>
+												<th>用户数分组</th>
+												<th>0</th>
+												<th>1-10</th>
+												<th>11-30</th>
+												<th>30以上</th>
+											</tr>
+										</thead>
+										<tbody></tbody>
+								</table>
+							</div>
+
+<!-- 							<div class="block" -->
+<!-- 								style="width: 26%;float: right;"> -->
+<!-- 								<span>照片数(按用户/照片数分组)</span> -->
+<!-- 								<table class="createAccCut" width="100%"> -->
+<!-- 										<thead></thead> -->
+<!-- 										<tbody></tbody> -->
+<!-- 								</table> -->
+<!-- 							</div> -->
+						</div>
+						<div class="block rightItem">
+							<span class="act">&bull;私密相册</span>
+						</div>
+					</div>
+			</div>
+
+
+
+					<div class="index fullWth">
+						<div style="width: 10%; float: left;">
+							<div class="stitle">
+								<span>相册数:</span><br/> <span>（按相册动态数区间）</span>
+							</div>
+						</div>
+						<div style="width: 80%; display: inherit;">
+							<div class="block" style="clear: both; width: 46%; float: left">
+								<div class="groupEventCntDiv" style="width: 49%; float: left;">
+									<table width="100%" class="groupEventCnt">
+										<thead></thead>
+										<tbody></tbody>
+									</table>
+									<ul>
+										<li>相册上传比:<span class="index"></span></li>
+									</ul>
+								</div>
+
+								<div class="groupEventCntDiv" style="width: 49%; float: right;">
+									<table width="100%" class="groupEventCnt">
+										<thead></thead>
+										<tbody></tbody>
+									</table>
+									<ul>
+										<li>相册上传比:<span class="index"></span></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="block groupEventCntDiv" style="width: 26%; margin-left: 1%;">
+								<table width="100%" class="groupEventCnt">
+										<thead></thead>
+										<tbody></tbody>
+								</table>
+								<ul>
+									<li>相册上传比:<span class="index"></span></li>
+								</ul>
+							</div>
+
+							<div class="block groupEventCntDiv"
+								style="width: 26%; float: right;">
+								<table width="100%" class="groupEventCnt">
+										<thead></thead>
+										<tbody></tbody>
+								</table>
+								<ul>
+									<li>相册上传比:<span class="index"></span></li>
+								</ul>
+							</div>
+						</div>
+						<div class="block rightItem">
+							<span class="act">&bull;私密相册</span>
+						</div>
+					</div>
+
+
+					<div class="index fullWth">
+						<div style="width: 10%; float: left;">
+							<div class="stitle">
+								<span>相册数:</span><br/> <span>（按相册互动数区间）</span>
+							</div>
+						</div>
+						<div style="width: 80%; display: inherit;">
+							<div class="block groupPlayCntDiv" style="clear: both; width: 46%; float: left">
+								<div  style="width: 49%; float: left;">
+									<table class="groupPlayCnt" width="100%">
+										<thead>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+									<ul>
+										<li>相册互动比:<span class="index"></span></li>
+									</ul>
+								</div>
+
+								<div class="groupPlayCntDiv" style="width: 49%; float: right;">
+									<table class="groupPlayCnt" width="100%">
+										<thead>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+									<ul>
+										<li>相册互动比:<span class="index"></span></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="block groupPlayCntDiv" style="width: 26%; margin-left: 1%;">
+								<table class="groupPlayCnt" width="100%">
+										<thead>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								<ul>
+									<li>相册互动比:<span class="index"></span></li>
+								</ul>
+							</div>
+
+							<div class="block groupPlayCntDiv"
+								style="width: 26%;float: right;">
+								<table class="groupPlayCnt" width="100%">
+										<thead>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								<ul>
+									<li>相册互动比:<span class="index"></span></li>
+								</ul>
+							</div>
+						</div>
+						<div class="block rightItem">
+							<span class="act">&bull;私密相册</span>
+						</div>
+					</div>
+
+
+
+					<!-- 动态指标 -->
+					<div style="margin-top: 20px;">
+						<span class="title">动态指标</span>
+					</div>
+					
+				<div style="background:#f7f7f7ed;margin-top:10px;">
+					<div class="index fullWth" style="padding-top:0;">
+						<div style="width: 10%; float: left;">
+							<div class="stitle">
+								<span>用户数:</span><br/> <span>（按上传动态数区间）</span>
+							</div>
+						</div>
+						<div style="width: 80%; display: inherit;">
+							<div class="block" style="clear: both; width: 46%; float: left">
+								<div style="width: 49%; float: left;">
+									<table width="100%">
+
+									</table>
+								</div>
+
+								<div class="userEventCutDiv1" style="width: 49%; float: right;">
+									<table class="userEventCut1" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+									</table>
+									<ul>
+										<li>上传用户比:<span class="index1"></span></li>
+										<li>人均创建数:<span class="index2"></span></li>
+										<li>上传动态数:<span class="index3"></span></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="block userEventCutDiv2" style="width: 26%; margin-left: 1%;">
+								<table class="userEventCut1" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+								</table>
+								<ul>
+									<li>上传用户比:<span class="index1"></span></li>
+									<li>人均创建数:<span class="index2"></span></li>
+									<li>上传动态数:<span class="index3"></span></li>
+								</ul>
+							</div>
+
+							<div class="block userEventCutDiv3"
+								style="width: 26%;float: right;">
+								<table class="userEventCut1" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+								</table>
+								<ul>
+									<li>上传用户比:<span class="index1"></span></li>
+									<li>人均创建数:<span class="index2"></span></li>
+									<li>上传动态数:<span class="index3"></span></li>
+									<li>新老用户创建比:<span class="index4"></span></li>
+								</ul>
+							</div>
+						</div>
+						<div class="block rightItem">
+							<span class="srt">&bull;活动相册</span>
+						</div>
+					</div>
+
+
+					<div class="index fullWth" style="padding-top:0;">
+						<div style="width: 10%; float: left;">
+							<div class="stitle"></div>
+						</div>
+						<div style="width: 80%; display: inherit;">
+							<div class="block" style="clear: both; width: 46%; float: left">
+								<div class="userEventCutDiv-1" style="width: 49%; float: left;">
+									<table class="userEventCut2" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+									</table>
+									<ul>
+										<li>上传用户比:<span class="index1"></span></li>
+										<li>人均上传数:<span class="index2"></span></li>
+										<li>上传动态数:<span class="index3"></span></li>
+									</ul>
+								</div>
+
+								<div class="userEventCutDiv-2" style="width: 49%; float: right;">
+									<table class="userEventCut2" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+									</table>
+									<ul>
+										<li>上传用户比:<span class="index1"></span></li>
+										<li>人均上传数:<span class="index2"></span></li>
+										<li>上传动态数:<span class="index3"></span></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="block userEventCutDiv-3" style="width: 26%; margin-left: 1%;">
+								<table class="userEventCut2" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+								</table>
+								<ul>
+									<li>上传用户比:<span class="index1"></span></li>
+									<li>人均上传数:<span class="index2"></span></li>
+									<li>上传动态数:<span class="index3"></span></li>
+								</ul>
+							</div>
+
+							<div class="block userEventCutDiv-4"
+								style="width: 26%;float: right;">
+								<table class="userEventCut2" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+								</table>
+								<ul>
+									<li>上传用户比:<span class="index1"></span></li>
+									<li>人均上传数:<span class="index2"></span></li>
+									<li>上传动态数:<span class="index3"></span></li>
+									<li>新老用户上传比:<span class="index4"></span></li>
+								</ul>
+							</div>
+						</div>
+						<div class="block rightItem">
+							<span class="act">&bull;私密相册</span>
+						</div>
+					</div>
+				</div>
+
+					<!-- 互动指标 -->
+					<div style="margin-top: 20px;">
+						<span class="title">互动指标</span>
+					</div>
+				<div style="background:#f7f7f7ed;margin-top:10px;margin-bottom:80px;">
+					<div class="index fullWth" style="padding-top:0;">
+						<div style="width: 10%; float: left;">
+							<div class="stitle">
+								<span>用户数:</span><br/> <span>（按参与互动数区间）</span>
+							</div>
+						</div>
+						<div style="width: 80%; display: inherit;">
+							<div class="block" style="clear: both; width: 46%; float: left">
+								<div style="width: 49%; float: left;">
+									<table width="100%">
+
+									</table>
+								</div>
+
+								<div class="userGroupsCutDiv1" style="width: 49%; float: right;">
+									<table class="userGroupCut1" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+									</table>
+									<ul>
+										<li>互动用户比:<span class="index1"></span></li>
+										<li>人均互动数:<span class="index2"></span></li>
+										<li>参与互动数:<span class="index3"></span></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="block userGroupsCutDiv2" style="width: 26%; margin-left: 1%;">
+								<table class="userGroupCut1" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+								</table>
+								<ul>
+									<li>互动用户比:<span class="index1"></span></li>
+									<li>人均互动数:<span class="index2"></span></li>
+									<li>参与互动数:<span class="index3"></span></li>
+								</ul>
+							</div>
+
+							<div class="block userGroupsCutDiv3"
+								style="width: 26%;float: right;">
+								<table class="userGroupCut1" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+								</table>
+								<ul>
+									<li>互动用户比:<span class="index1"></span></li>
+									<li>人均互动数:<span class="index2"></span></li>
+									<li>参与互动数:<span class="index3"></span></li>
+									<li>新老用户互动比:<span class="index4"></span></li>
+								</ul>
+							</div>
+						</div>
+						<div class="block rightItem">
+							<span class="srt">&bull;活动相册</span>
+						</div>
+					</div>
+
+
+					<div class="index fullWth" style="padding-top:0;">
+						<div style="width: 10%; float: left;">
+							<div class="stitle"></div>
+						</div>
+						<div style="width: 80%; display: inherit;">
+							<div class="block" style="clear: both; width: 46%; float: left">
+								<div class="userGroupsCutDiv-1" style="width: 49%; float: left;">
+									<table class="userGroupCut2" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+									</table>
+									<ul>
+										<li>互动用户比:<span class="index1"></span></li>
+										<li>人均互动数:<span class="index2"></span></li>
+										<li>参与互动数:<span class="index3"></span></li>
+									</ul>
+								</div>
+
+								<div class="userGroupsCutDiv-2" style="width: 49%; float: right;">
+									<table class="userGroupCut2" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+									</table>
+									<ul>
+										<li>互动用户比:<span class="index1"></span></li>
+										<li>人均互动数:<span class="index2"></span></li>
+										<li>参与互动数:<span class="index3"></span></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="block userGroupsCutDiv-3" style="width: 26%; margin-left: 1%;">
+								<table class="userGroupCut2" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+								</table>
+								<ul>
+									<li>互动用户比:<span class="index1"></span></li>
+									<li>人均互动数:<span class="index2"></span></li>
+									<li>参与互动数:<span class="index3"></span></li>
+								</ul>
+							</div>
+
+							<div class="block userGroupsCutDiv-4"
+								style="width: 26%;float: right;">
+								<table class="userGroupCut2" width="100%">
+										<thead></thead>
+										<tbody></tbody>
+								</table>
+								<ul>
+									<li>互动用户比:<span class="index1"></span></li>
+									<li>人均互动数:<span class="index2"></span></li>
+									<li>参与互动数:<span class="index3"></span></li>
+									<li>新老用户互动比:<span class="index4"></span></li>
+								</ul>
+							</div>
+						</div>
+						<div class="block rightItem">
+							<span class="act">&bull;私密相册</span>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div th:if="${not #lists.isEmpty(people)}">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">列表</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" th:each="person:${people}">
+                    <span th:text="${person.name}"></span>
+                    <span th:text="${person.age}"></span>
+                    <button class="btn" th:onclick="'getName(\''+${person.name}+'\');'">获得名字</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div> -->
+</body>
+</html>

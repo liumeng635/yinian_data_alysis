@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinian.alysis.model.UserEventcutMapper" >
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.UserEventcut" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="events_cut" property="eventsCut" jdbcType="VARCHAR" />
+    <result column="users_count_old_hd" property="usersCountOldHd" jdbcType="INTEGER" />
+    <result column="users_count_new_hd" property="usersCountNewHd" jdbcType="INTEGER" />
+    <result column="events_count_old_hd" property="eventsCountOldHd" jdbcType="INTEGER" />
+    <result column="events_count_new_hd" property="eventsCountNewHd" jdbcType="INTEGER" />
+    <result column="users_count_old_pre_sm" property="usersCountOldPreSm" jdbcType="INTEGER" />
+    <result column="users_count_old_sm" property="usersCountOldSm" jdbcType="INTEGER" />
+    <result column="users_count_new_sm" property="usersCountNewSm" jdbcType="INTEGER" />
+    <result column="events_count_old_pre_sm" property="eventsCountOldPreSm" jdbcType="INTEGER" />
+    <result column="events_count_old_sm" property="eventsCountOldSm" jdbcType="INTEGER" />
+    <result column="events_count_new_sm" property="eventsCountNewSm" jdbcType="INTEGER" />
+    <result column="period" property="period" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupid, events_cut, users_count_old_hd, users_count_new_hd, events_count_old_hd, 
+    events_count_new_hd, users_count_old_pre_sm, users_count_old_sm, users_count_new_sm, 
+    events_count_old_pre_sm, events_count_old_sm, events_count_new_sm, period
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_eventcut
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_eventcut
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.UserEventcut" >
+    insert into user_eventcut (id, groupid, events_cut, 
+      users_count_old_hd, users_count_new_hd, events_count_old_hd, 
+      events_count_new_hd, users_count_old_pre_sm, users_count_old_sm, 
+      users_count_new_sm, events_count_old_pre_sm, events_count_old_sm, 
+      events_count_new_sm, period)
+    values (#{id,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{eventsCut,jdbcType=VARCHAR}, 
+      #{usersCountOldHd,jdbcType=INTEGER}, #{usersCountNewHd,jdbcType=INTEGER}, #{eventsCountOldHd,jdbcType=INTEGER}, 
+      #{eventsCountNewHd,jdbcType=INTEGER}, #{usersCountOldPreSm,jdbcType=INTEGER}, #{usersCountOldSm,jdbcType=INTEGER}, 
+      #{usersCountNewSm,jdbcType=INTEGER}, #{eventsCountOldPreSm,jdbcType=INTEGER}, #{eventsCountOldSm,jdbcType=INTEGER}, 
+      #{eventsCountNewSm,jdbcType=INTEGER}, #{period,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.UserEventcut" >
+    insert into user_eventcut
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="eventsCut != null" >
+        events_cut,
+      </if>
+      <if test="usersCountOldHd != null" >
+        users_count_old_hd,
+      </if>
+      <if test="usersCountNewHd != null" >
+        users_count_new_hd,
+      </if>
+      <if test="eventsCountOldHd != null" >
+        events_count_old_hd,
+      </if>
+      <if test="eventsCountNewHd != null" >
+        events_count_new_hd,
+      </if>
+      <if test="usersCountOldPreSm != null" >
+        users_count_old_pre_sm,
+      </if>
+      <if test="usersCountOldSm != null" >
+        users_count_old_sm,
+      </if>
+      <if test="usersCountNewSm != null" >
+        users_count_new_sm,
+      </if>
+      <if test="eventsCountOldPreSm != null" >
+        events_count_old_pre_sm,
+      </if>
+      <if test="eventsCountOldSm != null" >
+        events_count_old_sm,
+      </if>
+      <if test="eventsCountNewSm != null" >
+        events_count_new_sm,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCut != null" >
+        #{eventsCut,jdbcType=VARCHAR},
+      </if>
+      <if test="usersCountOldHd != null" >
+        #{usersCountOldHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountNewHd != null" >
+        #{usersCountNewHd,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountOldHd != null" >
+        #{eventsCountOldHd,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountNewHd != null" >
+        #{eventsCountNewHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountOldPreSm != null" >
+        #{usersCountOldPreSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountOldSm != null" >
+        #{usersCountOldSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountNewSm != null" >
+        #{usersCountNewSm,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountOldPreSm != null" >
+        #{eventsCountOldPreSm,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountOldSm != null" >
+        #{eventsCountOldSm,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountNewSm != null" >
+        #{eventsCountNewSm,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.UserEventcut" >
+    update user_eventcut
+    <set >
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCut != null" >
+        events_cut = #{eventsCut,jdbcType=VARCHAR},
+      </if>
+      <if test="usersCountOldHd != null" >
+        users_count_old_hd = #{usersCountOldHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountNewHd != null" >
+        users_count_new_hd = #{usersCountNewHd,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountOldHd != null" >
+        events_count_old_hd = #{eventsCountOldHd,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountNewHd != null" >
+        events_count_new_hd = #{eventsCountNewHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountOldPreSm != null" >
+        users_count_old_pre_sm = #{usersCountOldPreSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountOldSm != null" >
+        users_count_old_sm = #{usersCountOldSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountNewSm != null" >
+        users_count_new_sm = #{usersCountNewSm,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountOldPreSm != null" >
+        events_count_old_pre_sm = #{eventsCountOldPreSm,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountOldSm != null" >
+        events_count_old_sm = #{eventsCountOldSm,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountNewSm != null" >
+        events_count_new_sm = #{eventsCountNewSm,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.UserEventcut" >
+    update user_eventcut
+    set groupid = #{groupid,jdbcType=INTEGER},
+      events_cut = #{eventsCut,jdbcType=VARCHAR},
+      users_count_old_hd = #{usersCountOldHd,jdbcType=INTEGER},
+      users_count_new_hd = #{usersCountNewHd,jdbcType=INTEGER},
+      events_count_old_hd = #{eventsCountOldHd,jdbcType=INTEGER},
+      events_count_new_hd = #{eventsCountNewHd,jdbcType=INTEGER},
+      users_count_old_pre_sm = #{usersCountOldPreSm,jdbcType=INTEGER},
+      users_count_old_sm = #{usersCountOldSm,jdbcType=INTEGER},
+      users_count_new_sm = #{usersCountNewSm,jdbcType=INTEGER},
+      events_count_old_pre_sm = #{eventsCountOldPreSm,jdbcType=INTEGER},
+      events_count_old_sm = #{eventsCountOldSm,jdbcType=INTEGER},
+      events_count_new_sm = #{eventsCountNewSm,jdbcType=INTEGER},
+      period = #{period,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_eventcut
+  </select>
+  
+  <select id="findByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_eventcut where 1=1
+    <if test="groupid != null" >
+       and groupid = #{groupid,jdbcType=INTEGER}
+    </if>
+    <if test="period != null" >
+       and date_format(period, '%Y-%m-%d') = #{period}
+    </if>
+  </select>
+</mapper>

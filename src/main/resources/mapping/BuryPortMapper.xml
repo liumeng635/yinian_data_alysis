@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinian.alysis.model.BuryPortMapper" >
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.BuryPort" >
+    <id column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="port" property="port" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="port_type" property="portType" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pid, port, type, port_type, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bury_port
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_bury_port
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.BuryPort" >
+    insert into t_bury_port (pid, port, type, 
+      port_type, remark)
+    values (#{pid,jdbcType=INTEGER}, #{port,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{portType,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.BuryPort" >
+    insert into t_bury_port
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="port != null" >
+        port,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="portType != null" >
+        port_type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="port != null" >
+        #{port,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="portType != null" >
+        #{portType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.BuryPort" >
+    update t_bury_port
+    <set >
+      <if test="port != null" >
+        port = #{port,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="portType != null" >
+        port_type = #{portType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.BuryPort" >
+    update t_bury_port
+    set port = #{port,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      port_type = #{portType,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_bury_port where 1=1
+    <if test="type != null" >
+       and type = #{type,jdbcType=INTEGER}
+    </if>
+    <if test="port != null" >
+       and port = #{port,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <delete id="deleteBatch" parameterType="int" >
+    delete from t_bury_port
+    where pid in 
+    <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+             #{item}
+    </foreach>
+  </delete>
+  
+</mapper>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinian.alysis.model.UserPlaycutMapper" >
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.UserPlaycut" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="plays_cut" property="playsCut" jdbcType="VARCHAR" />
+    <result column="users_count_old_hd" property="usersCountOldHd" jdbcType="INTEGER" />
+    <result column="users_count_new_hd" property="usersCountNewHd" jdbcType="INTEGER" />
+    <result column="plays_count_old_hd" property="playsCountOldHd" jdbcType="INTEGER" />
+    <result column="plays_count_new_hd" property="playsCountNewHd" jdbcType="INTEGER" />
+    <result column="users_count_old_pre_sm" property="usersCountOldPreSm" jdbcType="INTEGER" />
+    <result column="users_count_old_sm" property="usersCountOldSm" jdbcType="INTEGER" />
+    <result column="users_count_new_sm" property="usersCountNewSm" jdbcType="INTEGER" />
+    <result column="plays_count_old_pre_sm" property="playsCountOldPreSm" jdbcType="INTEGER" />
+    <result column="plays_count_old_sm" property="playsCountOldSm" jdbcType="INTEGER" />
+    <result column="plays_count_new_sm" property="playsCountNewSm" jdbcType="INTEGER" />
+    <result column="period" property="period" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupid, plays_cut, users_count_old_hd, users_count_new_hd, plays_count_old_hd, 
+    plays_count_new_hd, users_count_old_pre_sm, users_count_old_sm, users_count_new_sm, 
+    plays_count_old_pre_sm, plays_count_old_sm, plays_count_new_sm, period
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_playcut
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_playcut
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.UserPlaycut" >
+    insert into user_playcut (id, groupid, plays_cut, 
+      users_count_old_hd, users_count_new_hd, plays_count_old_hd, 
+      plays_count_new_hd, users_count_old_pre_sm, users_count_old_sm, 
+      users_count_new_sm, plays_count_old_pre_sm, plays_count_old_sm, 
+      plays_count_new_sm, period)
+    values (#{id,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{playsCut,jdbcType=VARCHAR}, 
+      #{usersCountOldHd,jdbcType=INTEGER}, #{usersCountNewHd,jdbcType=INTEGER}, #{playsCountOldHd,jdbcType=INTEGER}, 
+      #{playsCountNewHd,jdbcType=INTEGER}, #{usersCountOldPreSm,jdbcType=INTEGER}, #{usersCountOldSm,jdbcType=INTEGER}, 
+      #{usersCountNewSm,jdbcType=INTEGER}, #{playsCountOldPreSm,jdbcType=INTEGER}, #{playsCountOldSm,jdbcType=INTEGER}, 
+      #{playsCountNewSm,jdbcType=INTEGER}, #{period,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.UserPlaycut" >
+    insert into user_playcut
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="playsCut != null" >
+        plays_cut,
+      </if>
+      <if test="usersCountOldHd != null" >
+        users_count_old_hd,
+      </if>
+      <if test="usersCountNewHd != null" >
+        users_count_new_hd,
+      </if>
+      <if test="playsCountOldHd != null" >
+        plays_count_old_hd,
+      </if>
+      <if test="playsCountNewHd != null" >
+        plays_count_new_hd,
+      </if>
+      <if test="usersCountOldPreSm != null" >
+        users_count_old_pre_sm,
+      </if>
+      <if test="usersCountOldSm != null" >
+        users_count_old_sm,
+      </if>
+      <if test="usersCountNewSm != null" >
+        users_count_new_sm,
+      </if>
+      <if test="playsCountOldPreSm != null" >
+        plays_count_old_pre_sm,
+      </if>
+      <if test="playsCountOldSm != null" >
+        plays_count_old_sm,
+      </if>
+      <if test="playsCountNewSm != null" >
+        plays_count_new_sm,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="playsCut != null" >
+        #{playsCut,jdbcType=VARCHAR},
+      </if>
+      <if test="usersCountOldHd != null" >
+        #{usersCountOldHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountNewHd != null" >
+        #{usersCountNewHd,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountOldHd != null" >
+        #{playsCountOldHd,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountNewHd != null" >
+        #{playsCountNewHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountOldPreSm != null" >
+        #{usersCountOldPreSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountOldSm != null" >
+        #{usersCountOldSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountNewSm != null" >
+        #{usersCountNewSm,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountOldPreSm != null" >
+        #{playsCountOldPreSm,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountOldSm != null" >
+        #{playsCountOldSm,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountNewSm != null" >
+        #{playsCountNewSm,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.UserPlaycut" >
+    update user_playcut
+    <set >
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="playsCut != null" >
+        plays_cut = #{playsCut,jdbcType=VARCHAR},
+      </if>
+      <if test="usersCountOldHd != null" >
+        users_count_old_hd = #{usersCountOldHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountNewHd != null" >
+        users_count_new_hd = #{usersCountNewHd,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountOldHd != null" >
+        plays_count_old_hd = #{playsCountOldHd,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountNewHd != null" >
+        plays_count_new_hd = #{playsCountNewHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountOldPreSm != null" >
+        users_count_old_pre_sm = #{usersCountOldPreSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountOldSm != null" >
+        users_count_old_sm = #{usersCountOldSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountNewSm != null" >
+        users_count_new_sm = #{usersCountNewSm,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountOldPreSm != null" >
+        plays_count_old_pre_sm = #{playsCountOldPreSm,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountOldSm != null" >
+        plays_count_old_sm = #{playsCountOldSm,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountNewSm != null" >
+        plays_count_new_sm = #{playsCountNewSm,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.UserPlaycut" >
+    update user_playcut
+    set groupid = #{groupid,jdbcType=INTEGER},
+      plays_cut = #{playsCut,jdbcType=VARCHAR},
+      users_count_old_hd = #{usersCountOldHd,jdbcType=INTEGER},
+      users_count_new_hd = #{usersCountNewHd,jdbcType=INTEGER},
+      plays_count_old_hd = #{playsCountOldHd,jdbcType=INTEGER},
+      plays_count_new_hd = #{playsCountNewHd,jdbcType=INTEGER},
+      users_count_old_pre_sm = #{usersCountOldPreSm,jdbcType=INTEGER},
+      users_count_old_sm = #{usersCountOldSm,jdbcType=INTEGER},
+      users_count_new_sm = #{usersCountNewSm,jdbcType=INTEGER},
+      plays_count_old_pre_sm = #{playsCountOldPreSm,jdbcType=INTEGER},
+      plays_count_old_sm = #{playsCountOldSm,jdbcType=INTEGER},
+      plays_count_new_sm = #{playsCountNewSm,jdbcType=INTEGER},
+      period = #{period,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_playcut
+  </select>
+  
+  <select id="findByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_playcut where 1=1
+    <if test="groupid != null" >
+       and groupid = #{groupid,jdbcType=INTEGER}
+    </if>
+    <if test="period != null" >
+       and date_format(period, '%Y-%m-%d') = #{period}
+    </if>
+  </select>
+</mapper>

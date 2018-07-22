@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinian.alysis.model.BuryPointLoginMapper" >
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.BuryPointLogin" >
+    <id column="bury_id" property="buryId" jdbcType="INTEGER" />
+    <result column="bury_column" property="buryColumn" jdbcType="VARCHAR" />
+    <result column="bury_remark" property="buryRemark" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="bstage" property="bstage" jdbcType="VARCHAR" />
+    <result column="bury_time" property="buryTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bury_id, bury_column, bury_remark, status, bstage, bury_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bury_point_login
+    where bury_id = #{buryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_bury_point_login
+    where bury_id = #{buryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.BuryPointLogin" >
+    insert into t_bury_point_login (bury_id, bury_column, bury_remark, 
+      status, bstage, bury_time
+      )
+    values (#{buryId,jdbcType=INTEGER}, #{buryColumn,jdbcType=VARCHAR}, #{buryRemark,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{bstage,jdbcType=VARCHAR}, #{buryTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.BuryPointLogin" >
+    insert into t_bury_point_login
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="buryId != null" >
+        bury_id,
+      </if>
+      <if test="buryColumn != null" >
+        bury_column,
+      </if>
+      <if test="buryRemark != null" >
+        bury_remark,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="bstage != null" >
+        bstage,
+      </if>
+      <if test="buryTime != null" >
+        bury_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="buryId != null" >
+        #{buryId,jdbcType=INTEGER},
+      </if>
+      <if test="buryColumn != null" >
+        #{buryColumn,jdbcType=VARCHAR},
+      </if>
+      <if test="buryRemark != null" >
+        #{buryRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="bstage != null" >
+        #{bstage,jdbcType=VARCHAR},
+      </if>
+      <if test="buryTime != null" >
+        #{buryTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.BuryPointLogin" >
+    update t_bury_point_login
+    <set >
+      <if test="buryColumn != null" >
+        bury_column = #{buryColumn,jdbcType=VARCHAR},
+      </if>
+      <if test="buryRemark != null" >
+        bury_remark = #{buryRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="bstage != null" >
+        bstage = #{bstage,jdbcType=VARCHAR},
+      </if>
+      <if test="buryTime != null" >
+        bury_time = #{buryTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bury_id = #{buryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.BuryPointLogin" >
+    update t_bury_point_login
+    set bury_column = #{buryColumn,jdbcType=VARCHAR},
+      bury_remark = #{buryRemark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      bstage = #{bstage,jdbcType=VARCHAR},
+      bury_time = #{buryTime,jdbcType=VARCHAR}
+    where bury_id = #{buryId,jdbcType=INTEGER}
+  </update>
+  
+   <select id="findByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_bury_point_login where 1=1
+    <if test="status != null" >
+       and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="bstage != null" >
+       and bstage = #{bstage,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+<delete id="deleteBatch" parameterType="int" >
+    delete from t_bury_point_login
+    where bury_id in 
+    <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+             #{item}
+    </foreach>
+  </delete>
+  
+    <update id="updateBySql" parameterType="String"> 
+		${value} 
+  </update>
+  
+  
+   <select id="getStageList" resultType="java.util.Map">
+   	SELECT DISTINCT bstage as stage  FROM t_bury_point_login t ORDER BY t.bury_time desc
+  </select>
+  
+</mapper>

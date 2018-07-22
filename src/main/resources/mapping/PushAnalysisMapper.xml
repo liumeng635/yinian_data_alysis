@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinian.alysis.model.PushAnalysisMapper">
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.PushAnalysis">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="push_time" jdbcType="DATE" property="pushTime" />
+    <result column="operation" jdbcType="VARCHAR" property="operation" />
+    <result column="operation_type" jdbcType="VARCHAR" property="operationType" />
+    <result column="group_type" jdbcType="INTEGER" property="groupType" />
+    <result column="users_count" jdbcType="INTEGER" property="usersCount" />
+    <result column="operation_count" jdbcType="INTEGER" property="operationCount" />
+    <result column="system_time" jdbcType="TIMESTAMP" property="systemTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, push_time, operation, operation_type, group_type, users_count, operation_count, 
+    system_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from push_analysis
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from push_analysis
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.PushAnalysis">
+    insert into push_analysis (id, push_time, operation, 
+      operation_type, group_type, users_count, 
+      operation_count, system_time)
+    values (#{id,jdbcType=INTEGER}, #{pushTime,jdbcType=DATE}, #{operation,jdbcType=VARCHAR}, 
+      #{operationType,jdbcType=VARCHAR}, #{groupType,jdbcType=INTEGER}, #{usersCount,jdbcType=INTEGER}, 
+      #{operationCount,jdbcType=INTEGER}, #{systemTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.PushAnalysis">
+    insert into push_analysis
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pushTime != null">
+        push_time,
+      </if>
+      <if test="operation != null">
+        operation,
+      </if>
+      <if test="operationType != null">
+        operation_type,
+      </if>
+      <if test="groupType != null">
+        group_type,
+      </if>
+      <if test="usersCount != null">
+        users_count,
+      </if>
+      <if test="operationCount != null">
+        operation_count,
+      </if>
+      <if test="systemTime != null">
+        system_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pushTime != null">
+        #{pushTime,jdbcType=DATE},
+      </if>
+      <if test="operation != null">
+        #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="operationType != null">
+        #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null">
+        #{groupType,jdbcType=INTEGER},
+      </if>
+      <if test="usersCount != null">
+        #{usersCount,jdbcType=INTEGER},
+      </if>
+      <if test="operationCount != null">
+        #{operationCount,jdbcType=INTEGER},
+      </if>
+      <if test="systemTime != null">
+        #{systemTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.PushAnalysis">
+    update push_analysis
+    <set>
+      <if test="pushTime != null">
+        push_time = #{pushTime,jdbcType=DATE},
+      </if>
+      <if test="operation != null">
+        operation = #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="operationType != null">
+        operation_type = #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null">
+        group_type = #{groupType,jdbcType=INTEGER},
+      </if>
+      <if test="usersCount != null">
+        users_count = #{usersCount,jdbcType=INTEGER},
+      </if>
+      <if test="operationCount != null">
+        operation_count = #{operationCount,jdbcType=INTEGER},
+      </if>
+      <if test="systemTime != null">
+        system_time = #{systemTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.PushAnalysis">
+    update push_analysis
+    set push_time = #{pushTime,jdbcType=DATE},
+      operation = #{operation,jdbcType=VARCHAR},
+      operation_type = #{operationType,jdbcType=VARCHAR},
+      group_type = #{groupType,jdbcType=INTEGER},
+      users_count = #{usersCount,jdbcType=INTEGER},
+      operation_count = #{operationCount,jdbcType=INTEGER},
+      system_time = #{systemTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+   <select id="findByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from push_analysis where 1=1
+    <if test="time != null" >
+       and push_time = #{time}
+    </if>
+    <if test="operType != null" >
+       and operation_type = #{operType}
+    </if>
+  </select>
+  
+  
+  <select id="listAllDate" parameterType="java.util.Map" resultType="java.util.Map">
+   		select t.push_time as date from push_analysis t GROUP BY t.push_time order by push_time desc
+  </select>
+  
+</mapper>

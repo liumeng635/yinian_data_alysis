@@ -1,0 +1,9 @@
+.dd{
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
+
+ul>li{
+    list-style: none;
+}

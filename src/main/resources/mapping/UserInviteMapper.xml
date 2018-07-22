@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinian.alysis.model.UserInviteMapper" >
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.UserInvite" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="users_invite_hd_old" property="usersInviteHdOld" jdbcType="INTEGER" />
+    <result column="users_invite_hd_new" property="usersInviteHdNew" jdbcType="INTEGER" />
+    <result column="invites_count_hd_old" property="invitesCountHdOld" jdbcType="INTEGER" />
+    <result column="invites_count_hd_new" property="invitesCountHdNew" jdbcType="INTEGER" />
+    <result column="users_invite_sm_old" property="usersInviteSmOld" jdbcType="INTEGER" />
+    <result column="users_invite_sm_new" property="usersInviteSmNew" jdbcType="INTEGER" />
+    <result column="invites_count_sm_old" property="invitesCountSmOld" jdbcType="INTEGER" />
+    <result column="invites_count_sm_new" property="invitesCountSmNew" jdbcType="INTEGER" />
+    <result column="period" property="period" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupid, users_invite_hd_old, users_invite_hd_new, invites_count_hd_old, invites_count_hd_new, 
+    users_invite_sm_old, users_invite_sm_new, invites_count_sm_old, invites_count_sm_new, 
+    period
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_invite
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_invite
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.UserInvite" >
+    insert into user_invite (id, groupid, users_invite_hd_old, 
+      users_invite_hd_new, invites_count_hd_old, invites_count_hd_new, 
+      users_invite_sm_old, users_invite_sm_new, invites_count_sm_old, 
+      invites_count_sm_new, period)
+    values (#{id,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{usersInviteHdOld,jdbcType=INTEGER}, 
+      #{usersInviteHdNew,jdbcType=INTEGER}, #{invitesCountHdOld,jdbcType=INTEGER}, #{invitesCountHdNew,jdbcType=INTEGER}, 
+      #{usersInviteSmOld,jdbcType=INTEGER}, #{usersInviteSmNew,jdbcType=INTEGER}, #{invitesCountSmOld,jdbcType=INTEGER}, 
+      #{invitesCountSmNew,jdbcType=INTEGER}, #{period,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.UserInvite" >
+    insert into user_invite
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="usersInviteHdOld != null" >
+        users_invite_hd_old,
+      </if>
+      <if test="usersInviteHdNew != null" >
+        users_invite_hd_new,
+      </if>
+      <if test="invitesCountHdOld != null" >
+        invites_count_hd_old,
+      </if>
+      <if test="invitesCountHdNew != null" >
+        invites_count_hd_new,
+      </if>
+      <if test="usersInviteSmOld != null" >
+        users_invite_sm_old,
+      </if>
+      <if test="usersInviteSmNew != null" >
+        users_invite_sm_new,
+      </if>
+      <if test="invitesCountSmOld != null" >
+        invites_count_sm_old,
+      </if>
+      <if test="invitesCountSmNew != null" >
+        invites_count_sm_new,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteHdOld != null" >
+        #{usersInviteHdOld,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteHdNew != null" >
+        #{usersInviteHdNew,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCountHdOld != null" >
+        #{invitesCountHdOld,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCountHdNew != null" >
+        #{invitesCountHdNew,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteSmOld != null" >
+        #{usersInviteSmOld,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteSmNew != null" >
+        #{usersInviteSmNew,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCountSmOld != null" >
+        #{invitesCountSmOld,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCountSmNew != null" >
+        #{invitesCountSmNew,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.UserInvite" >
+    update user_invite
+    <set >
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteHdOld != null" >
+        users_invite_hd_old = #{usersInviteHdOld,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteHdNew != null" >
+        users_invite_hd_new = #{usersInviteHdNew,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCountHdOld != null" >
+        invites_count_hd_old = #{invitesCountHdOld,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCountHdNew != null" >
+        invites_count_hd_new = #{invitesCountHdNew,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteSmOld != null" >
+        users_invite_sm_old = #{usersInviteSmOld,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteSmNew != null" >
+        users_invite_sm_new = #{usersInviteSmNew,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCountSmOld != null" >
+        invites_count_sm_old = #{invitesCountSmOld,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCountSmNew != null" >
+        invites_count_sm_new = #{invitesCountSmNew,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.UserInvite" >
+    update user_invite
+    set groupid = #{groupid,jdbcType=INTEGER},
+      users_invite_hd_old = #{usersInviteHdOld,jdbcType=INTEGER},
+      users_invite_hd_new = #{usersInviteHdNew,jdbcType=INTEGER},
+      invites_count_hd_old = #{invitesCountHdOld,jdbcType=INTEGER},
+      invites_count_hd_new = #{invitesCountHdNew,jdbcType=INTEGER},
+      users_invite_sm_old = #{usersInviteSmOld,jdbcType=INTEGER},
+      users_invite_sm_new = #{usersInviteSmNew,jdbcType=INTEGER},
+      invites_count_sm_old = #{invitesCountSmOld,jdbcType=INTEGER},
+      invites_count_sm_new = #{invitesCountSmNew,jdbcType=INTEGER},
+      period = #{period,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_invite
+  </select>
+  
+  
+  <select id="findByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_invite where 1=1
+    <if test="groupid != null" >
+       and groupid = #{groupid,jdbcType=INTEGER}
+    </if>
+    <if test="period != null" >
+       and date_format(period, '%Y-%m-%d') = #{period}
+    </if>
+  </select>
+  
+</mapper>

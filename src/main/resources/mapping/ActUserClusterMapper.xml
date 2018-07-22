@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinian.alysis.model.ActUserClusterMapper" >
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.ActUserCluster" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="retention_period" property="retentionPeriod" jdbcType="VARCHAR" />
+    <result column="user_cut" property="userCut" jdbcType="VARCHAR" />
+    <result column="users_total" property="usersTotal" jdbcType="INTEGER" />
+    <result column="users_reupload" property="usersReupload" jdbcType="INTEGER" />
+    <result column="users_create" property="usersCreate" jdbcType="INTEGER" />
+    <result column="users_upload" property="usersUpload" jdbcType="INTEGER" />
+    <result column="users_play" property="usersPlay" jdbcType="INTEGER" />
+    <result column="counts_create" property="countsCreate" jdbcType="INTEGER" />
+    <result column="counts_upload" property="countsUpload" jdbcType="INTEGER" />
+    <result column="counts_play" property="countsPlay" jdbcType="INTEGER" />
+    <result column="period" property="period" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupid, retention_period, user_cut, users_total, users_reupload, users_create, 
+    users_upload, users_play, counts_create, counts_upload, counts_play, period
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from activity_user_cluster
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activity_user_cluster
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.ActUserCluster" >
+    insert into activity_user_cluster (id, groupid, retention_period, 
+      user_cut, users_total, users_reupload, 
+      users_create, users_upload, users_play, 
+      counts_create, counts_upload, counts_play, 
+      period)
+    values (#{id,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{retentionPeriod,jdbcType=VARCHAR}, 
+      #{userCut,jdbcType=VARCHAR}, #{usersTotal,jdbcType=INTEGER}, #{usersReupload,jdbcType=INTEGER}, 
+      #{usersCreate,jdbcType=INTEGER}, #{usersUpload,jdbcType=INTEGER}, #{usersPlay,jdbcType=INTEGER}, 
+      #{countsCreate,jdbcType=INTEGER}, #{countsUpload,jdbcType=INTEGER}, #{countsPlay,jdbcType=INTEGER}, 
+      #{period,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.ActUserCluster" >
+    insert into activity_user_cluster
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="retentionPeriod != null" >
+        retention_period,
+      </if>
+      <if test="userCut != null" >
+        user_cut,
+      </if>
+      <if test="usersTotal != null" >
+        users_total,
+      </if>
+      <if test="usersReupload != null" >
+        users_reupload,
+      </if>
+      <if test="usersCreate != null" >
+        users_create,
+      </if>
+      <if test="usersUpload != null" >
+        users_upload,
+      </if>
+      <if test="usersPlay != null" >
+        users_play,
+      </if>
+      <if test="countsCreate != null" >
+        counts_create,
+      </if>
+      <if test="countsUpload != null" >
+        counts_upload,
+      </if>
+      <if test="countsPlay != null" >
+        counts_play,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="retentionPeriod != null" >
+        #{retentionPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="userCut != null" >
+        #{userCut,jdbcType=VARCHAR},
+      </if>
+      <if test="usersTotal != null" >
+        #{usersTotal,jdbcType=INTEGER},
+      </if>
+      <if test="usersReupload != null" >
+        #{usersReupload,jdbcType=INTEGER},
+      </if>
+      <if test="usersCreate != null" >
+        #{usersCreate,jdbcType=INTEGER},
+      </if>
+      <if test="usersUpload != null" >
+        #{usersUpload,jdbcType=INTEGER},
+      </if>
+      <if test="usersPlay != null" >
+        #{usersPlay,jdbcType=INTEGER},
+      </if>
+      <if test="countsCreate != null" >
+        #{countsCreate,jdbcType=INTEGER},
+      </if>
+      <if test="countsUpload != null" >
+        #{countsUpload,jdbcType=INTEGER},
+      </if>
+      <if test="countsPlay != null" >
+        #{countsPlay,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.ActUserCluster" >
+    update activity_user_cluster
+    <set >
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="retentionPeriod != null" >
+        retention_period = #{retentionPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="userCut != null" >
+        user_cut = #{userCut,jdbcType=VARCHAR},
+      </if>
+      <if test="usersTotal != null" >
+        users_total = #{usersTotal,jdbcType=INTEGER},
+      </if>
+      <if test="usersReupload != null" >
+        users_reupload = #{usersReupload,jdbcType=INTEGER},
+      </if>
+      <if test="usersCreate != null" >
+        users_create = #{usersCreate,jdbcType=INTEGER},
+      </if>
+      <if test="usersUpload != null" >
+        users_upload = #{usersUpload,jdbcType=INTEGER},
+      </if>
+      <if test="usersPlay != null" >
+        users_play = #{usersPlay,jdbcType=INTEGER},
+      </if>
+      <if test="countsCreate != null" >
+        counts_create = #{countsCreate,jdbcType=INTEGER},
+      </if>
+      <if test="countsUpload != null" >
+        counts_upload = #{countsUpload,jdbcType=INTEGER},
+      </if>
+      <if test="countsPlay != null" >
+        counts_play = #{countsPlay,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.ActUserCluster" >
+    update activity_user_cluster
+    set groupid = #{groupid,jdbcType=INTEGER},
+      retention_period = #{retentionPeriod,jdbcType=VARCHAR},
+      user_cut = #{userCut,jdbcType=VARCHAR},
+      users_total = #{usersTotal,jdbcType=INTEGER},
+      users_reupload = #{usersReupload,jdbcType=INTEGER},
+      users_create = #{usersCreate,jdbcType=INTEGER},
+      users_upload = #{usersUpload,jdbcType=INTEGER},
+      users_play = #{usersPlay,jdbcType=INTEGER},
+      counts_create = #{countsCreate,jdbcType=INTEGER},
+      counts_upload = #{countsUpload,jdbcType=INTEGER},
+      counts_play = #{countsPlay,jdbcType=INTEGER},
+      period = #{period,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activity_user_cluster
+  </select>
+  
+  <select id="findByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activity_user_cluster where 1=1
+    <if test="groupid != null" >
+       and groupid = #{groupid,jdbcType=INTEGER}
+    </if>
+    <if test="period != null" >
+       and date_format(period, '%Y-%m-%d') = #{period}
+    </if>
+  </select>
+  
+  <select id="findStaticsByMapParam" parameterType="java.util.Map" resultType="java.util.Map">
+ 	SELECT
+		t.retention_period AS a,
+		t.user_cut AS b,
+		t.users_total AS c
+	FROM
+		activity_user_cluster t
+	WHERE 1 = 1
+	<if test="groupid != null" >
+       and t.groupid = #{groupid,jdbcType=INTEGER}
+    </if>
+	<if test="period != null" >
+       and date_format(t.period, '%Y-%m-%d') = #{period}
+    </if>
+	UNION
+	SELECT
+		t1.retention_period AS a,
+		'总计' AS b,
+		SUM(t1.users_total) AS c
+	FROM
+		activity_user_cluster t1
+	WHERE 1 = 1
+	<if test="groupid != null" >
+       and t1.groupid = #{groupid,jdbcType=INTEGER}
+    </if>
+	<if test="period != null" >
+       and date_format(t1.period, '%Y-%m-%d') = #{period}
+    </if>
+	GROUP BY
+		t1.retention_period
+  </select>
+  
+  
+  <select id="findTotalhavByMapParam" parameterType="java.util.Map" resultType="java.util.Map">
+  	SELECT
+		t.retention_period AS a,
+		t.user_cut AS b,
+		(t.counts_create + t.counts_upload + t.counts_play)/t.users_total AS c
+	FROM
+		activity_user_cluster t
+	WHERE 1 = 1
+	  	<if test="groupid != null" >
+       		and t.groupid = #{groupid,jdbcType=INTEGER}
+    	</if>
+    	<if test="period != null" >
+       		and date_format(t.period, '%Y-%m-%d') = #{period}
+    	</if>
+  </select>
+  
+  
+  <select id="findCreatehavByMapParam" parameterType="java.util.Map" resultType="java.util.Map">
+  	SELECT
+		t.retention_period AS a,
+		t.user_cut AS b,
+		t.counts_create/t.users_total AS c
+	FROM
+		activity_user_cluster t
+	WHERE 1 = 1
+	  	<if test="groupid != null" >
+       		and t.groupid = #{groupid,jdbcType=INTEGER}
+    	</if>
+    	<if test="period != null" >
+       		and date_format(t.period, '%Y-%m-%d') = #{period}
+    	</if>
+  </select>
+  
+  <select id="findUploadhavByMapParam" parameterType="java.util.Map" resultType="java.util.Map">
+  	SELECT
+		t.retention_period AS a,
+		t.user_cut AS b,
+		t.counts_upload/t.users_total AS c
+	FROM
+		activity_user_cluster t
+	WHERE 1 = 1
+	  	<if test="groupid != null" >
+       		and t.groupid = #{groupid,jdbcType=INTEGER}
+    	</if>
+    	<if test="period != null" >
+       		and date_format(t.period, '%Y-%m-%d') = #{period}
+    	</if>
+  </select>
+  
+  <select id="findPlayhavByMapParam" parameterType="java.util.Map" resultType="java.util.Map">
+  	SELECT
+		t.retention_period AS a,
+		t.user_cut AS b,
+		t.counts_play/t.users_total AS c
+	FROM
+		activity_user_cluster t
+	WHERE 1 = 1
+	  	<if test="groupid != null" >
+       		and t.groupid = #{groupid,jdbcType=INTEGER}
+    	</if>
+    	<if test="period != null" >
+       		and date_format(t.period, '%Y-%m-%d') = #{period}
+    	</if>
+  </select>
+  
+  
+</mapper>

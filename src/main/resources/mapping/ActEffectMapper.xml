@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinian.alysis.model.ActEffectMapper" >
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.ActEffect" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="fcl_pre" property="fclPre" jdbcType="INTEGER" />
+    <result column="fcl_aft" property="fclAft" jdbcType="INTEGER" />
+    <result column="lcl_dual_old" property="lclDualOld" jdbcType="INTEGER" />
+    <result column="lcl_dual_new" property="lclDualNew" jdbcType="INTEGER" />
+    <result column="lcl_3day_old" property="lcl3dayOld" jdbcType="INTEGER" />
+    <result column="lcl_3day_new" property="lcl3dayNew" jdbcType="INTEGER" />
+    <result column="lcl_week_old" property="lclWeekOld" jdbcType="INTEGER" />
+    <result column="lcl_week_new" property="lclWeekNew" jdbcType="INTEGER" />
+    <result column="lcl_month_old" property="lclMonthOld" jdbcType="INTEGER" />
+    <result column="lcl_month_new" property="lclMonthNew" jdbcType="INTEGER" />
+    <result column="period" property="period" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupid, fcl_pre, fcl_aft, lcl_dual_old, lcl_dual_new, lcl_3day_old, lcl_3day_new, 
+    lcl_week_old, lcl_week_new, lcl_month_old, lcl_month_new, period
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from activity_effect
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activity_effect
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.ActEffect" >
+    insert into activity_effect (id, groupid, fcl_pre, 
+      fcl_aft, lcl_dual_old, lcl_dual_new, 
+      lcl_3day_old, lcl_3day_new, lcl_week_old, 
+      lcl_week_new, lcl_month_old, lcl_month_new, 
+      period)
+    values (#{id,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{fclPre,jdbcType=INTEGER}, 
+      #{fclAft,jdbcType=INTEGER}, #{lclDualOld,jdbcType=INTEGER}, #{lclDualNew,jdbcType=INTEGER}, 
+      #{lcl3dayOld,jdbcType=INTEGER}, #{lcl3dayNew,jdbcType=INTEGER}, #{lclWeekOld,jdbcType=INTEGER}, 
+      #{lclWeekNew,jdbcType=INTEGER}, #{lclMonthOld,jdbcType=INTEGER}, #{lclMonthNew,jdbcType=INTEGER}, 
+      #{period,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.ActEffect" >
+    insert into activity_effect
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="fclPre != null" >
+        fcl_pre,
+      </if>
+      <if test="fclAft != null" >
+        fcl_aft,
+      </if>
+      <if test="lclDualOld != null" >
+        lcl_dual_old,
+      </if>
+      <if test="lclDualNew != null" >
+        lcl_dual_new,
+      </if>
+      <if test="lcl3dayOld != null" >
+        lcl_3day_old,
+      </if>
+      <if test="lcl3dayNew != null" >
+        lcl_3day_new,
+      </if>
+      <if test="lclWeekOld != null" >
+        lcl_week_old,
+      </if>
+      <if test="lclWeekNew != null" >
+        lcl_week_new,
+      </if>
+      <if test="lclMonthOld != null" >
+        lcl_month_old,
+      </if>
+      <if test="lclMonthNew != null" >
+        lcl_month_new,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="fclPre != null" >
+        #{fclPre,jdbcType=INTEGER},
+      </if>
+      <if test="fclAft != null" >
+        #{fclAft,jdbcType=INTEGER},
+      </if>
+      <if test="lclDualOld != null" >
+        #{lclDualOld,jdbcType=INTEGER},
+      </if>
+      <if test="lclDualNew != null" >
+        #{lclDualNew,jdbcType=INTEGER},
+      </if>
+      <if test="lcl3dayOld != null" >
+        #{lcl3dayOld,jdbcType=INTEGER},
+      </if>
+      <if test="lcl3dayNew != null" >
+        #{lcl3dayNew,jdbcType=INTEGER},
+      </if>
+      <if test="lclWeekOld != null" >
+        #{lclWeekOld,jdbcType=INTEGER},
+      </if>
+      <if test="lclWeekNew != null" >
+        #{lclWeekNew,jdbcType=INTEGER},
+      </if>
+      <if test="lclMonthOld != null" >
+        #{lclMonthOld,jdbcType=INTEGER},
+      </if>
+      <if test="lclMonthNew != null" >
+        #{lclMonthNew,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.ActEffect" >
+    update activity_effect
+    <set >
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="fclPre != null" >
+        fcl_pre = #{fclPre,jdbcType=INTEGER},
+      </if>
+      <if test="fclAft != null" >
+        fcl_aft = #{fclAft,jdbcType=INTEGER},
+      </if>
+      <if test="lclDualOld != null" >
+        lcl_dual_old = #{lclDualOld,jdbcType=INTEGER},
+      </if>
+      <if test="lclDualNew != null" >
+        lcl_dual_new = #{lclDualNew,jdbcType=INTEGER},
+      </if>
+      <if test="lcl3dayOld != null" >
+        lcl_3day_old = #{lcl3dayOld,jdbcType=INTEGER},
+      </if>
+      <if test="lcl3dayNew != null" >
+        lcl_3day_new = #{lcl3dayNew,jdbcType=INTEGER},
+      </if>
+      <if test="lclWeekOld != null" >
+        lcl_week_old = #{lclWeekOld,jdbcType=INTEGER},
+      </if>
+      <if test="lclWeekNew != null" >
+        lcl_week_new = #{lclWeekNew,jdbcType=INTEGER},
+      </if>
+      <if test="lclMonthOld != null" >
+        lcl_month_old = #{lclMonthOld,jdbcType=INTEGER},
+      </if>
+      <if test="lclMonthNew != null" >
+        lcl_month_new = #{lclMonthNew,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.ActEffect" >
+    update activity_effect
+    set groupid = #{groupid,jdbcType=INTEGER},
+      fcl_pre = #{fclPre,jdbcType=INTEGER},
+      fcl_aft = #{fclAft,jdbcType=INTEGER},
+      lcl_dual_old = #{lclDualOld,jdbcType=INTEGER},
+      lcl_dual_new = #{lclDualNew,jdbcType=INTEGER},
+      lcl_3day_old = #{lcl3dayOld,jdbcType=INTEGER},
+      lcl_3day_new = #{lcl3dayNew,jdbcType=INTEGER},
+      lcl_week_old = #{lclWeekOld,jdbcType=INTEGER},
+      lcl_week_new = #{lclWeekNew,jdbcType=INTEGER},
+      lcl_month_old = #{lclMonthOld,jdbcType=INTEGER},
+      lcl_month_new = #{lclMonthNew,jdbcType=INTEGER},
+      period = #{period,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activity_effect
+  </select>
+</mapper>

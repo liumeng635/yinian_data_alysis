@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinian.alysis.model.GroupsPicUserCutMapper" >
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.GroupsPicUserCut" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="users_cut" property="usersCut" jdbcType="VARCHAR" />
+    <result column="picture_cut" property="pictureCut" jdbcType="VARCHAR" />
+    <result column="groups_count" property="groupsCount" jdbcType="INTEGER" />
+    <result column="pictures_count" property="picturesCount" jdbcType="INTEGER" />
+    <result column="period" property="period" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupid, users_cut, picture_cut, groups_count, pictures_count, period
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from groups_pic_user_cut
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from groups_pic_user_cut
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.GroupsPicUserCut" >
+    insert into groups_pic_user_cut (id, groupid, users_cut, 
+      picture_cut, groups_count, pictures_count, 
+      period)
+    values (#{id,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{usersCut,jdbcType=VARCHAR}, 
+      #{pictureCut,jdbcType=VARCHAR}, #{groupsCount,jdbcType=INTEGER}, #{picturesCount,jdbcType=INTEGER}, 
+      #{period,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.GroupsPicUserCut" >
+    insert into groups_pic_user_cut
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="usersCut != null" >
+        users_cut,
+      </if>
+      <if test="pictureCut != null" >
+        picture_cut,
+      </if>
+      <if test="groupsCount != null" >
+        groups_count,
+      </if>
+      <if test="picturesCount != null" >
+        pictures_count,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="usersCut != null" >
+        #{usersCut,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureCut != null" >
+        #{pictureCut,jdbcType=VARCHAR},
+      </if>
+      <if test="groupsCount != null" >
+        #{groupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="picturesCount != null" >
+        #{picturesCount,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.GroupsPicUserCut" >
+    update groups_pic_user_cut
+    <set >
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="usersCut != null" >
+        users_cut = #{usersCut,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureCut != null" >
+        picture_cut = #{pictureCut,jdbcType=VARCHAR},
+      </if>
+      <if test="groupsCount != null" >
+        groups_count = #{groupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="picturesCount != null" >
+        pictures_count = #{picturesCount,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.GroupsPicUserCut" >
+    update groups_pic_user_cut
+    set groupid = #{groupid,jdbcType=INTEGER},
+      users_cut = #{usersCut,jdbcType=VARCHAR},
+      picture_cut = #{pictureCut,jdbcType=VARCHAR},
+      groups_count = #{groupsCount,jdbcType=INTEGER},
+      pictures_count = #{picturesCount,jdbcType=INTEGER},
+      period = #{period,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from groups_pic_user_cut
+  </select>
+  
+  <select id="findByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from groups_pic_user_cut where 1=1
+    <if test="groupid != null" >
+       and groupid = #{groupid,jdbcType=INTEGER}
+    </if>
+    <if test="period != null" >
+       and date_format(period, '%Y-%m-%d') = #{period}
+    </if>
+  </select> 
+</mapper>

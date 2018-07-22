@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinian.alysis.model.GroupRetentionMapper">
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.GroupRetention">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="period" jdbcType="VARCHAR" property="period" />
+    <result column="group_type" jdbcType="INTEGER" property="groupType" />
+    <result column="create_count" jdbcType="INTEGER" property="createCount" />
+    <result column="upload_count" jdbcType="INTEGER" property="uploadCount" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+    <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+    <result column="invite_count" jdbcType="INTEGER" property="inviteCount" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="system_time" jdbcType="TIMESTAMP" property="systemTime" />
+    <result column="data_type" jdbcType="INTEGER" property="dataType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, date, period, group_type, create_count, upload_count, comment_count, like_count, 
+    invite_count, count, system_time, data_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from group_retention
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from group_retention
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.GroupRetention">
+    insert into group_retention (date, period, 
+      group_type, create_count, upload_count, 
+      comment_count, like_count, invite_count, 
+      count, system_time, data_type
+      )
+    values (#{date,jdbcType=TIMESTAMP}, #{period,jdbcType=VARCHAR}, 
+      #{groupType,jdbcType=INTEGER}, #{createCount,jdbcType=INTEGER}, #{uploadCount,jdbcType=INTEGER}, 
+      #{commentCount,jdbcType=INTEGER}, #{likeCount,jdbcType=INTEGER}, #{inviteCount,jdbcType=INTEGER}, 
+      #{count,jdbcType=INTEGER}, sysdate(), #{dataType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.GroupRetention">
+    insert into group_retention
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="period != null">
+        period,
+      </if>
+      <if test="groupType != null">
+        group_type,
+      </if>
+      <if test="createCount != null">
+        create_count,
+      </if>
+      <if test="uploadCount != null">
+        upload_count,
+      </if>
+      <if test="commentCount != null">
+        comment_count,
+      </if>
+      <if test="likeCount != null">
+        like_count,
+      </if>
+      <if test="inviteCount != null">
+        invite_count,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="systemTime != null">
+        system_time,
+      </if>
+      <if test="dataType != null">
+        data_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="period != null">
+        #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null">
+        #{groupType,jdbcType=INTEGER},
+      </if>
+      <if test="createCount != null">
+        #{createCount,jdbcType=INTEGER},
+      </if>
+      <if test="uploadCount != null">
+        #{uploadCount,jdbcType=INTEGER},
+      </if>
+      <if test="commentCount != null">
+        #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="likeCount != null">
+        #{likeCount,jdbcType=INTEGER},
+      </if>
+      <if test="inviteCount != null">
+        #{inviteCount,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="systemTime != null">
+        #{systemTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.GroupRetention">
+    update group_retention
+    <set>
+      <if test="date != null">
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="period != null">
+        period = #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null">
+        group_type = #{groupType,jdbcType=INTEGER},
+      </if>
+      <if test="createCount != null">
+        create_count = #{createCount,jdbcType=INTEGER},
+      </if>
+      <if test="uploadCount != null">
+        upload_count = #{uploadCount,jdbcType=INTEGER},
+      </if>
+      <if test="commentCount != null">
+        comment_count = #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="likeCount != null">
+        like_count = #{likeCount,jdbcType=INTEGER},
+      </if>
+      <if test="inviteCount != null">
+        invite_count = #{inviteCount,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="systemTime != null">
+        system_time = #{systemTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataType != null">
+        data_type = #{dataType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.GroupRetention">
+    update group_retention
+    set date = #{date,jdbcType=TIMESTAMP},
+      period = #{period,jdbcType=VARCHAR},
+      group_type = #{groupType,jdbcType=INTEGER},
+      create_count = #{createCount,jdbcType=INTEGER},
+      upload_count = #{uploadCount,jdbcType=INTEGER},
+      comment_count = #{commentCount,jdbcType=INTEGER},
+      like_count = #{likeCount,jdbcType=INTEGER},
+      invite_count = #{inviteCount,jdbcType=INTEGER},
+      count = #{count,jdbcType=INTEGER},
+      system_time = #{systemTime,jdbcType=TIMESTAMP},
+      data_type = #{dataType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from group_retention where 1=1
+    <if test="time != null" >
+       and date = #{time}
+    </if>
+    <if test="dataType != null" >
+       and data_type = #{dataType}
+    </if>
+<!-- 	    SELECT -->
+<!-- 			<include refid="Base_Column_List" /> -->
+<!-- 		FROM -->
+<!-- 			group_retention t, -->
+<!-- 			( -->
+<!-- 				SELECT -->
+<!-- 					max(t1.system_time) AS qd -->
+<!-- 				FROM -->
+<!-- 					group_retention t1 -->
+<!-- 				WHERE 1=1 -->
+<!-- 				 <if test="time != null" > -->
+<!--        				and t1.date = #{time} -->
+<!--     			 </if> -->
+<!-- 			) t2 -->
+<!-- 		WHERE 1=1 -->
+<!-- 			<if test="time != null" > -->
+<!--        			and t.date = #{time} -->
+<!--     	    </if> -->
+<!--     	    <if test="dataType != null" > -->
+<!--        			and t.data_type = #{dataType} -->
+<!--     	    </if> -->
+<!-- 		AND DATE_FORMAT(t.system_time, '%y-%M-%d') = DATE_FORMAT(t2.qd, '%y-%M-%d') -->
+  </select>
+  
+  <select id="listAllDate" parameterType="java.util.Map" resultType="java.util.Map">
+   	select t.date as date from group_retention t GROUP BY t.date order by date desc
+  </select>
+  
+  
+  <select id="listAllNewestRcd" parameterType="java.util.Map" resultMap="BaseResultMap">
+   		SELECT
+		t1.id, t1.date, t1.period, t1.group_type, t1.create_count, t1.upload_count, t1.comment_count, t1.like_count,t1.invite_count, t1.count, t1.system_time, t1.data_type 
+		FROM
+			group_retention t1,
+			(
+				SELECT
+					max(t2.system_time) AS system_time
+				FROM
+					group_retention t2
+				where 1=1
+				<if test="dataType != null" >
+       				and t2.data_type = #{dataType}
+    			</if>
+				GROUP BY t2.date
+			) t3
+		WHERE DATEDIFF(t3.system_time,t1.system_time)=0
+   		<if test="dataType != null" >
+       			and t1.data_type = #{dataType}
+    	</if>
+  </select>
+  
+  
+  
+  
+  
+  <select id="listMap1"  parameterType="java.util.Map" resultType="java.util.HashMap">
+  	select 
+		tt.groupNewType as groupNewType,
+		max(CASE havType when '创建' then count else 0 end) as '创建',
+		max(CASE havType when '上传' then count else 0 end) as '上传',
+		max(CASE havType when '评论' then count else 0 end) as '评论',
+		max(CASE havType when '点赞' then count else 0 end) as '点赞',
+		max(CASE havType when '邀请' then count else 0 end) as '邀请',
+		max(CASE havType when '汇总' then count else 0 end) as '汇总'
+		from
+		(
+		select groupNewType,aa.havType,count(DISTINCT groupid) as count from 
+		(
+		SELECT t1.groupid,t1.groupNewType,'创建' as havType FROM yinian.groups t1 WHERE DATE_FORMAT(t1.gtime, '%Y-%m-%d') = #{time}
+		UNION
+		select tg.groupid,tg.groupNewType,'上传' as havType from yinian.`events` t2,yinian.groups tg where tg.groupid = t2.egroupid and DATE_FORMAT(t2.euploadtime, '%Y-%m-%d') = #{time}
+		UNION
+		SELECT tg1.groupid,tg1.groupNewType,'评论' as havType from yinian.comments t3 ,yinian.`events` te,yinian.groups tg1 where t3.ceid = te.eid and te.egroupid = tg1.groupid and DATE_FORMAT(t3.ctime, '%Y-%m-%d') = #{time}
+		UNION
+		select tg2.groupid,tg2.groupNewType,'点赞' as havType from yinian.`like` ll,yinian.`events` te,yinian.groups tg2 where ll.likeEventID = te.eid and te.egroupid  = tg2.groupid and DATE_FORMAT(ll.likeTime, '%Y-%m-%d') = #{time}
+		UNION
+		select tg3.groupid,tg3.groupNewType,'邀请' as havType from yinian.groupmembers gm,yinian.groups tg3 where gm.gmgroupid = tg3.groupid and gm.gmFromUserID > 0 and DATE_FORMAT(gm.gmtime, '%Y-%m-%d') = #{time} ###邀请
+		) aa
+		group by aa.groupNewType,aa.havType
+		UNION
+		select groupNewType,'汇总' as havType, count(DISTINCT groupid) as count from 
+		(
+		SELECT t1.groupid,t1.groupNewType FROM yinian.groups t1 WHERE DATE_FORMAT(t1.gtime, '%Y-%m-%d') = #{time}
+		UNION
+		select tg.groupid,tg.groupNewType from yinian.`events` t2,yinian.groups tg where tg.groupid = t2.egroupid and DATE_FORMAT(t2.euploadtime, '%Y-%m-%d') = #{time}
+		UNION
+		SELECT tg1.groupid,tg1.groupNewType from yinian.comments t3 ,yinian.`events` te,yinian.groups tg1 where t3.ceid = te.eid and te.egroupid = tg1.groupid and DATE_FORMAT(t3.ctime, '%Y-%m-%d') = #{time}
+		UNION
+		select tg2.groupid,tg2.groupNewType as havType from yinian.`like` ll,yinian.`events` te,yinian.groups tg2 where ll.likeEventID = te.eid and te.egroupid  = tg2.groupid and DATE_FORMAT(ll.likeTime, '%Y-%m-%d') = #{time}
+		UNION
+		select tg3.groupid,tg3.groupNewType from yinian.groupmembers gm,yinian.groups tg3 where gm.gmgroupid = tg3.groupid and gm.gmFromUserID > 0 and DATE_FORMAT(gm.gmtime, '%Y-%m-%d') = #{time}
+		) aa
+		group by aa.groupNewType
+		) tt group by tt.groupNewType
+  </select>
+  
+  
+  
+  <select id="listMap2"  parameterType="java.util.Map" resultType="java.util.HashMap">
+  	select
+		tt.groupNewType as groupNewType,
+		max(CASE havType when '上传' then count else 0 end) as '上传',
+		max(CASE havType when '评论' then count else 0 end) as '评论',
+		max(CASE havType when '点赞' then count else 0 end) as '点赞',
+		max(CASE havType when '邀请' then count else 0 end) as '邀请',
+		max(CASE havType when '汇总' then count else 0 end) as '汇总'
+		from 
+		(
+		select aa.groupNewType,aa.havType,count(DISTINCT aa.groupid) as count from
+		(
+		SELECT t1.groupid,t1.groupNewType FROM yinian.groups t1 WHERE DATE_FORMAT(t1.gtime, '%Y-%m-%d') = #{time}
+		UNION
+		select tg.groupid,tg.groupNewType from yinian.`events` t2,yinian.groups tg where tg.groupid = t2.egroupid and DATE_FORMAT(t2.euploadtime, '%Y-%m-%d') = #{time}
+		UNION
+		SELECT tg1.groupid,tg1.groupNewType from yinian.comments t3 ,yinian.`events` te,yinian.groups tg1 where t3.ceid = te.eid and te.egroupid = tg1.groupid and DATE_FORMAT(t3.ctime, '%Y-%m-%d') = #{time}
+		UNION
+		select tg2.groupid,tg2.groupNewType as havType from yinian.`like` ll,yinian.`events` te,yinian.groups tg2 where ll.likeEventID = te.eid and te.egroupid  = tg2.groupid and DATE_FORMAT(ll.likeTime, '%Y-%m-%d') = #{time}
+		UNION
+		select tg3.groupid,tg3.groupNewType from yinian.groupmembers gm,yinian.groups tg3 where gm.gmgroupid = tg3.groupid and gm.gmFromUserID > 0 and DATE_FORMAT(gm.gmtime, '%Y-%m-%d') = #{time}
+		)  bb,
+		(
+		select tg.groupid,tg.groupNewType,'上传' as havType from yinian.`events` t2,yinian.groups tg where tg.groupid = t2.egroupid and t2.euploadtime > #{startTime} and t2.euploadtime <![CDATA[<]]> #{endTime}
+		UNION
+		SELECT tg1.groupid,tg1.groupNewType,'评论' as havType from yinian.comments t3 ,yinian.`events` te,yinian.groups tg1 where t3.ceid = te.eid and te.egroupid = tg1.groupid and t3.ctime > #{startTime} and  t3.ctime <![CDATA[<]]> #{endTime}
+		UNION
+		select tg2.groupid,tg2.groupNewType,'点赞' as havType from yinian.`like` ll,yinian.`events` te,yinian.groups tg2 where ll.likeEventID = te.eid and  te.egroupid  = tg2.groupid and ll.likeTime > #{startTime} and ll.likeTime <![CDATA[<]]> #{endTime}
+		UNION
+		select tg3.groupid,tg3.groupNewType,'邀请' as havType from yinian.groupmembers gm,yinian.groups tg3 where gm.gmgroupid = tg3.groupid and gm.gmFromUserID > 0 and gm.gmtime > #{startTime} and gm.gmtime <![CDATA[<]]> #{endTime}
+		) aa
+		where aa.groupid = bb.groupid
+		group by aa.groupNewType,aa.havType
+		UNION
+		select aa.groupNewType,'汇总' as havType ,count(DISTINCT aa.groupid) as count from
+		(
+		SELECT t1.groupid,t1.groupNewType FROM yinian.groups t1 WHERE DATE_FORMAT(t1.gtime, '%Y-%m-%d') = #{time}
+		UNION
+		select tg.groupid,tg.groupNewType from yinian.`events` t2,yinian.groups tg where tg.groupid = t2.egroupid and DATE_FORMAT(t2.euploadtime, '%Y-%m-%d') = #{time}
+		UNION
+		SELECT tg1.groupid,tg1.groupNewType from yinian.comments t3 ,yinian.`events` te,yinian.groups tg1 where t3.ceid = te.eid and te.egroupid = tg1.groupid and DATE_FORMAT(t3.ctime, '%Y-%m-%d') = #{time}
+		UNION
+		select tg2.groupid,tg2.groupNewType as havType from yinian.`like` ll,yinian.`events` te,yinian.groups tg2 where ll.likeEventID = te.eid and te.egroupid  = tg2.groupid and DATE_FORMAT(ll.likeTime, '%Y-%m-%d') = #{time}
+		UNION
+		select tg3.groupid,tg3.groupNewType from yinian.groupmembers gm,yinian.groups tg3 where gm.gmgroupid = tg3.groupid and gm.gmFromUserID > 0 and DATE_FORMAT(gm.gmtime, '%Y-%m-%d') = #{time}
+		)  bb,
+		(
+		select tg.groupid,tg.groupNewType from yinian.`events` t2,yinian.groups tg where tg.groupid = t2.egroupid and t2.euploadtime > #{startTime} and t2.euploadtime <![CDATA[<]]> #{endTime}
+		UNION
+		SELECT tg1.groupid,tg1.groupNewType from yinian.comments t3 ,yinian.`events` te,yinian.groups tg1 where t3.ceid = te.eid and te.egroupid = tg1.groupid and t3.ctime > #{startTime} and  t3.ctime <![CDATA[<]]> #{endTime}
+		UNION
+		select tg2.groupid,tg2.groupNewType from yinian.`like` ll,yinian.`events` te,yinian.groups tg2 where te.eid = ll.likeEventID and te.egroupid = tg2.groupid and ll.likeTime > #{startTime} and ll.likeTime <![CDATA[<]]> #{endTime}
+		UNION
+		select tg3.groupid,tg3.groupNewType from yinian.groupmembers gm,yinian.groups tg3 where gm.gmgroupid = tg3.groupid and gm.gmFromUserID > 0 and gm.gmtime > #{startTime} and gm.gmtime <![CDATA[<]]> #{endTime}
+		) aa
+		where aa.groupid = bb.groupid
+		group by aa.groupNewType
+		) tt 
+		GROUP BY tt.groupNewType
+  </select>
+  
+  
+  
+  <select id="listMap11"  parameterType="java.util.Map" resultType="java.util.HashMap">
+  	select 
+		tt.groupNewType as groupNewType,
+		max(CASE havType when '创建' then count else 0 end) as '创建',
+		max(CASE havType when '上传' then count else 0 end) as '上传',
+		max(CASE havType when '评论' then count else 0 end) as '评论',
+		max(CASE havType when '点赞' then count else 0 end) as '点赞',
+		max(CASE havType when '邀请' then count else 0 end) as '邀请',
+		max(CASE havType when '汇总' then count else 0 end) as '汇总'
+		from
+		(
+		select groupNewType,aa.havType,count(DISTINCT groupid) as count from 
+		(
+		select tg.groupid,tg.groupNewType,'上传' as havType from yinian.`events` t2,yinian.groups tg where tg.groupid = t2.egroupid and DATE_FORMAT(t2.euploadtime, '%Y-%m-%d') = #{time} and tg.gtime <![CDATA[<]]>  DATE(#{time})
+		UNION
+		SELECT tg1.groupid,tg1.groupNewType,'评论' as havType from yinian.comments t3 ,yinian.`events` te,yinian.groups tg1 where t3.ceid = te.eid and te.egroupid = tg1.groupid and DATE_FORMAT(t3.ctime, '%Y-%m-%d') = #{time} and tg1.gtime <![CDATA[<]]>  DATE(#{time})
+		UNION
+		select tg2.groupid,tg2.groupNewType,'点赞' as havType from yinian.`like` ll,yinian.`events` te,yinian.groups tg2 where ll.likeEventID = te.eid and te.egroupid  = tg2.groupid and DATE_FORMAT(ll.likeTime, '%Y-%m-%d') = #{time} and tg2.gtime <![CDATA[<]]>  DATE(#{time})
+		UNION
+		select tg3.groupid,tg3.groupNewType,'邀请' as havType from yinian.groupmembers gm,yinian.groups tg3 where gm.gmgroupid = tg3.groupid and gm.gmFromUserID > 0 and DATE_FORMAT(gm.gmtime, '%Y-%m-%d') = #{time} and tg3.gtime <![CDATA[<]]>  DATE(#{time})
+		) aa
+		group by aa.groupNewType,aa.havType
+		UNION
+		select groupNewType,'汇总' as havType, count(DISTINCT groupid) as count from 
+		(
+		select tg.groupid,tg.groupNewType from yinian.`events` t2,yinian.groups tg where tg.groupid = t2.egroupid and DATE_FORMAT(t2.euploadtime, '%Y-%m-%d') = #{time} and tg.gtime <![CDATA[<]]>  DATE(#{time})
+		UNION
+		SELECT tg1.groupid,tg1.groupNewType from yinian.comments t3 ,yinian.`events` te,yinian.groups tg1 where t3.ceid = te.eid and te.egroupid = tg1.groupid and DATE_FORMAT(t3.ctime, '%Y-%m-%d') = #{time} and tg1.gtime <![CDATA[<]]>  DATE(#{time})
+		UNION
+		select tg2.groupid,tg2.groupNewType as havType from yinian.`like` ll,yinian.`events` te,yinian.groups tg2 where ll.likeEventID = te.eid and te.egroupid  = tg2.groupid and DATE_FORMAT(ll.likeTime, '%Y-%m-%d') = #{time} and tg2.gtime <![CDATA[<]]>  DATE(#{time})
+		UNION
+		select tg3.groupid,tg3.groupNewType from yinian.groupmembers gm,yinian.groups tg3 where gm.gmgroupid = tg3.groupid and gm.gmFromUserID > 0 and DATE_FORMAT(gm.gmtime, '%Y-%m-%d') = #{time} and tg3.gtime <![CDATA[<]]>  DATE(#{time})
+		) aa
+		group by aa.groupNewType
+		) tt group by tt.groupNewType
+  </select>
+  
+  
+  
+  <select id="listMap22"  parameterType="java.util.Map" resultType="java.util.HashMap">
+  	select
+		tt.groupNewType as groupNewType,
+		max(CASE havType when '上传' then count else 0 end) as '上传',
+		max(CASE havType when '评论' then count else 0 end) as '评论',
+		max(CASE havType when '点赞' then count else 0 end) as '点赞',
+		max(CASE havType when '邀请' then count else 0 end) as '邀请',
+		max(CASE havType when '汇总' then count else 0 end) as '汇总'
+		from 
+		(
+		select aa.groupNewType,aa.havType,count(DISTINCT aa.groupid) as count from
+		(
+		select tg.groupid,tg.groupNewType from yinian.`events` t2,yinian.groups tg where tg.groupid = t2.egroupid and DATE_FORMAT(t2.euploadtime, '%Y-%m-%d') = #{time} and tg.gtime <![CDATA[<]]>  DATE(#{time})
+		UNION
+		SELECT tg1.groupid,tg1.groupNewType from yinian.comments t3 ,yinian.`events` te,yinian.groups tg1 where t3.ceid = te.eid and te.egroupid = tg1.groupid and DATE_FORMAT(t3.ctime, '%Y-%m-%d') = #{time} and tg1.gtime <![CDATA[<]]>  DATE(#{time})
+		UNION
+		select tg2.groupid,tg2.groupNewType as havType from yinian.`like` ll,yinian.`events` te,yinian.groups tg2 where ll.likeEventID = te.eid and te.egroupid  = tg2.groupid and DATE_FORMAT(ll.likeTime, '%Y-%m-%d') = #{time} and tg2.gtime <![CDATA[<]]>  DATE(#{time})
+		UNION
+		select tg3.groupid,tg3.groupNewType from yinian.groupmembers gm,yinian.groups tg3 where gm.gmgroupid = tg3.groupid and gm.gmFromUserID > 0 and DATE_FORMAT(gm.gmtime, '%Y-%m-%d') = #{time} and tg3.gtime <![CDATA[<]]>  DATE(#{time})
+		)  bb,
+		(
+		select tg.groupid,tg.groupNewType,'上传' as havType from yinian.`events` t2,yinian.groups tg where tg.groupid = t2.egroupid and t2.euploadtime > #{startTime} and t2.euploadtime <![CDATA[<]]> #{endTime}
+		UNION
+		SELECT tg1.groupid,tg1.groupNewType,'评论' as havType from yinian.comments t3 ,yinian.`events` te,yinian.groups tg1 where t3.ceid = te.eid and te.egroupid = tg1.groupid and t3.ctime > #{startTime} and  t3.ctime <![CDATA[<]]> #{endTime}
+		UNION
+		select tg2.groupid,tg2.groupNewType,'点赞' as havType from yinian.`like` ll,yinian.`events` te,yinian.groups tg2 where ll.likeEventID = te.eid and  te.egroupid  = tg2.groupid and ll.likeTime > #{startTime} and ll.likeTime <![CDATA[<]]> #{endTime}
+		UNION
+		select tg3.groupid,tg3.groupNewType,'邀请' as havType from yinian.groupmembers gm,yinian.groups tg3 where gm.gmgroupid = tg3.groupid and gm.gmFromUserID > 0 and gm.gmtime > #{startTime} and gm.gmtime <![CDATA[<]]> #{endTime}
+		) aa
+		where aa.groupid = bb.groupid
+		group by aa.groupNewType,aa.havType
+		UNION
+		select aa.groupNewType,'汇总' as havType ,count(DISTINCT aa.groupid) as count from
+		(
+		select tg.groupid,tg.groupNewType from yinian.`events` t2,yinian.groups tg where tg.groupid = t2.egroupid and DATE_FORMAT(t2.euploadtime, '%Y-%m-%d') = #{time} and tg.gtime <![CDATA[<]]>  DATE(#{time})
+		UNION
+		SELECT tg1.groupid,tg1.groupNewType from yinian.comments t3 ,yinian.`events` te,yinian.groups tg1 where t3.ceid = te.eid and te.egroupid = tg1.groupid and DATE_FORMAT(t3.ctime, '%Y-%m-%d') = #{time} and tg1.gtime <![CDATA[<]]>  DATE(#{time})
+		UNION
+		select tg2.groupid,tg2.groupNewType as havType from yinian.`like` ll,yinian.`events` te,yinian.groups tg2 where ll.likeEventID = te.eid and te.egroupid  = tg2.groupid and DATE_FORMAT(ll.likeTime, '%Y-%m-%d') = #{time} and tg2.gtime <![CDATA[<]]>  DATE(#{time})
+		UNION
+		select tg3.groupid,tg3.groupNewType from yinian.groupmembers gm,yinian.groups tg3 where gm.gmgroupid = tg3.groupid and gm.gmFromUserID > 0 and DATE_FORMAT(gm.gmtime, '%Y-%m-%d') = #{time} and tg3.gtime <![CDATA[<]]>  DATE(#{time})
+		)  bb,
+		(
+		select tg.groupid,tg.groupNewType from yinian.`events` t2,yinian.groups tg where tg.groupid = t2.egroupid and t2.euploadtime > #{startTime} and t2.euploadtime <![CDATA[<]]> #{endTime}
+		UNION
+		SELECT tg1.groupid,tg1.groupNewType from yinian.comments t3 ,yinian.`events` te,yinian.groups tg1 where t3.ceid = te.eid and te.egroupid = tg1.groupid and t3.ctime > #{startTime} and  t3.ctime <![CDATA[<]]> #{endTime}
+		UNION
+		select tg2.groupid,tg2.groupNewType from yinian.`like` ll,yinian.`events` te,yinian.groups tg2 where te.eid = ll.likeEventID and te.egroupid = tg2.groupid and ll.likeTime > #{startTime} and ll.likeTime <![CDATA[<]]> #{endTime}
+		UNION
+		select tg3.groupid,tg3.groupNewType from yinian.groupmembers gm,yinian.groups tg3 where gm.gmgroupid = tg3.groupid and gm.gmFromUserID > 0 and gm.gmtime > #{startTime} and gm.gmtime <![CDATA[<]]> #{endTime}
+		) aa
+		where aa.groupid = bb.groupid
+		group by aa.groupNewType
+		) tt 
+		GROUP BY tt.groupNewType
+  </select>
+  
+  
+</mapper>

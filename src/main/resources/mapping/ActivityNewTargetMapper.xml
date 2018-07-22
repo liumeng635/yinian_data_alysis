@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinian.alysis.model.ActivityNewTargetMapper" >
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.ActivityNewTarget" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="users_count" property="usersCount" jdbcType="INTEGER" />
+    <result column="users_havaction" property="usersHavaction" jdbcType="INTEGER" />
+    <result column="groups_count" property="groupsCount" jdbcType="INTEGER" />
+    <result column="users_create_count" property="usersCreateCount" jdbcType="INTEGER" />
+    <result column="users_join_count" property="usersJoinCount" jdbcType="INTEGER" />
+    <result column="events_count_hd" property="eventsCountHd" jdbcType="INTEGER" />
+    <result column="events_count_sm" property="eventsCountSm" jdbcType="INTEGER" />
+    <result column="pictures_count_hd" property="picturesCountHd" jdbcType="INTEGER" />
+    <result column="pictures_count_sm" property="picturesCountSm" jdbcType="INTEGER" />
+    <result column="users_upload_count_hd" property="usersUploadCountHd" jdbcType="INTEGER" />
+    <result column="users_upload_count_sm" property="usersUploadCountSm" jdbcType="INTEGER" />
+    <result column="plays_count_hd" property="playsCountHd" jdbcType="INTEGER" />
+    <result column="plays_count_sm" property="playsCountSm" jdbcType="INTEGER" />
+    <result column="users_play_count_hd" property="usersPlayCountHd" jdbcType="INTEGER" />
+    <result column="users_play_count_sm" property="usersPlayCountSm" jdbcType="INTEGER" />
+    <result column="invites_count_hd" property="invitesCountHd" jdbcType="INTEGER" />
+    <result column="invites_count_sm" property="invitesCountSm" jdbcType="INTEGER" />
+    <result column="users_beinvite_count_hd" property="usersBeinviteCountHd" jdbcType="INTEGER" />
+    <result column="users_beinvite_count_sm" property="usersBeinviteCountSm" jdbcType="INTEGER" />
+    <result column="users_invite_count_hd" property="usersInviteCountHd" jdbcType="INTEGER" />
+    <result column="users_invite_count_sm" property="usersInviteCountSm" jdbcType="INTEGER" />
+    <result column="create_invite_groups_count" property="createInviteGroupsCount" jdbcType="INTEGER" />
+    <result column="create_upload_groups_count" property="createUploadGroupsCount" jdbcType="INTEGER" />
+    <result column="create_play_groups_count" property="createPlayGroupsCount" jdbcType="INTEGER" />
+    <result column="create_invite_users_count" property="createInviteUsersCount" jdbcType="INTEGER" />
+    <result column="create_upload_users_count" property="createUploadUsersCount" jdbcType="INTEGER" />
+    <result column="create_play_users_count" property="createPlayUsersCount" jdbcType="INTEGER" />
+    <result column="beinvite_invite_users_count_hd" property="beinviteInviteUsersCountHd" jdbcType="INTEGER" />
+    <result column="beinvite_invite_users_count_sm" property="beinviteInviteUsersCountSm" jdbcType="INTEGER" />
+    <result column="beinvite_upload_users_count_hd" property="beinviteUploadUsersCountHd" jdbcType="INTEGER" />
+    <result column="beinvite_upload_users_count_sm" property="beinviteUploadUsersCountSm" jdbcType="INTEGER" />
+    <result column="beinvite_play_users_count_hd" property="beinvitePlayUsersCountHd" jdbcType="INTEGER" />
+    <result column="beinvite_play_users_count_sm" property="beinvitePlayUsersCountSm" jdbcType="INTEGER" />
+    <result column="beinvite_create_users_count_hd" property="beinviteCreateUsersCountHd" jdbcType="INTEGER" />
+    <result column="beinvite_create_users_count_sm" property="beinviteCreateUsersCountSm" jdbcType="INTEGER" />
+    <result column="period" property="period" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupid, users_count, users_havaction, groups_count, users_create_count, users_join_count, 
+    events_count_hd, events_count_sm, pictures_count_hd, pictures_count_sm, users_upload_count_hd, 
+    users_upload_count_sm, plays_count_hd, plays_count_sm, users_play_count_hd, users_play_count_sm, 
+    invites_count_hd, invites_count_sm, users_beinvite_count_hd, users_beinvite_count_sm, 
+    users_invite_count_hd, users_invite_count_sm, create_invite_groups_count, create_upload_groups_count, 
+    create_play_groups_count, create_invite_users_count, create_upload_users_count, create_play_users_count, 
+    beinvite_invite_users_count_hd, beinvite_invite_users_count_sm, beinvite_upload_users_count_hd, 
+    beinvite_upload_users_count_sm, beinvite_play_users_count_hd, beinvite_play_users_count_sm, 
+    beinvite_create_users_count_hd, beinvite_create_users_count_sm, period
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from activity_new_target
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activity_new_target
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.ActivityNewTarget" >
+    insert into activity_new_target (id, groupid, users_count, 
+      users_havaction, groups_count, users_create_count, 
+      users_join_count, events_count_hd, events_count_sm, 
+      pictures_count_hd, pictures_count_sm, users_upload_count_hd, 
+      users_upload_count_sm, plays_count_hd, plays_count_sm, 
+      users_play_count_hd, users_play_count_sm, invites_count_hd, 
+      invites_count_sm, users_beinvite_count_hd, users_beinvite_count_sm, 
+      users_invite_count_hd, users_invite_count_sm, 
+      create_invite_groups_count, create_upload_groups_count, 
+      create_play_groups_count, create_invite_users_count, 
+      create_upload_users_count, create_play_users_count, 
+      beinvite_invite_users_count_hd, beinvite_invite_users_count_sm, 
+      beinvite_upload_users_count_hd, beinvite_upload_users_count_sm, 
+      beinvite_play_users_count_hd, beinvite_play_users_count_sm, 
+      beinvite_create_users_count_hd, beinvite_create_users_count_sm, 
+      period)
+    values (#{id,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{usersCount,jdbcType=INTEGER}, 
+      #{usersHavaction,jdbcType=INTEGER}, #{groupsCount,jdbcType=INTEGER}, #{usersCreateCount,jdbcType=INTEGER}, 
+      #{usersJoinCount,jdbcType=INTEGER}, #{eventsCountHd,jdbcType=INTEGER}, #{eventsCountSm,jdbcType=INTEGER}, 
+      #{picturesCountHd,jdbcType=INTEGER}, #{picturesCountSm,jdbcType=INTEGER}, #{usersUploadCountHd,jdbcType=INTEGER}, 
+      #{usersUploadCountSm,jdbcType=INTEGER}, #{playsCountHd,jdbcType=INTEGER}, #{playsCountSm,jdbcType=INTEGER}, 
+      #{usersPlayCountHd,jdbcType=INTEGER}, #{usersPlayCountSm,jdbcType=INTEGER}, #{invitesCountHd,jdbcType=INTEGER}, 
+      #{invitesCountSm,jdbcType=INTEGER}, #{usersBeinviteCountHd,jdbcType=INTEGER}, #{usersBeinviteCountSm,jdbcType=INTEGER}, 
+      #{usersInviteCountHd,jdbcType=INTEGER}, #{usersInviteCountSm,jdbcType=INTEGER}, 
+      #{createInviteGroupsCount,jdbcType=INTEGER}, #{createUploadGroupsCount,jdbcType=INTEGER}, 
+      #{createPlayGroupsCount,jdbcType=INTEGER}, #{createInviteUsersCount,jdbcType=INTEGER}, 
+      #{createUploadUsersCount,jdbcType=INTEGER}, #{createPlayUsersCount,jdbcType=INTEGER}, 
+      #{beinviteInviteUsersCountHd,jdbcType=INTEGER}, #{beinviteInviteUsersCountSm,jdbcType=INTEGER}, 
+      #{beinviteUploadUsersCountHd,jdbcType=INTEGER}, #{beinviteUploadUsersCountSm,jdbcType=INTEGER}, 
+      #{beinvitePlayUsersCountHd,jdbcType=INTEGER}, #{beinvitePlayUsersCountSm,jdbcType=INTEGER}, 
+      #{beinviteCreateUsersCountHd,jdbcType=INTEGER}, #{beinviteCreateUsersCountSm,jdbcType=INTEGER}, 
+      #{period,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.ActivityNewTarget" >
+    insert into activity_new_target
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="usersCount != null" >
+        users_count,
+      </if>
+      <if test="usersHavaction != null" >
+        users_havaction,
+      </if>
+      <if test="groupsCount != null" >
+        groups_count,
+      </if>
+      <if test="usersCreateCount != null" >
+        users_create_count,
+      </if>
+      <if test="usersJoinCount != null" >
+        users_join_count,
+      </if>
+      <if test="eventsCountHd != null" >
+        events_count_hd,
+      </if>
+      <if test="eventsCountSm != null" >
+        events_count_sm,
+      </if>
+      <if test="picturesCountHd != null" >
+        pictures_count_hd,
+      </if>
+      <if test="picturesCountSm != null" >
+        pictures_count_sm,
+      </if>
+      <if test="usersUploadCountHd != null" >
+        users_upload_count_hd,
+      </if>
+      <if test="usersUploadCountSm != null" >
+        users_upload_count_sm,
+      </if>
+      <if test="playsCountHd != null" >
+        plays_count_hd,
+      </if>
+      <if test="playsCountSm != null" >
+        plays_count_sm,
+      </if>
+      <if test="usersPlayCountHd != null" >
+        users_play_count_hd,
+      </if>
+      <if test="usersPlayCountSm != null" >
+        users_play_count_sm,
+      </if>
+      <if test="invitesCountHd != null" >
+        invites_count_hd,
+      </if>
+      <if test="invitesCountSm != null" >
+        invites_count_sm,
+      </if>
+      <if test="usersBeinviteCountHd != null" >
+        users_beinvite_count_hd,
+      </if>
+      <if test="usersBeinviteCountSm != null" >
+        users_beinvite_count_sm,
+      </if>
+      <if test="usersInviteCountHd != null" >
+        users_invite_count_hd,
+      </if>
+      <if test="usersInviteCountSm != null" >
+        users_invite_count_sm,
+      </if>
+      <if test="createInviteGroupsCount != null" >
+        create_invite_groups_count,
+      </if>
+      <if test="createUploadGroupsCount != null" >
+        create_upload_groups_count,
+      </if>
+      <if test="createPlayGroupsCount != null" >
+        create_play_groups_count,
+      </if>
+      <if test="createInviteUsersCount != null" >
+        create_invite_users_count,
+      </if>
+      <if test="createUploadUsersCount != null" >
+        create_upload_users_count,
+      </if>
+      <if test="createPlayUsersCount != null" >
+        create_play_users_count,
+      </if>
+      <if test="beinviteInviteUsersCountHd != null" >
+        beinvite_invite_users_count_hd,
+      </if>
+      <if test="beinviteInviteUsersCountSm != null" >
+        beinvite_invite_users_count_sm,
+      </if>
+      <if test="beinviteUploadUsersCountHd != null" >
+        beinvite_upload_users_count_hd,
+      </if>
+      <if test="beinviteUploadUsersCountSm != null" >
+        beinvite_upload_users_count_sm,
+      </if>
+      <if test="beinvitePlayUsersCountHd != null" >
+        beinvite_play_users_count_hd,
+      </if>
+      <if test="beinvitePlayUsersCountSm != null" >
+        beinvite_play_users_count_sm,
+      </if>
+      <if test="beinviteCreateUsersCountHd != null" >
+        beinvite_create_users_count_hd,
+      </if>
+      <if test="beinviteCreateUsersCountSm != null" >
+        beinvite_create_users_count_sm,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="usersCount != null" >
+        #{usersCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersHavaction != null" >
+        #{usersHavaction,jdbcType=INTEGER},
+      </if>
+      <if test="groupsCount != null" >
+        #{groupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersCreateCount != null" >
+        #{usersCreateCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersJoinCount != null" >
+        #{usersJoinCount,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountHd != null" >
+        #{eventsCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountSm != null" >
+        #{eventsCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="picturesCountHd != null" >
+        #{picturesCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="picturesCountSm != null" >
+        #{picturesCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersUploadCountHd != null" >
+        #{usersUploadCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersUploadCountSm != null" >
+        #{usersUploadCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountHd != null" >
+        #{playsCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountSm != null" >
+        #{playsCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersPlayCountHd != null" >
+        #{usersPlayCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersPlayCountSm != null" >
+        #{usersPlayCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCountHd != null" >
+        #{invitesCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCountSm != null" >
+        #{invitesCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersBeinviteCountHd != null" >
+        #{usersBeinviteCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersBeinviteCountSm != null" >
+        #{usersBeinviteCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteCountHd != null" >
+        #{usersInviteCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteCountSm != null" >
+        #{usersInviteCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="createInviteGroupsCount != null" >
+        #{createInviteGroupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createUploadGroupsCount != null" >
+        #{createUploadGroupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createPlayGroupsCount != null" >
+        #{createPlayGroupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createInviteUsersCount != null" >
+        #{createInviteUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="createUploadUsersCount != null" >
+        #{createUploadUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="createPlayUsersCount != null" >
+        #{createPlayUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteInviteUsersCountHd != null" >
+        #{beinviteInviteUsersCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteInviteUsersCountSm != null" >
+        #{beinviteInviteUsersCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteUploadUsersCountHd != null" >
+        #{beinviteUploadUsersCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteUploadUsersCountSm != null" >
+        #{beinviteUploadUsersCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="beinvitePlayUsersCountHd != null" >
+        #{beinvitePlayUsersCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="beinvitePlayUsersCountSm != null" >
+        #{beinvitePlayUsersCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteCreateUsersCountHd != null" >
+        #{beinviteCreateUsersCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteCreateUsersCountSm != null" >
+        #{beinviteCreateUsersCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.ActivityNewTarget" >
+    update activity_new_target
+    <set >
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="usersCount != null" >
+        users_count = #{usersCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersHavaction != null" >
+        users_havaction = #{usersHavaction,jdbcType=INTEGER},
+      </if>
+      <if test="groupsCount != null" >
+        groups_count = #{groupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersCreateCount != null" >
+        users_create_count = #{usersCreateCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersJoinCount != null" >
+        users_join_count = #{usersJoinCount,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountHd != null" >
+        events_count_hd = #{eventsCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCountSm != null" >
+        events_count_sm = #{eventsCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="picturesCountHd != null" >
+        pictures_count_hd = #{picturesCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="picturesCountSm != null" >
+        pictures_count_sm = #{picturesCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersUploadCountHd != null" >
+        users_upload_count_hd = #{usersUploadCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersUploadCountSm != null" >
+        users_upload_count_sm = #{usersUploadCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountHd != null" >
+        plays_count_hd = #{playsCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="playsCountSm != null" >
+        plays_count_sm = #{playsCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersPlayCountHd != null" >
+        users_play_count_hd = #{usersPlayCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersPlayCountSm != null" >
+        users_play_count_sm = #{usersPlayCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCountHd != null" >
+        invites_count_hd = #{invitesCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCountSm != null" >
+        invites_count_sm = #{invitesCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersBeinviteCountHd != null" >
+        users_beinvite_count_hd = #{usersBeinviteCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersBeinviteCountSm != null" >
+        users_beinvite_count_sm = #{usersBeinviteCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteCountHd != null" >
+        users_invite_count_hd = #{usersInviteCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteCountSm != null" >
+        users_invite_count_sm = #{usersInviteCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="createInviteGroupsCount != null" >
+        create_invite_groups_count = #{createInviteGroupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createUploadGroupsCount != null" >
+        create_upload_groups_count = #{createUploadGroupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createPlayGroupsCount != null" >
+        create_play_groups_count = #{createPlayGroupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createInviteUsersCount != null" >
+        create_invite_users_count = #{createInviteUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="createUploadUsersCount != null" >
+        create_upload_users_count = #{createUploadUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="createPlayUsersCount != null" >
+        create_play_users_count = #{createPlayUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteInviteUsersCountHd != null" >
+        beinvite_invite_users_count_hd = #{beinviteInviteUsersCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteInviteUsersCountSm != null" >
+        beinvite_invite_users_count_sm = #{beinviteInviteUsersCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteUploadUsersCountHd != null" >
+        beinvite_upload_users_count_hd = #{beinviteUploadUsersCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteUploadUsersCountSm != null" >
+        beinvite_upload_users_count_sm = #{beinviteUploadUsersCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="beinvitePlayUsersCountHd != null" >
+        beinvite_play_users_count_hd = #{beinvitePlayUsersCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="beinvitePlayUsersCountSm != null" >
+        beinvite_play_users_count_sm = #{beinvitePlayUsersCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteCreateUsersCountHd != null" >
+        beinvite_create_users_count_hd = #{beinviteCreateUsersCountHd,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteCreateUsersCountSm != null" >
+        beinvite_create_users_count_sm = #{beinviteCreateUsersCountSm,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.ActivityNewTarget" >
+    update activity_new_target
+    set groupid = #{groupid,jdbcType=INTEGER},
+      users_count = #{usersCount,jdbcType=INTEGER},
+      users_havaction = #{usersHavaction,jdbcType=INTEGER},
+      groups_count = #{groupsCount,jdbcType=INTEGER},
+      users_create_count = #{usersCreateCount,jdbcType=INTEGER},
+      users_join_count = #{usersJoinCount,jdbcType=INTEGER},
+      events_count_hd = #{eventsCountHd,jdbcType=INTEGER},
+      events_count_sm = #{eventsCountSm,jdbcType=INTEGER},
+      pictures_count_hd = #{picturesCountHd,jdbcType=INTEGER},
+      pictures_count_sm = #{picturesCountSm,jdbcType=INTEGER},
+      users_upload_count_hd = #{usersUploadCountHd,jdbcType=INTEGER},
+      users_upload_count_sm = #{usersUploadCountSm,jdbcType=INTEGER},
+      plays_count_hd = #{playsCountHd,jdbcType=INTEGER},
+      plays_count_sm = #{playsCountSm,jdbcType=INTEGER},
+      users_play_count_hd = #{usersPlayCountHd,jdbcType=INTEGER},
+      users_play_count_sm = #{usersPlayCountSm,jdbcType=INTEGER},
+      invites_count_hd = #{invitesCountHd,jdbcType=INTEGER},
+      invites_count_sm = #{invitesCountSm,jdbcType=INTEGER},
+      users_beinvite_count_hd = #{usersBeinviteCountHd,jdbcType=INTEGER},
+      users_beinvite_count_sm = #{usersBeinviteCountSm,jdbcType=INTEGER},
+      users_invite_count_hd = #{usersInviteCountHd,jdbcType=INTEGER},
+      users_invite_count_sm = #{usersInviteCountSm,jdbcType=INTEGER},
+      create_invite_groups_count = #{createInviteGroupsCount,jdbcType=INTEGER},
+      create_upload_groups_count = #{createUploadGroupsCount,jdbcType=INTEGER},
+      create_play_groups_count = #{createPlayGroupsCount,jdbcType=INTEGER},
+      create_invite_users_count = #{createInviteUsersCount,jdbcType=INTEGER},
+      create_upload_users_count = #{createUploadUsersCount,jdbcType=INTEGER},
+      create_play_users_count = #{createPlayUsersCount,jdbcType=INTEGER},
+      beinvite_invite_users_count_hd = #{beinviteInviteUsersCountHd,jdbcType=INTEGER},
+      beinvite_invite_users_count_sm = #{beinviteInviteUsersCountSm,jdbcType=INTEGER},
+      beinvite_upload_users_count_hd = #{beinviteUploadUsersCountHd,jdbcType=INTEGER},
+      beinvite_upload_users_count_sm = #{beinviteUploadUsersCountSm,jdbcType=INTEGER},
+      beinvite_play_users_count_hd = #{beinvitePlayUsersCountHd,jdbcType=INTEGER},
+      beinvite_play_users_count_sm = #{beinvitePlayUsersCountSm,jdbcType=INTEGER},
+      beinvite_create_users_count_hd = #{beinviteCreateUsersCountHd,jdbcType=INTEGER},
+      beinvite_create_users_count_sm = #{beinviteCreateUsersCountSm,jdbcType=INTEGER},
+      period = #{period,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activity_new_target where 1=1
+    <if test="groupid != null" >
+       and groupid = #{groupid,jdbcType=INTEGER}
+    </if>
+    <if test="isDefault != null" >
+       order by period desc
+    </if>
+    <if test="startTime != null and endTime != null" >
+  		and period >= str_to_date(#{startTime},'%Y-%m-%d %H:%m:%s')
+  		and period <![CDATA[<]]> str_to_date(#{endTime},'%Y-%m-%d %H:%m:%s')
+    </if>
+  </select>
+</mapper>

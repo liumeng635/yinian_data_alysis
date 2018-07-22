@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinian.alysis.model.UserGroupcutMapper" >
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.UserGroupcut" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="groups_cut" property="groupsCut" jdbcType="VARCHAR" />
+    <result column="users_count_old_pre" property="usersCountOldPre" jdbcType="INTEGER" />
+    <result column="users_count_old" property="usersCountOld" jdbcType="INTEGER" />
+    <result column="users_count_new" property="usersCountNew" jdbcType="INTEGER" />
+    <result column="groups_count_old_pre" property="groupsCountOldPre" jdbcType="INTEGER" />
+    <result column="groups_count_old" property="groupsCountOld" jdbcType="INTEGER" />
+    <result column="groups_count_new" property="groupsCountNew" jdbcType="INTEGER" />
+    <result column="period" property="period" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupid, groups_cut, users_count_old_pre, users_count_old, users_count_new, groups_count_old_pre, 
+    groups_count_old, groups_count_new, period
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_groupcut
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_groupcut
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.UserGroupcut" >
+    insert into user_groupcut (id, groupid, groups_cut, 
+      users_count_old_pre, users_count_old, users_count_new, 
+      groups_count_old_pre, groups_count_old, groups_count_new, 
+      period)
+    values (#{id,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{groupsCut,jdbcType=VARCHAR}, 
+      #{usersCountOldPre,jdbcType=INTEGER}, #{usersCountOld,jdbcType=INTEGER}, #{usersCountNew,jdbcType=INTEGER}, 
+      #{groupsCountOldPre,jdbcType=INTEGER}, #{groupsCountOld,jdbcType=INTEGER}, #{groupsCountNew,jdbcType=INTEGER}, 
+      #{period,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.UserGroupcut" >
+    insert into user_groupcut
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="groupsCut != null" >
+        groups_cut,
+      </if>
+      <if test="usersCountOldPre != null" >
+        users_count_old_pre,
+      </if>
+      <if test="usersCountOld != null" >
+        users_count_old,
+      </if>
+      <if test="usersCountNew != null" >
+        users_count_new,
+      </if>
+      <if test="groupsCountOldPre != null" >
+        groups_count_old_pre,
+      </if>
+      <if test="groupsCountOld != null" >
+        groups_count_old,
+      </if>
+      <if test="groupsCountNew != null" >
+        groups_count_new,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="groupsCut != null" >
+        #{groupsCut,jdbcType=VARCHAR},
+      </if>
+      <if test="usersCountOldPre != null" >
+        #{usersCountOldPre,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountOld != null" >
+        #{usersCountOld,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountNew != null" >
+        #{usersCountNew,jdbcType=INTEGER},
+      </if>
+      <if test="groupsCountOldPre != null" >
+        #{groupsCountOldPre,jdbcType=INTEGER},
+      </if>
+      <if test="groupsCountOld != null" >
+        #{groupsCountOld,jdbcType=INTEGER},
+      </if>
+      <if test="groupsCountNew != null" >
+        #{groupsCountNew,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.UserGroupcut" >
+    update user_groupcut
+    <set >
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="groupsCut != null" >
+        groups_cut = #{groupsCut,jdbcType=VARCHAR},
+      </if>
+      <if test="usersCountOldPre != null" >
+        users_count_old_pre = #{usersCountOldPre,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountOld != null" >
+        users_count_old = #{usersCountOld,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountNew != null" >
+        users_count_new = #{usersCountNew,jdbcType=INTEGER},
+      </if>
+      <if test="groupsCountOldPre != null" >
+        groups_count_old_pre = #{groupsCountOldPre,jdbcType=INTEGER},
+      </if>
+      <if test="groupsCountOld != null" >
+        groups_count_old = #{groupsCountOld,jdbcType=INTEGER},
+      </if>
+      <if test="groupsCountNew != null" >
+        groups_count_new = #{groupsCountNew,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.UserGroupcut" >
+    update user_groupcut
+    set groupid = #{groupid,jdbcType=INTEGER},
+      groups_cut = #{groupsCut,jdbcType=VARCHAR},
+      users_count_old_pre = #{usersCountOldPre,jdbcType=INTEGER},
+      users_count_old = #{usersCountOld,jdbcType=INTEGER},
+      users_count_new = #{usersCountNew,jdbcType=INTEGER},
+      groups_count_old_pre = #{groupsCountOldPre,jdbcType=INTEGER},
+      groups_count_old = #{groupsCountOld,jdbcType=INTEGER},
+      groups_count_new = #{groupsCountNew,jdbcType=INTEGER},
+      period = #{period,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_groupcut
+  </select>
+  
+  <select id="findByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_groupcut where 1=1
+    <if test="groupid != null" >
+       and groupid = #{groupid,jdbcType=INTEGER}
+    </if>
+    <if test="period != null" >
+       and date_format(period, '%Y-%m-%d') = #{period}
+    </if>
+  </select>
+</mapper>

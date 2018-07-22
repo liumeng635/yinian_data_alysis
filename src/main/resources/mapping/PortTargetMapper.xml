@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinian.alysis.model.PortTargetMapper">
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.PortTarget">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="port_name" jdbcType="VARCHAR" property="portName" />
+    <result column="users_count" jdbcType="INTEGER" property="usersCount" />
+    <result column="users_count_reuse" jdbcType="INTEGER" property="usersCountReuse" />
+    <result column="groups_count" jdbcType="INTEGER" property="groupsCount" />
+    <result column="users_create_count" jdbcType="INTEGER" property="usersCreateCount" />
+    <result column="users_create_3d_count" jdbcType="INTEGER" property="usersCreate3dCount" />
+    <result column="events_count" jdbcType="INTEGER" property="eventsCount" />
+    <result column="users_upload_count" jdbcType="INTEGER" property="usersUploadCount" />
+    <result column="users_upload_3d_count" jdbcType="INTEGER" property="usersUpload3dCount" />
+    <result column="plays_count" jdbcType="INTEGER" property="playsCount" />
+    <result column="users_play_count" jdbcType="INTEGER" property="usersPlayCount" />
+    <result column="users_play_3d_count" jdbcType="INTEGER" property="usersPlay3dCount" />
+    <result column="invites_count" jdbcType="INTEGER" property="invitesCount" />
+    <result column="users_invite_count" jdbcType="INTEGER" property="usersInviteCount" />
+    <result column="users_invite_3d_count" jdbcType="INTEGER" property="usersInvite3dCount" />
+    <result column="create_invite_groups_count" jdbcType="INTEGER" property="createInviteGroupsCount" />
+    <result column="create_upload_groups_count" jdbcType="INTEGER" property="createUploadGroupsCount" />
+    <result column="create_play_groups_count" jdbcType="INTEGER" property="createPlayGroupsCount" />
+    <result column="create_invite_users_count" jdbcType="INTEGER" property="createInviteUsersCount" />
+    <result column="create_upload_users_count" jdbcType="INTEGER" property="createUploadUsersCount" />
+    <result column="create_play_users_count" jdbcType="INTEGER" property="createPlayUsersCount" />
+    <result column="beinvite_invite_users_count" jdbcType="INTEGER" property="beinviteInviteUsersCount" />
+    <result column="beinvite_upload_users_count" jdbcType="INTEGER" property="beinviteUploadUsersCount" />
+    <result column="beinvite_play_users_count" jdbcType="INTEGER" property="beinvitePlayUsersCount" />
+    <result column="period" jdbcType="TIMESTAMP" property="period" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, port_name, users_count, users_count_reuse, groups_count, users_create_count, 
+    users_create_3d_count, events_count, users_upload_count, users_upload_3d_count, plays_count, 
+    users_play_count, users_play_3d_count, invites_count, users_invite_count, users_invite_3d_count, 
+    create_invite_groups_count, create_upload_groups_count, create_play_groups_count, 
+    create_invite_users_count, create_upload_users_count, create_play_users_count, beinvite_invite_users_count, 
+    beinvite_upload_users_count, beinvite_play_users_count, period
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from port_target
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from port_target
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.PortTarget">
+    insert into port_target (id, port_name, users_count, 
+      users_count_reuse, groups_count, users_create_count, 
+      users_create_3d_count, events_count, users_upload_count, 
+      users_upload_3d_count, plays_count, users_play_count, 
+      users_play_3d_count, invites_count, users_invite_count, 
+      users_invite_3d_count, create_invite_groups_count, 
+      create_upload_groups_count, create_play_groups_count, 
+      create_invite_users_count, create_upload_users_count, 
+      create_play_users_count, beinvite_invite_users_count, 
+      beinvite_upload_users_count, beinvite_play_users_count, 
+      period)
+    values (#{id,jdbcType=INTEGER}, #{portName,jdbcType=VARCHAR}, #{usersCount,jdbcType=INTEGER}, 
+      #{usersCountReuse,jdbcType=INTEGER}, #{groupsCount,jdbcType=INTEGER}, #{usersCreateCount,jdbcType=INTEGER}, 
+      #{usersCreate3dCount,jdbcType=INTEGER}, #{eventsCount,jdbcType=INTEGER}, #{usersUploadCount,jdbcType=INTEGER}, 
+      #{usersUpload3dCount,jdbcType=INTEGER}, #{playsCount,jdbcType=INTEGER}, #{usersPlayCount,jdbcType=INTEGER}, 
+      #{usersPlay3dCount,jdbcType=INTEGER}, #{invitesCount,jdbcType=INTEGER}, #{usersInviteCount,jdbcType=INTEGER}, 
+      #{usersInvite3dCount,jdbcType=INTEGER}, #{createInviteGroupsCount,jdbcType=INTEGER}, 
+      #{createUploadGroupsCount,jdbcType=INTEGER}, #{createPlayGroupsCount,jdbcType=INTEGER}, 
+      #{createInviteUsersCount,jdbcType=INTEGER}, #{createUploadUsersCount,jdbcType=INTEGER}, 
+      #{createPlayUsersCount,jdbcType=INTEGER}, #{beinviteInviteUsersCount,jdbcType=INTEGER}, 
+      #{beinviteUploadUsersCount,jdbcType=INTEGER}, #{beinvitePlayUsersCount,jdbcType=INTEGER}, 
+      #{period,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.PortTarget">
+    insert into port_target
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="portName != null">
+        port_name,
+      </if>
+      <if test="usersCount != null">
+        users_count,
+      </if>
+      <if test="usersCountReuse != null">
+        users_count_reuse,
+      </if>
+      <if test="groupsCount != null">
+        groups_count,
+      </if>
+      <if test="usersCreateCount != null">
+        users_create_count,
+      </if>
+      <if test="usersCreate3dCount != null">
+        users_create_3d_count,
+      </if>
+      <if test="eventsCount != null">
+        events_count,
+      </if>
+      <if test="usersUploadCount != null">
+        users_upload_count,
+      </if>
+      <if test="usersUpload3dCount != null">
+        users_upload_3d_count,
+      </if>
+      <if test="playsCount != null">
+        plays_count,
+      </if>
+      <if test="usersPlayCount != null">
+        users_play_count,
+      </if>
+      <if test="usersPlay3dCount != null">
+        users_play_3d_count,
+      </if>
+      <if test="invitesCount != null">
+        invites_count,
+      </if>
+      <if test="usersInviteCount != null">
+        users_invite_count,
+      </if>
+      <if test="usersInvite3dCount != null">
+        users_invite_3d_count,
+      </if>
+      <if test="createInviteGroupsCount != null">
+        create_invite_groups_count,
+      </if>
+      <if test="createUploadGroupsCount != null">
+        create_upload_groups_count,
+      </if>
+      <if test="createPlayGroupsCount != null">
+        create_play_groups_count,
+      </if>
+      <if test="createInviteUsersCount != null">
+        create_invite_users_count,
+      </if>
+      <if test="createUploadUsersCount != null">
+        create_upload_users_count,
+      </if>
+      <if test="createPlayUsersCount != null">
+        create_play_users_count,
+      </if>
+      <if test="beinviteInviteUsersCount != null">
+        beinvite_invite_users_count,
+      </if>
+      <if test="beinviteUploadUsersCount != null">
+        beinvite_upload_users_count,
+      </if>
+      <if test="beinvitePlayUsersCount != null">
+        beinvite_play_users_count,
+      </if>
+      <if test="period != null">
+        period,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="portName != null">
+        #{portName,jdbcType=VARCHAR},
+      </if>
+      <if test="usersCount != null">
+        #{usersCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountReuse != null">
+        #{usersCountReuse,jdbcType=INTEGER},
+      </if>
+      <if test="groupsCount != null">
+        #{groupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersCreateCount != null">
+        #{usersCreateCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersCreate3dCount != null">
+        #{usersCreate3dCount,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCount != null">
+        #{eventsCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersUploadCount != null">
+        #{usersUploadCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersUpload3dCount != null">
+        #{usersUpload3dCount,jdbcType=INTEGER},
+      </if>
+      <if test="playsCount != null">
+        #{playsCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersPlayCount != null">
+        #{usersPlayCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersPlay3dCount != null">
+        #{usersPlay3dCount,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCount != null">
+        #{invitesCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteCount != null">
+        #{usersInviteCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersInvite3dCount != null">
+        #{usersInvite3dCount,jdbcType=INTEGER},
+      </if>
+      <if test="createInviteGroupsCount != null">
+        #{createInviteGroupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createUploadGroupsCount != null">
+        #{createUploadGroupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createPlayGroupsCount != null">
+        #{createPlayGroupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createInviteUsersCount != null">
+        #{createInviteUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="createUploadUsersCount != null">
+        #{createUploadUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="createPlayUsersCount != null">
+        #{createPlayUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteInviteUsersCount != null">
+        #{beinviteInviteUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteUploadUsersCount != null">
+        #{beinviteUploadUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="beinvitePlayUsersCount != null">
+        #{beinvitePlayUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="period != null">
+        #{period,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.PortTarget">
+    update port_target
+    <set>
+      <if test="portName != null">
+        port_name = #{portName,jdbcType=VARCHAR},
+      </if>
+      <if test="usersCount != null">
+        users_count = #{usersCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersCountReuse != null">
+        users_count_reuse = #{usersCountReuse,jdbcType=INTEGER},
+      </if>
+      <if test="groupsCount != null">
+        groups_count = #{groupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersCreateCount != null">
+        users_create_count = #{usersCreateCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersCreate3dCount != null">
+        users_create_3d_count = #{usersCreate3dCount,jdbcType=INTEGER},
+      </if>
+      <if test="eventsCount != null">
+        events_count = #{eventsCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersUploadCount != null">
+        users_upload_count = #{usersUploadCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersUpload3dCount != null">
+        users_upload_3d_count = #{usersUpload3dCount,jdbcType=INTEGER},
+      </if>
+      <if test="playsCount != null">
+        plays_count = #{playsCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersPlayCount != null">
+        users_play_count = #{usersPlayCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersPlay3dCount != null">
+        users_play_3d_count = #{usersPlay3dCount,jdbcType=INTEGER},
+      </if>
+      <if test="invitesCount != null">
+        invites_count = #{invitesCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersInviteCount != null">
+        users_invite_count = #{usersInviteCount,jdbcType=INTEGER},
+      </if>
+      <if test="usersInvite3dCount != null">
+        users_invite_3d_count = #{usersInvite3dCount,jdbcType=INTEGER},
+      </if>
+      <if test="createInviteGroupsCount != null">
+        create_invite_groups_count = #{createInviteGroupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createUploadGroupsCount != null">
+        create_upload_groups_count = #{createUploadGroupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createPlayGroupsCount != null">
+        create_play_groups_count = #{createPlayGroupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="createInviteUsersCount != null">
+        create_invite_users_count = #{createInviteUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="createUploadUsersCount != null">
+        create_upload_users_count = #{createUploadUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="createPlayUsersCount != null">
+        create_play_users_count = #{createPlayUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteInviteUsersCount != null">
+        beinvite_invite_users_count = #{beinviteInviteUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="beinviteUploadUsersCount != null">
+        beinvite_upload_users_count = #{beinviteUploadUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="beinvitePlayUsersCount != null">
+        beinvite_play_users_count = #{beinvitePlayUsersCount,jdbcType=INTEGER},
+      </if>
+      <if test="period != null">
+        period = #{period,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.PortTarget">
+    update port_target
+    set port_name = #{portName,jdbcType=VARCHAR},
+      users_count = #{usersCount,jdbcType=INTEGER},
+      users_count_reuse = #{usersCountReuse,jdbcType=INTEGER},
+      groups_count = #{groupsCount,jdbcType=INTEGER},
+      users_create_count = #{usersCreateCount,jdbcType=INTEGER},
+      users_create_3d_count = #{usersCreate3dCount,jdbcType=INTEGER},
+      events_count = #{eventsCount,jdbcType=INTEGER},
+      users_upload_count = #{usersUploadCount,jdbcType=INTEGER},
+      users_upload_3d_count = #{usersUpload3dCount,jdbcType=INTEGER},
+      plays_count = #{playsCount,jdbcType=INTEGER},
+      users_play_count = #{usersPlayCount,jdbcType=INTEGER},
+      users_play_3d_count = #{usersPlay3dCount,jdbcType=INTEGER},
+      invites_count = #{invitesCount,jdbcType=INTEGER},
+      users_invite_count = #{usersInviteCount,jdbcType=INTEGER},
+      users_invite_3d_count = #{usersInvite3dCount,jdbcType=INTEGER},
+      create_invite_groups_count = #{createInviteGroupsCount,jdbcType=INTEGER},
+      create_upload_groups_count = #{createUploadGroupsCount,jdbcType=INTEGER},
+      create_play_groups_count = #{createPlayGroupsCount,jdbcType=INTEGER},
+      create_invite_users_count = #{createInviteUsersCount,jdbcType=INTEGER},
+      create_upload_users_count = #{createUploadUsersCount,jdbcType=INTEGER},
+      create_play_users_count = #{createPlayUsersCount,jdbcType=INTEGER},
+      beinvite_invite_users_count = #{beinviteInviteUsersCount,jdbcType=INTEGER},
+      beinvite_upload_users_count = #{beinviteUploadUsersCount,jdbcType=INTEGER},
+      beinvite_play_users_count = #{beinvitePlayUsersCount,jdbcType=INTEGER},
+      period = #{period,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from port_target
+  </select>
+  
+  
+  <select id="findTargetByParamMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	    SELECT
+			t1.*
+		FROM
+			port_target t1
+		WHERE
+			1 = 1 
+		<if test="portName != null">
+        	AND t1.port_name = #{portName,jdbcType=VARCHAR}
+      	</if>
+      	<if test="period != null">
+        	AND DATE_FORMAT(t1.period, '%Y-%m-%d') = #{period}
+      	</if>
+  </select>
+</mapper>

@@ -1,0 +1,138 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>活动(新)用户留存</title>
+<link th:href="@{bootstrap/css/bootstrap.css}" rel="stylesheet" />
+<link th:href="@{bootstrap/css/bootstrap-responsive.css}" rel="stylesheet" />
+<link th:href="@{css/main.css}" rel="stylesheet" />
+<link th:href="@{layer/theme/default/layer.css}" rel="stylesheet" />
+
+<script th:src="@{jquery.js}" type="text/javascript"></script>
+<script th:src="@{js/comm.js}" type="text/javascript"></script>
+<script th:src="@{bootstrap/js/bootstrap.js}" type="text/javascript"></script>
+<script th:src="@{layer/layer.js}" type="text/javascript"></script>
+<script th:src="@{laydate/laydate.js}" type="text/javascript"></script>
+<script th:src="@{echarts/echarts.min.js}" type="text/javascript"></script>
+<script th:src="@{js/product/livingPush.js}" type="text/javascript"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="headTitle">促活推送</div>
+		<div class="fullWth">
+			<div style="display: inline-block; width: 100%; margin-bottom: 50px;">
+				<div>
+					<span>时间选择:</span> <input type="text" class="ipt" id="timeSelect"
+						style="width: 100px;" /> <input type="button" id="searchIndex"
+						value="查询" class="searchBtn" style="width: 60px !important;" />
+						<span class="tab1 tab1-1 tab1Hv" type="0">人数</span><span id="tab2" class="tab1 tab1-2" type="1">操作次数</span>
+				</div>
+				<div style="margin-left: 10px;">
+					<div class="bold title">促活推送明细指标</div>
+					<table class="greyTable block gridTb" style="width:100%;" id="pushTable1">
+						<thead>
+							<tr>
+								<th rowspan="3">推送类型</th>
+								<th colspan="8" class="size1" rowspan="2">推送总量</th>
+								<th rowspan="3">formId失效</th>
+								<th rowspan="3" >失效率</th>
+								<th colspan="8" class="size2" rowspan="2">推送成功</th>
+								<th rowspan="3" >推送成功率</th>
+							</tr>
+							<tr>
+							</tr>
+							<tr class="groupsType">
+								
+							</tr>
+							
+						</thead>
+
+						<tbody>
+							
+						</tbody>
+
+					</table>
+					
+					<table class="greyTable block gridTb" style="width:100%;margin-top: 10px;" id="pushTable2">
+						<thead>
+							<tr>
+								<th rowspan="3">推送类型</th>
+								<th rowspan="3">进入落地页</th>
+								<th rowspan="3" >落地页进入率</th>
+								<th colspan="11" rowspan="1" class="sizeAll">进入相册</th>
+								<th rowspan="3" >相册进入率</th>
+								<th colspan="3">产生行为</th>
+								<th rowspan="3" >产生行为比</th>
+							</tr>
+							<tr>
+								<th colspan="5" class="size1">精准相册</th>
+								<th colspan="5" class="size2">关联相册</th>
+								<th rowspan="2" >合计</th>
+								<th rowspan="2">精准</th>
+								<th rowspan="2">关联</th>
+								<th rowspan="2">合计</th>
+							</tr>
+							<tr class="groupsType">
+								
+							</tr>
+							
+						</thead>
+
+						<tbody>
+							
+						</tbody>
+
+					</table>
+					
+					
+					
+					
+					<div class="bold title" style="margin-top:10px;">促活推送整体指标</div>
+					<table class="greyTable block gridTb" style="width:100%;" id="pushTable3">
+						<thead>
+							<tr>
+								<th rowspan="2">日期</th>
+								<th rowspan="2">推送总量</th>
+								<th rowspan="2">formid失效</th>
+								<th rowspan="2">失效率</th>
+								<th rowspan="2">推送成功</th>
+								<th rowspan="2">推送成功率</th>
+								<th rowspan="2">进入落地页</th>
+								<th rowspan="2">落地页进入率</th>
+								<th colspan="3">进入相册</th>
+								<th rowspan="2">相册进入率</th>
+								<th colspan="3">产生行为</th>
+								<th rowspan="2">产生行为比</th>
+							</tr>
+							<tr>
+								<th>精准相册</th>
+								<th>关联相册</th>
+								<th>小计</th>
+								
+								
+								<th>精准相册</th>
+								<th>关联相册</th>
+								<th>小计</th>
+							</tr>
+							
+						</thead>
+
+						<tbody>
+							
+						</tbody>
+
+					</table>
+					
+					
+					
+					
+
+				</div>
+				<div>
+			</div>
+
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

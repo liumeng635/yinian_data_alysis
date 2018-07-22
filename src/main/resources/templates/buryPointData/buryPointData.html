@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>渠道(新)用户质量平台</title>
+<link th:href="@{bootstrap/css/bootstrap.css}" rel="stylesheet" />
+<link th:href="@{bootstrap/css/bootstrap-responsive.css}"
+	rel="stylesheet" />
+<link th:href="@{font-awesome-4.7.0/css/font-awesome.min.css}"
+	rel="stylesheet" />
+<!-- <link th:href="@{bootstrap/css/bootstrap-table.min.css}" rel="stylesheet" /> -->
+<link th:href="@{layer/theme/default/layer.css}" rel="stylesheet" />
+<link th:href="@{css/main1.css}" rel="stylesheet" />
+
+<script th:src="@{jquery.js}" type="text/javascript"></script>
+<script th:src="@{js/comm.js}" type="text/javascript"></script>
+<script th:src="@{bootstrap/js/bootstrap.js}" type="text/javascript"></script>
+<!-- <script th:src="@{bootstrap/js/bootstrap-table.min.js}" type="text/javascript"></script> -->
+<script th:src="@{layer/layer.js}" type="text/javascript"></script>
+<script th:src="@{laydate/laydate.js}" type="text/javascript"></script>
+<script th:src="@{echarts/echarts.min.js}" type="text/javascript"></script>
+<script th:src="@{js/buryPointData/buryPointData.js}" type="text/javascript"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span2" style="min-height: 500px;">
+				<div class="fixedDiv">
+					<ul class="nav nav-list bs-docs-sidenav">
+					<li class="active"><a href="javascript:void(0);"><i
+							class="icon-chevron-right"></i> 通用埋点</a></li>
+					<li dtype="1" buryType="通用" class="bury pactive"><a
+						href="javascript:void(0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
+							class="icon-hand-right"></i>&nbsp;通用
+					</a></li>
+					<li dtype="2" buryType="促活唤醒" class="bury"><a href="javascript:void(0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
+							class="icon-hand-right"></i>&nbsp;促活唤醒
+					</a></li>
+					<li dtype="3" buryType="底图调取"  class="bury"><a href="javascript:void(0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
+							class="icon-hand-right"></i>&nbsp;底图调取
+					</a></li>
+					<li dtype="4"  buryType="登录信息"  class="bury"><a href="javascript:void(0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
+							class="icon-hand-right"></i>&nbsp;登录信息统计
+					</a></li>
+				</ul>
+
+
+				<ul class="nav nav-list bs-docs-sidenav">
+					<li class="active"><a href="javascript:void(0);"><i
+							class="icon-chevron-right"></i> 故事集</a></li>
+					<li dtype="1" buryType="故事集" class="bury"><a
+						href="javascript:void(0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
+							class="icon-hand-right"></i>&nbsp;故事集埋点
+					</a></li>
+				</ul>
+
+				<ul class="nav nav-list bs-docs-sidenav ">
+					<li class="active"><a href="javascript:void(0);"><i
+							class="icon-chevron-right"></i> 主题相册埋点</a></li>
+					<li dtype="1" buryType="校园" class="bury"><a
+						href="javascript:void(0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
+							class="icon-hand-right"></i>&nbsp;校园相册
+					</a></li>
+					<li dtype="1" buryType="家人" class="bury"><a
+						href="javascript:void(0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
+							class="icon-hand-right"></i>&nbsp;家人相册
+					</a></li>
+					<li dtype="1" buryType="情侣" class="bury"><a
+						href="javascript:void(0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
+							class="icon-hand-right"></i>&nbsp;情侣相册
+					</a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="span10" style="margin-bottom:70px;">
+				<div>
+					<span class="title">校园选择：</span>
+					<div class="dropdown inline-block" style="width: 160px;">
+						<button style="width: 100%;" class="dropdown-toggle btn-sel"
+							type="button" id="stageSelect" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="true">川大</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li onclick="querySelectData('川大');"><a href='javascript:void(0);'>川大</a></li>
+							<li onclick="querySelectData('复旦');"><a href='javascript:void(0);'>复旦</a></li>
+						</ul>
+					</div>
+					<label class="inline-block" style="width:20px;"></label>
+					<span class="title">时间选择:</span>
+					<input type="text" class="ipt" style="vertical-align: -webkit-baseline-middle;" id="timeSelect"/>
+					<input type="button" style="vertical-align: top;" id="searchIndex" value="查询" class="btn btn-success"/>
+				</div>
+				<div>
+					<span class="navTitle">统计</span>
+					<span>
+						<button class="btn-navl navtab tabActive" val="总体" style="float:left;">总体</button>
+						<button class="btn-navr navtab" val="新用户">新用户</button>
+					</span>
+					
+					<div style="padding-top:10px;">
+						<table class="table table-striped gridTb stsTable">
+							<thead>
+								<tr>
+									<th class="itemShow" colspan="2">来源</th>
+									<th colspan="2">总体</th>
+									<th colspan="2">通过推文</th>
+									<th colspan="2">通过分享链接</th>
+									<th colspan="2">通过二维码</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr>
+									<td class="itemShow">UV</td>
+									<td class="itemShow">PV</td>
+									<td class="val total" val="相册人数-users_count"></td>
+									<td class="val" val="相册人数-operation_count"></td>
+									<td class="val userItem" val="相册人数(通过推文)-users_count"></td>
+									<td class="val" val="相册人数(通过推文)-operation_count"></td>
+									<td class="val userItem" val="相册人数(通过分享链接)-users_count"></td>
+									<td class="val" val="相册人数(通过分享链接)-operation_count"></td>
+									<td class="val userItem" val="相册人数(通过二维码)-users_count"></td>
+									<td class="val" val="相册人数(通过二维码)-operation_count"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div style="padding-top:10px;">
+						<table class="table table-striped gridTb stsTable">
+							<thead>
+								<tr>
+									<th class="itemShow" colspan="2"></th>
+									<th colspan="2">总体</th>
+									<th colspan="2">主页</th>
+									<th colspan="2">详情页</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr>
+									<td class="itemShow">UV</td>
+									<td class="itemShow">PV</td>
+									<td class="val total" val="相册人数-users_count"></td>
+									<td class="val" val="相册人数-operation_count"></td>
+									<td class="val userItem" val="PV(主页)-users_count"></td>
+									<td class="val" val="PV(主页)-operation_count"></td>
+									<td class="val userItem" val="PV(详情页)-users_count"></td>
+									<td class="val" val="PV(详情页)-operation_count"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div>
+						<table class="table table-striped gridTb stsTable">
+							<thead>
+								<tr>
+									<th class="itemShow" colspan="2">分享链接</th>
+									<th colspan="2">总体</th>
+									<th colspan="2">主页动态</th>
+									<th colspan="2">详情页动态</th>
+									<th colspan="2">成员&amp;邀请</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr>
+									<td class="itemShow">人数</td>
+									<td class="itemShow">次数</td>
+									<td class="val total" val="分享给好友(总)-users_count"></td>
+									<td class="val" val="分享给好友(总)-operation_count"></td>
+									<td class="val userItem" val="分享给好友(相册主页)-users_count"></td>
+									<td class="val" val="分享给好友(相册主页)-operation_count}"></td>
+									<td class="val userItem" val="分享给好友(动态详情页)-users_count"></td>
+									<td class="val" val="分享给好友(动态详情页)-operation_count"></td>
+									<td class="val userItem" val="分享给好友(邀请&amp;查看成员页面)-users_count"></td>
+									<td class="val" val="分享给好友(邀请&amp;查看成员页面)-operation_count"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					
+					<div>
+						<table class="table table-striped gridTb stsTable">
+							<thead>
+								<tr>
+									<th class="itemShow" colspan="2">点赞</th>
+									<th colspan="2">总体</th>
+									<th colspan="2">主页</th>
+									<th colspan="2">详情页</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr>
+									<td class="itemShow">人数</td>
+									<td class="itemShow">次数</td>
+									<td class="val total" val="点赞(总)-users_count"></td>
+									<td class="val" val="点赞(总)-operation_count"></td>
+									<td class="val userItem" val="点赞(相册主页)-users_count"></td>
+									<td class="val" val="点赞(相册主页)-operation_count"></td>
+									<td class="val userItem" val="点赞(动态详情页)-users_count"></td>
+									<td class="val" val="点赞(动态详情页)-operation_count"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+				</div>
+
+				<!-- 转化 -->
+				<div>
+					<span class="navTitle">转化</span>
+					<div>
+					
+						<table class="table gridTb transTb">
+								<tr>
+									<td class="stsItem">总人数</td>
+									<td class="val devider" val="相册人数-users_count"></td>
+									<td class="stsItem">授权人数</td>
+									<td class="val beDevider" val="相册授权人数-users_count"></td>
+									<td class="stsItem">占比</td>
+									<td class="percent" val="beDevider/devider"></td>
+								</tr>
+						</table>
+						
+						<table class="table gridTb transTb">
+								<tr>
+									<td class="stsItem">UV（主页）人数</td>
+									<td class="val devider" val="PV(主页)-users_count"></td>
+									<td class="stsItem">点赞人数</td>
+									<td class="val beDevider" val="点赞(相册主页)-users_count"></td>
+									<td class="stsItem">占比</td>
+									<td class="percent" val="beDevider/devider"></td>
+								</tr>
+						</table>
+						
+						<table class="table gridTb transTb">
+								<tr>
+									<td class="stsItem">UV（详情）人数</td>
+									<td class="val devider" val="PV(详情页)-users_count"></td>
+									<td class="stsItem">点赞人数</td>
+									<td class="val beDevider" val="点赞(动态详情页)-users_count"></td>
+									<td class="stsItem">占比</td>
+									<td class="percent" val="beDevider/devider"></td>
+								</tr>
+						</table>
+						
+						<table class="table gridTb transTb">
+								<tr>
+									<td class="stsItem">UV（主页）人数</td>
+									<td class="val devider" val="PV(主页)-users_count"></td>
+									<td class="stsItem">报名人数</td>
+									<td class="val beDevider" val="我要报名-users_count"></td>
+									<td class="stsItem">占比</td>
+									<td class="percent" val="beDevider/devider"></td>
+									<td class="stsItem">复制人数</td>
+									<td class="val beDevider1" val="复制-users_count">55</td>
+									<td class="stsItem">占比</td>
+									<td class="percent" val="beDevider1/beDevider"></td>
+								</tr>
+						</table>
+					
+					
+						<table class="table gridTb transTb">
+								<tr>
+									<td rowspan="2" class="centerTh stsItem">总人数</td>
+									<td rowspan="2" class="centerTh val devider" val="相册人数-users_count"></td>
+									<td rowspan="1" class="stsItem">分享好友</td>
+									<td rowspan="1" class="val beDevider" val="分享给好友(总)-users_count"></td>
+									<td rowspan="2" class="centerTh stsItem">占比</td>
+									<td rowspan="1" class="percent" val="beDevider/devider"></td>
+									<td rowspan="2" class="centerTh stsItem">合计</td>
+									<td rowspan="2" class="centerTh val beDevider3" val="分享(总)-users_count"></td>
+									<td rowspan="2" class="centerTh stsItem">转化</td>
+									<td rowspan="2" class="centerTh percent" val="beDevider3/devider"></td>
+								</tr>
+								<tr>
+									<td rowspan="1" class="stsItem">分享朋友圈</td>
+									<td rowspan="1" class="val beDevider4" val="保存并分享到朋友圈(总)-users_count"></td>
+									<td rowspan="1" class="percent" val="beDevider4/devider">60%</td>
+								</tr>
+								
+						</table>
+					
+						<table class="table gridTb transTb">
+								<tr>
+									<td rowspan="2" class="centerTh stsItem">UV(主页)人数</td>
+									<td rowspan="2" class="centerTh val devider" val="PV(主页)-users_count"></td>
+									<td rowspan="1" class="stsItem">分享好友</td>
+									<td rowspan="1" class="val beDeivider" val="分享给好友(相册主页)-users_count"></td>
+									<td rowspan="2" class="centerTh stsItem">转化</td>
+									<td rowspan="1" class="percent" val="beDeivider/devider"></td>
+									<td rowspan="1"></td>
+									<td rowspan="1"></td>
+									<td rowspan="2" class="centerTh stsItem">转化</td>
+									<td rowspan="1"></td>
+								</tr>
+								<tr>
+									<td rowspan="1" class="stsItem">分享朋友圈</td>
+									<td rowspan="1" class="val beDeivider1" val="分享到朋友圈(相册主页)-users_count"></td>
+									<td rowspan="1" class="percent" val="beDeivider1/devider"></td>
+									<td rowspan="1" class="stsItem">保存并分享朋友圈</td>
+									<td rowspan="1" class="val beDeivider2" val="保存并分享到朋友圈(相册主页)-users_count"></td>
+									<td rowspan="1" class="percent" val="beDeivider2/beDeivider1"></td>
+								</tr>
+								
+						</table>
+						
+						<table class="table gridTb transTb">
+								<tr>
+									<td rowspan="2" class="centerTh stsItem">UV(详情页)人数</td>
+									<td rowspan="2" class="centerTh val devider" val="PV(详情页)-users_count"></td>
+									<td rowspan="1" class="stsItem">分享好友</td>
+									<td rowspan="1" class="val beDeivider" val="分享给好友(动态详情页)-users_count"></td>
+									<td rowspan="2" class="centerTh stsItem">转化</td>
+									<td rowspan="1" class="percent" val="beDeivider/devider"></td>
+									<td rowspan="1"></td>
+									<td rowspan="1"></td>
+									<td rowspan="2" class="centerTh stsItem">转化</td>
+									<td rowspan="1"></td>
+								</tr>
+								<tr>
+									<td rowspan="1" class="stsItem">分享朋友圈</td>
+									<td rowspan="1" class="val beDeivider1" val="分享到朋友圈(动态详情页)-users_count"></td>
+									<td rowspan="1" class="percent" val="beDeivider1/devider"></td>
+									<td rowspan="1" class="stsItem">保存并分享朋友圈</td>
+									<td rowspan="1" class="val beDeivider2" val="保存并分享到朋友圈(动态详情页)-users_count"></td>
+									<td rowspan="1" class="percent" val="beDeivider2/beDeivider1"></td>
+								</tr>
+						</table>
+						
+						<!-- 邀请 -->
+						<table class="table gridTb inviteTb">
+								<tr>
+									<td rowspan="2" class="centerTh stsItem">UV(主页)人数</td>
+									<td rowspan="2" class="centerTh val devider" val="PV(主页)-users_count"></td>
+									<td rowspan="1" class="stsItem">邀请</td>
+									<td rowspan="1" class="val beDevider" val="邀请-users_count"></td>
+									<td rowspan="2" class="centerTh stsItem">占比</td>
+									<td rowspan="1" class="percent" val="beDevider/devider"></td>
+									<td rowspan="2" class="centerTh stsItem">合计</td>
+									<td rowspan="2" class="centerTh val beDevider2" val="邀请&amp;查看成员-users_count">55</td>
+									<td rowspan="2" class="centerTh stsItem">转化</td>
+									<td rowspan="2" class="centerTh percent" val="beDevider2/devider"></td>
+									<td rowspan="1" class="stsItem">分享好友</td>
+									<td rowspan="1" class="val beDevider3" val="分享给好友(邀请&amp;查看成员页面)-users_count"></td>
+									<td rowspan="2" class="centerTh stsItem">转化</td>
+									<td rowspan="1" class="percent" val="beDevider3/beDevider2"></td>
+								</tr>
+								<tr>
+									<td rowspan="1" class="stsItem">查看成员</td>
+									<td rowspan="1" class="val beDevider1" val="查看成员-users_count"></td>
+									<td rowspan="1" class="percent" val="beDevider1/devider"></td>
+									<td rowspan="1" class="stsItem">保存并分享朋友圈</td>
+									<td rowspan="1" class="val beDevider4" val="保存并分享到朋友圈(邀请页面)-users_count"></td>
+									<td rowspan="1" class="percent" val="beDevider4/beDevider2"></td>
+								</tr>
+								
+						</table>
+						
+					</div>
+				</div>
+				
+				<!-- 指标 	 -->
+				<div>
+					<span class="navTitle">指标</span>
+					<div>
+						<label>
+							<span class="title-l"> 1.新用户数:</span><span class="indexV data1 albumUsers" val="相册人数"></span>
+							（<span class="data2">其中通过推文：</span><span class="indexV data1" val="相册人数(通过推文)"></span>,<span class="data2">通过分享链接：</span><span class="indexV data1" val="相册人数(通过分享链接)"></span>）
+						</label>
+						
+						<label>
+							<span class="title-l"> 2.活跃用户数:</span><span class="indexV data1 havUsers" val="有行为新用户"></span><span class="indexPercent" val="havUsers/albumUsers"></span>
+							（<span class="data2">其中点赞：</span><span class="indexV data1" val="点赞(总)"></span>,<span class="data2">评论：</span><span class="indexV data1" val="评论(总)"></span>,<span class="data2">分享：</span><span class="indexV data1" val="分享(总)"></span>,<span class="data2">报名：</span><span class="indexV data1" val="复制"></span>）
+						</label>
+						
+						<label>
+							<span class="title-l"> 3.7日内再活用户数:</span><span class="indexV data1 reHavUsers" val="再活用户数"></span><span class="indexPercent" val="reHavUsers/havUsers"></span>
+						</label>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		</div>
+
+	<script type="text/javascript">
+		$(function() {
+			/* $('#table').bootstrapTable({
+			    url: 'data.json'
+			}); */
+
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>活动(新)用户留存</title>
+<link th:href="@{bootstrap/css/bootstrap.css}" rel="stylesheet" />
+<link th:href="@{bootstrap/css/bootstrap-responsive.css}" rel="stylesheet" />
+<link th:href="@{css/main.css}" rel="stylesheet" />
+<link th:href="@{layer/theme/default/layer.css}" rel="stylesheet" />
+
+<script th:src="@{jquery.js}" type="text/javascript"></script>
+<script th:src="@{js/comm.js}" type="text/javascript"></script>
+<script th:src="@{bootstrap/js/bootstrap.js}" type="text/javascript"></script>
+<script th:src="@{layer/layer.js}" type="text/javascript"></script>
+<script th:src="@{laydate/laydate.js}" type="text/javascript"></script>
+<script th:src="@{echarts/echarts.min.js}" type="text/javascript"></script>
+<script th:src="@{js/commIndex/actUserRetain.js}" type="text/javascript"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="headTitle">活动(新)用户留存</div>
+		<div class="fullWth borderLine">
+			<!--活动相册信息-->
+			<div class="block" style="width: 25%; float: left;">
+				<div class="bg_gray">
+					<span class="title">相册活动信息</span>
+					<ul class="">
+						<li>活动相册ID:<span id="groupid"></span></li>
+						<li>活动相册名称:<span id="gname"></span></li>
+						<li>活动开始时间:<span id="startTime"></span></li>
+						<li>活动结束时间:<span id="endTime"></span></li>
+						<li>活动方式:<span id="type"></span></li>
+						<li>活动周期:<span id="actCyc"></span></li>
+						<li>活动状态:<span id="actStatus"></span></li>
+					</ul>
+				</div>
+			</div>
+
+			<div style="width: 50%;display:inline-block;">
+				<div style="margin-left: 10px;">
+					<span class="title">用户留存情况</span>
+					<table width="90%" class="greyTable" id="actUserClusterTb">
+						<thead>
+							<tr>
+								<th></th>
+								<th>首次使用</th>
+								<th>1天后</th>
+								<th>1周后</th>
+								<th>2周后</th>
+								<th>3周后</th>
+								<th>1月后</th>
+								<th>2月后</th>
+								<th>3月后</th>
+							</tr>
+						</thead>
+						
+						<tbody></tbody>
+					
+					</table>
+				</div>
+			</div>
+
+			<div class="block" style="width: 25%; float: right;">
+				<div>
+					<span>活动选择:</span>
+					<select class="ipt" id="actSelect">
+						
+					</select> 
+					
+					<span>时间选择:</span>
+					<input type="text" class="ipt" id="timeSelect"/>
+					<input type="button" id="searchIndex" value="查询" class="searchBtn"/>
+				</div>
+
+				<div>
+					<div style="width: 95%; float: right;">
+						<span class="title1">（说明）用户等级定义</span>
+						<ul class="inline stricLine">
+							<li><b>首次使用</b>:上传、创建、邀请、互动（评论、点赞）</li>
+							<li>超级用户:拥有创建、邀请、上传行为的用户（缺一不可）</li>
+							<li>高级用户:拥有邀请或上传行为的用户（满足其一即可）</li>
+							<li>中级用户:拥有创建或互动行为的用户（满足其一即可）</li>
+							<li>低级用户:无任何行为的用户（没有满足任何条件）</li>
+						</ul>
+						
+						<ul class="inline stricLine">
+							<li>
+								<b class="block" style="width:50px;">后续使用</b>:
+								<span>（一级功能）分享邀请，复传</span>
+								<br/>
+								<span class="block" style="margin-left:12%;">&nbsp;&nbsp;（二级功能）互动、上传、创建相册</span>
+							</li>
+							<li>超级用户:拥有一级功能和二级功能全部行为的用户</li>
+							<li>高级用户:拥有一级功能全部行为的用户</li>
+							<li>中级用户:拥有二级功能中2项行为的用户</li>
+							<li>低级用户:拥有二级功能中1项行为的用户</li>
+							<li>流失用户:没有任何行为的用户</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="fullWth">
+			<div class="fullWth" style="margin-top:20px;">
+				<div id="line1" class="block fl cub"></div>
+				<div id="line2" class="block cub1"></div>
+			</div>
+			
+			<div class="fullWth" style="margin-top:20px;">
+				<div id="line3" class="block cub"></div>
+				<div id="line4" class="block fr cub1"></div>
+			</div>
+			
+			
+		</div>
+	</div>
+</body>
+</html>

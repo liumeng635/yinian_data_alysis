@@ -1,0 +1,1031 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>渠道(新)用户质量平台</title>
+<link th:href="@{bootstrap/css/bootstrap.css}" rel="stylesheet" />
+<link th:href="@{bootstrap/css/bootstrap-responsive.css}"
+	rel="stylesheet" />
+<link th:href="@{css/main.css}" rel="stylesheet" />
+<link th:href="@{layer/theme/default/layer.css}" rel="stylesheet" />
+
+<script th:src="@{jquery.js}" type="text/javascript"></script>
+<script th:src="@{js/comm.js}" type="text/javascript"></script>
+<script th:src="@{bootstrap/js/bootstrap.js}" type="text/javascript"></script>
+<script th:src="@{layer/layer.js}" type="text/javascript"></script>
+<script th:src="@{laydate/laydate.js}" type="text/javascript"></script>
+<script th:src="@{echarts/echarts.min.js}" type="text/javascript"></script>
+<script th:src="@{js/market/marketIndex.js}" type="text/javascript"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="headTitle">市场指标分析</div>
+		<div style="width: 100%;">
+			<div>
+				<span>时间选择:</span> <input style="width: 150px;" type="text"
+					class="ipt" id="timeSelect" /> 
+					<select id="hour" style="width: 75px;vertical-align: bottom;">
+					<option value="02:00:00">2点</option>
+					<option value="04:00:00">4点</option>
+					<option value="08:00:00">8点</option>
+					<option value="10:00:00">10点</option>
+					<option value="12:00:00">12点</option>
+					<option value="14:00:00">14点</option>
+					<option value="16:00:00">16点</option>
+					<option value="18:00:00">18点</option>
+					<option value="20:00:00">20点</option>
+					<option value="22:00:00">22点</option>
+					<option value="00:00:00">0点</option>
+				</select>
+				<input type="button"
+					id="searchIndex" value="查询" class="searchBtn" style="width:60px !important;"/>
+			</div>
+			<!--<div
+				style="width: 42%; float: left; border-right: 2px solid #efdddd;">
+				 <div class="center tt1">过程指标数据</div>
+					<svg xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink" id="processonSvg1000"
+					viewBox="-91.66668701171875 95.0 1074.6666870117188 882.0"
+					width="100%" height="90%">
+					<defs id="ProcessOnDefs1001">
+					<marker id="ProcessOnMarker1021" markerUnits="userSpaceOnUse"
+						orient="auto" markerWidth="16.23606797749979"
+						markerHeight="10.550836550532098"
+						viewBox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098"
+						refX="-1.0" refY="3.8990363547948754">
+					<path id="ProcessOnPath1022"
+						d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z"
+						stroke="#8a8a8a" stroke-width="2.0" fill="#8a8a8a"
+						transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)" /></marker>
+					<marker id="ProcessOnMarker1025" markerUnits="userSpaceOnUse"
+						orient="auto" markerWidth="16.23606797749979"
+						markerHeight="10.550836550532098"
+						viewBox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098"
+						refX="-1.0" refY="3.8990363547948754">
+					<path id="ProcessOnPath1026"
+						d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z"
+						stroke="#8a8a8a" stroke-width="2.0" fill="#8a8a8a"
+						transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)" /></marker>
+					<marker id="ProcessOnMarker1033" markerUnits="userSpaceOnUse"
+						orient="auto" markerWidth="16.23606797749979"
+						markerHeight="10.550836550532098"
+						viewBox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098"
+						refX="-1.0" refY="3.8990363547948754">
+					<path id="ProcessOnPath1034"
+						d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z"
+						stroke="#8a8a8a" stroke-width="2.0" fill="#8a8a8a"
+						transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)" /></marker>
+					<marker id="ProcessOnMarker1061" markerUnits="userSpaceOnUse"
+						orient="auto" markerWidth="16.23606797749979"
+						markerHeight="10.550836550532098"
+						viewBox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098"
+						refX="-1.0" refY="3.8990363547948754">
+					<path id="ProcessOnPath1062"
+						d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z"
+						stroke="#8a8a8a" stroke-width="2.0" fill="#8a8a8a"
+						transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)" /></marker>
+					<marker id="ProcessOnMarker1069" markerUnits="userSpaceOnUse"
+						orient="auto" markerWidth="16.23606797749979"
+						markerHeight="10.550836550532098"
+						viewBox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098"
+						refX="-1.0" refY="3.8990363547948754">
+					<path id="ProcessOnPath1070"
+						d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z"
+						stroke="#8a8a8a" stroke-width="2.0" fill="#8a8a8a"
+						transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)" /></marker>
+					<marker id="ProcessOnMarker1077" markerUnits="userSpaceOnUse"
+						orient="auto" markerWidth="16.23606797749979"
+						markerHeight="10.550836550532098"
+						viewBox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098"
+						refX="-1.0" refY="3.8990363547948754">
+					<path id="ProcessOnPath1078"
+						d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z"
+						stroke="#8a8a8a" stroke-width="2.0" fill="#8a8a8a"
+						transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)" /></marker></defs>
+					<g id="ProcessOnG1002">
+					<path id="ProcessOnPath1003"
+						d="M-91.66668701171875 95.0H983.0V977.0H-91.66668701171875V95.0Z"
+						fill="#ffffff" />
+					<g id="ProcessOnG1004">
+					<g id="ProcessOnG1005"
+						transform="matrix(1.0,0.0,0.0,1.0,370.9930725097656,772.0)"
+						opacity="1.0">
+					<path id="ProcessOnPath1006"
+						d="M0.0 38.626739501953125C0.0 -12.875579833984375 183.01385498046875 -12.875579833984375 183.01385498046875 38.626739501953125C183.01385498046875 90.12905883789062 0.0 90.12905883789062 0.0 38.626739501953125Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1007"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,29.251739501953125)">
+					<text id="ProcessOnText1008" fill="#333300" font-size="15"
+						x="80.50692749023438" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">查看名单</text></g></g>
+					<g id="ProcessOnG1009"
+						transform="matrix(1.0,0.0,0.0,1.0,371.0,115.0)" opacity="1.0">
+					<path id="ProcessOnPath1010"
+						d="M0.0 38.626739501953125C0.0 -12.875579833984375 183.01385498046875 -12.875579833984375 183.01385498046875 38.626739501953125C183.01385498046875 90.12905883789062 0.0 90.12905883789062 0.0 38.626739501953125Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1011"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,29.251739501953125)">
+					<text id="ProcessOnText1012" fill="#333300" font-size="15"
+						x="80.50692749023438" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">用户数：</text></g></g>
+					<g id="ProcessOnG1013">
+					<path id="ProcessOnPath1014"
+						d="M462.5069274902344 192.25347900390625L462.5069274902344 226.96006774902344L462.5069274902344 226.96006774902344L462.5069274902344 261.6666564941406"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1015"
+						transform="matrix(1.0,0.0,0.0,1.0,382.0,602.0)" opacity="1.0">
+					<path id="ProcessOnPath1016"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1017"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1018" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">热度页</text></g></g>
+					<g id="ProcessOnG1019">
+					<path id="ProcessOnPath1020"
+						d="M462.5 693.0L462.5 732.5L462.5 732.5L462.5 756.7639320225002"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" marker-end="url(#ProcessOnMarker1021)" /></g>
+					<g id="ProcessOnG1023">
+					<path id="ProcessOnPath1024"
+						d="M462.5069274902344 348.3333282470703L462.5069274902344 475.16666412353516L462.5 475.16666412353516L462.5 586.7639320225002"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" marker-end="url(#ProcessOnMarker1025)" /></g>
+					<g id="ProcessOnG1027"
+						transform="matrix(1.0,0.0,0.0,1.0,57.0,336.3333282470703)"
+						opacity="1.0">
+					<path id="ProcessOnPath1028"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1029"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1030" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">分享</text></g></g>
+					<g id="ProcessOnG1031">
+					<path id="ProcessOnPath1032"
+						d="M463.33331298828125 381.8333282470703L340.6666564941406 381.8333282470703L340.6666564941406 381.8333282470703L233.2360679774998 381.8333282470703"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" marker-end="url(#ProcessOnMarker1033)" /></g>
+					<g id="ProcessOnG1035"
+						transform="matrix(1.0,0.0,0.0,1.0,802.0,704.0)" opacity="1.0">
+					<path id="ProcessOnPath1036"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1037"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1038" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">授权</text></g></g>
+					<g id="ProcessOnG1039"
+						transform="matrix(1.0,0.0,0.0,1.0,802.0,485.0)" opacity="1.0">
+					<path id="ProcessOnPath1040"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1041"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1042" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">授权</text></g></g>
+					<g id="ProcessOnG1043"
+						transform="matrix(1.0,0.0,0.0,1.0,614.0,485.0)" opacity="1.0">
+					<path id="ProcessOnPath1044"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1045"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1046" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">兑换</text></g></g>
+					<g id="ProcessOnG1047"
+						transform="matrix(1.0,0.0,0.0,1.0,614.0,704.0)" opacity="1.0">
+					<path id="ProcessOnPath1048"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1049"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1050" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">抢购</text></g></g>
+					<g id="ProcessOnG1051"
+						transform="matrix(1.0,0.0,0.0,1.0,382.0,259.3333282470703)"
+						opacity="1.0">
+					<path id="ProcessOnPath1052"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1053"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1054" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">进入相册</text></g></g>
+					<g id="ProcessOnG1055"
+						transform="matrix(1.0,0.0,0.0,1.0,246.0,459.3333282470703)"
+						opacity="1.0">
+					<path id="ProcessOnPath1056"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1057"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1058" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">公告</text></g></g>
+					<g id="ProcessOnG1059">
+					<path id="ProcessOnPath1060"
+						d="M462.33331298828125 504.3333282470703L434.6666564941406 504.3333282470703L434.6666564941406 504.8333282470703L422.2360679774998 504.8333282470703"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" marker-end="url(#ProcessOnMarker1061)" /></g>
+					<g id="ProcessOnG1063"
+						transform="matrix(1.0,0.0,0.0,1.0,57.0,459.3333282470703)"
+						opacity="1.0">
+					<path id="ProcessOnPath1064"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1065"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1066" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">分享</text></g></g>
+					<g id="ProcessOnG1067">
+					<path id="ProcessOnPath1068"
+						d="M246.0 504.8333282470703L232.0 504.8333282470703L232.0 504.8333282470703L231.0 504.8333282470703"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" marker-end="url(#ProcessOnMarker1069)" /></g>
+					<g id="ProcessOnG1071"
+						transform="matrix(1.0,0.0,0.0,1.0,57.0,602.0)" opacity="1.0">
+					<path id="ProcessOnPath1072"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1073"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1074" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">分享</text></g></g>
+					<g id="ProcessOnG1075">
+					<path id="ProcessOnPath1076"
+						d="M382.0 647.5L300.0 647.5L300.0 647.5L233.2360679774998 647.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" marker-end="url(#ProcessOnMarker1077)" /></g>
+					<g id="ProcessOnG1079">
+					<path id="ProcessOnPath1080"
+						d="M57.0 381.8333282470703L28.166656494140625 381.8333282470703L28.166656494140625 381.8333282470703L-0.66668701171875 381.8333282470703"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1081">
+					<path id="ProcessOnPath1082"
+						d="M59.33331298828125 504.6666669845581L29.33331298828125 504.6666669845581L29.33331298828125 504.6666669845581L-0.66668701171875 504.6666669845581"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1083">
+					<path id="ProcessOnPath1084"
+						d="M57.0 647.5L27.666656494140625 647.5L27.666656494140625 647.5L-1.66668701171875 647.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1085">
+					<path id="ProcessOnPath1086"
+						d="M-1.66668701171875 380.6666669845581L-1.66668701171875 514.1666669845581L-1.66668701171875 514.1666669845581L-1.66668701171875 647.6666669845581"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1087">
+					<path id="ProcessOnPath1088"
+						d="M-2.66668701171875 505.0L-37.16668701171875 505.0L-37.16668701171875 505.0L-71.66668701171875 505.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1089">
+					<path id="ProcessOnPath1090"
+						d="M-71.66668701171875 503.0L-71.66668701171875 708.5L-71.66668701171875 708.5L-71.66668701171875 914.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1091">
+					<path id="ProcessOnPath1092"
+						d="M-71.66668701171875 913.0L39.33331298828125 913.0L39.33331298828125 913.0L150.33331298828125 913.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1093"
+						transform="matrix(1.0,0.0,0.0,1.0,-9.006927490234375,867.0)"
+						opacity="1.0">
+					<path id="ProcessOnPath1094"
+						d="M0.0 45.0C0.0 -15.0 181.34024047851562 -15.0 181.34024047851562 45.0C181.34024047851562 105.0 0.0 105.0 0.0 45.0Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1095"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,35.625)">
+					<text id="ProcessOnText1096" fill="#333300" font-size="15"
+						x="79.67012023925781" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">新用户</text></g></g>
+					<g id="ProcessOnG1097"
+						transform="matrix(1.0,0.0,0.0,1.0,264.0,866.0)" opacity="1.0">
+					<path id="ProcessOnPath1098"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1099"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1100" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">我也要参加拿X</text></g></g>
+					<g id="ProcessOnG1101">
+					<path id="ProcessOnPath1102"
+						d="M172.33331298828125 912.0L218.16665649414062 912.0L218.16665649414062 911.5L264.0 911.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1103">
+					<path id="ProcessOnPath1104"
+						d="M543.0 647.5L559.6666564941406 647.5L559.6666564941406 647.5L576.3333129882812 647.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1105">
+					<path id="ProcessOnPath1106"
+						d="M775.0 530.5L788.5 530.5L788.5 530.5L802.0 530.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1107">
+					<path id="ProcessOnPath1108"
+						d="M775.0 749.5L788.5 749.5L788.5 749.5L802.0 749.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1109">
+					<path id="ProcessOnPath1110"
+						d="M576.3333129882812 653.6666669845581L576.3333129882812 591.1666669845581L576.3333129882812 591.1666669845581L576.3333129882812 528.6666669845581"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1111">
+					<path id="ProcessOnPath1112"
+						d="M576.3333129882812 640.6666669845581L576.3333129882812 695.1666669845581L576.3333129882812 695.1666669845581L576.3333129882812 749.6666669845581"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1113">
+					<path id="ProcessOnPath1114"
+						d="M614.0 749.5L594.6666564941406 749.5L594.6666564941406 749.5L575.3333129882812 749.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1115">
+					<path id="ProcessOnPath1116"
+						d="M614.0 530.5L595.1666564941406 530.5L595.1666564941406 530.5L576.3333129882812 530.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g></g></g></svg>
+						
+			</div> -->
+		<div style="width: 100%; /* float: right; */">
+			<div class="center tt1">
+				<div class="title_01">
+					结果指标数据
+				</div>
+			</div>
+			<div>
+			<div style="width: 60%; float: left;">
+				<svg xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink" id="processonSvg1000"
+					viewBox="386.0 151.0 863.3333129882812 942.0434036254883"
+					width="80%" height="83%">
+					<defs id="ProcessOnDefs1001">
+					<marker id="ProcessOnMarker1011" markerUnits="userSpaceOnUse"
+						orient="auto" markerWidth="16.23606797749979"
+						markerHeight="10.550836550532098"
+						viewBox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098"
+						refX="-1.0" refY="3.8990363547948754">
+					<path id="ProcessOnPath1012"
+						d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z"
+						stroke="#8a8a8a" stroke-width="2.0" fill="#8a8a8a"
+						transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)" /></marker>
+					<marker id="ProcessOnMarker1142" markerUnits="userSpaceOnUse"
+						orient="auto" markerWidth="16.23606797749979"
+						markerHeight="10.550836550532098"
+						viewBox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098"
+						refX="-1.0" refY="3.8990363547948754">
+					<path id="ProcessOnPath1143"
+						d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z"
+						stroke="#8a8a8a" stroke-width="2.0" fill="#8a8a8a"
+						transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)" /></marker>
+					<marker id="ProcessOnMarker1146" markerUnits="userSpaceOnUse"
+						orient="auto" markerWidth="16.23606797749979"
+						markerHeight="10.550836550532098"
+						viewBox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098"
+						refX="-1.0" refY="3.8990363547948754">
+					<path id="ProcessOnPath1147"
+						d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z"
+						stroke="#8a8a8a" stroke-width="2.0" fill="#8a8a8a"
+						transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)" /></marker>
+					<marker id="ProcessOnMarker1150" markerUnits="userSpaceOnUse"
+						orient="auto" markerWidth="16.23606797749979"
+						markerHeight="10.550836550532098"
+						viewBox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098"
+						refX="-1.0" refY="3.8990363547948754">
+					<path id="ProcessOnPath1151"
+						d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z"
+						stroke="#8a8a8a" stroke-width="2.0" fill="#8a8a8a"
+						transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)" /></marker>
+					<marker id="ProcessOnMarker1154" markerUnits="userSpaceOnUse"
+						orient="auto" markerWidth="16.23606797749979"
+						markerHeight="10.550836550532098"
+						viewBox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098"
+						refX="-1.0" refY="3.8990363547948754">
+					<path id="ProcessOnPath1155"
+						d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z"
+						stroke="#8a8a8a" stroke-width="2.0" fill="#8a8a8a"
+						transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)" /></marker></defs>
+					<g id="ProcessOnG1002">
+					<path id="ProcessOnPath1003"
+						d="M386.0 151.0H1249.3333129882812V1093.0434036254883H386.0V151.0Z"
+						fill="#ffffff" />
+					<g id="ProcessOnG1004">
+					<g id="ProcessOnG1005"
+						transform="matrix(1.0,0.0,0.0,1.0,406.0,891.0)" opacity="1.0">
+					<path id="ProcessOnPath1006"
+						d="M0.0 38.626739501953125C0.0 -12.875579833984375 183.01385498046875 -12.875579833984375 183.01385498046875 38.626739501953125C183.01385498046875 90.12905883789062 0.0 90.12905883789062 0.0 38.626739501953125Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1007"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,29.251739501953125)">
+					<text class="sData usersHavaction" fill="#333300" font-size="15"
+						x="80.50692749023438" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">有行为人数：</text></g></g>
+					<g id="ProcessOnG1009">
+					<path id="ProcessOnPath1010"
+						d="M497.5 449.0L497.5 670.0L497.5069274902344 670.0L497.5069274902344 875.7639320225002"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" marker-end="url(#ProcessOnMarker1011)" /></g>
+					<g id="ProcessOnG1013"
+						transform="matrix(1.0,0.0,0.0,1.0,580.0,493.0)" opacity="1.0">
+					<path id="ProcessOnPath1014"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1015"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1016" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">上传</text></g></g>
+					<g id="ProcessOnG1017"
+						transform="matrix(1.0,0.0,0.0,1.0,580.0,645.0)" opacity="1.0">
+					<path id="ProcessOnPath1018"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1019"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1020" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">互动</text></g></g>
+					<g id="ProcessOnG1021"
+						transform="matrix(1.0,0.0,0.0,1.0,578.0,778.0)" opacity="1.0">
+					<path id="ProcessOnPath1022"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1023"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1024" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">邀请</text></g></g>
+					<g id="ProcessOnG1025"
+						transform="matrix(1.0,0.0,0.0,1.0,580.0,352.5)" opacity="1.0">
+					<path id="ProcessOnPath1026"
+						d="M0.0 45.5L80.5 0.0L161.0 45.5L80.5 91.0L0.0 45.5Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1027"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,36.125)">
+					<text id="ProcessOnText1028" fill="#333300" font-size="15" x="69.5"
+						y="15.375" font-family="微软雅黑" font-weight="bold"
+						font-style="normal" text-decoration="none" family="微软雅黑"
+						text-anchor="middle" size="15">创建</text></g></g>
+					<g id="ProcessOnG1029"
+						transform="matrix(1.0,0.0,0.0,1.0,469.5,330.6666488647461)"
+						opacity="1.0">
+					<path id="ProcessOnPath1030"
+						d="M0.0 0.0L55.83331298828125 0.0L55.83331298828125 495.6666793823242L0.0 495.6666793823242Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1031"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,197.8333396911621)">
+					<text id="ProcessOnText1032" fill="#333300" font-size="20"
+						x="16.916656494140625" y="20.5" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="20">私</text>
+					<text id="ProcessOnText1033" fill="#333300" font-size="20"
+						x="16.916656494140625" y="45.5" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="20">密</text>
+					<text id="ProcessOnText1034" fill="#333300" font-size="20"
+						x="16.916656494140625" y="70.5" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="20">相</text>
+					<text id="ProcessOnText1035" fill="#333300" font-size="20"
+						x="16.916656494140625" y="95.5" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="20">册</text></g></g>
+					<g id="ProcessOnG1036"
+						transform="matrix(1.0,0.0,0.0,1.0,797.0,337.0)" opacity="1.0">
+					<path id="ProcessOnPath1037"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L149.33331298828125 0.0Q153.33331298828125 0.0 153.33331298828125 4.0L153.33331298828125 42.33332824707031Q153.33331298828125 46.33332824707031 149.33331298828125 46.33332824707031L4.0 46.33332824707031Q0.0 46.33332824707031 0.0 42.33332824707031Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1038"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,13.791664123535156)">
+					<text class="sData usersCreateCount" fill="#333300" font-size="15"
+						x="65.66665649414062" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">用户数：</text></g></g>
+					<g id="ProcessOnG1040"
+						transform="matrix(1.0,0.0,0.0,1.0,797.0,408.0)" opacity="1.0">
+					<path id="ProcessOnPath1041"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L149.33331298828125 0.0Q153.33331298828125 0.0 153.33331298828125 4.0L153.33331298828125 43.33332824707031Q153.33331298828125 47.33332824707031 149.33331298828125 47.33332824707031L4.0 47.33332824707031Q0.0 47.33332824707031 0.0 43.33332824707031Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1042"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,14.291664123535156)">
+					<text class="sData groupsCount" fill="#333300" font-size="15"
+						x="65.66665649414062" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">相册数：</text></g></g>
+					<g id="ProcessOnG1044"
+						transform="matrix(1.0,0.0,0.0,1.0,801.0,478.0)" opacity="1.0">
+					<path id="ProcessOnPath1045"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L141.33331298828125 0.0Q145.33331298828125 0.0 145.33331298828125 4.0L145.33331298828125 44.33332824707031Q145.33331298828125 48.33332824707031 141.33331298828125 48.33332824707031L4.0 48.33332824707031Q0.0 48.33332824707031 0.0 44.33332824707031Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1046"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,14.791664123535156)">
+					<text class="sData usersUploadCountSm" fill="#333300" font-size="15"
+						x="61.666656494140625" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">用户数：</text></g></g>
+					<g id="ProcessOnG1048"
+						transform="matrix(1.0,0.0,0.0,1.0,801.0,550.0)" opacity="1.0">
+					<path id="ProcessOnPath1049"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L141.33331298828125 0.0Q145.33331298828125 0.0 145.33331298828125 4.0L145.33331298828125 41.33332824707031Q145.33331298828125 45.33332824707031 141.33331298828125 45.33332824707031L4.0 45.33332824707031Q0.0 45.33332824707031 0.0 41.33332824707031Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1050"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,13.291664123535156)">
+					<text class="sData eventsCountSm" fill="#333300" font-size="15"
+						x="61.666656494140625" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">动态数：</text></g></g>
+					<g id="ProcessOnG1052"
+						transform="matrix(1.0,0.0,0.0,1.0,801.0,630.0)" opacity="1.0">
+					<path id="ProcessOnPath1053"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L141.33331298828125 0.0Q145.33331298828125 0.0 145.33331298828125 4.0L145.33331298828125 43.33332824707031Q145.33331298828125 47.33332824707031 141.33331298828125 47.33332824707031L4.0 47.33332824707031Q0.0 47.33332824707031 0.0 43.33332824707031Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1054"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,14.291664123535156)">
+					<text class="sData usersPlayCountSm" fill="#333300" font-size="15"
+						x="61.666656494140625" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">用户数：</text></g></g>
+					<g id="ProcessOnG1056"
+						transform="matrix(1.0,0.0,0.0,1.0,801.0,699.0)" opacity="1.0">
+					<path id="ProcessOnPath1057"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L141.33331298828125 0.0Q145.33331298828125 0.0 145.33331298828125 4.0L145.33331298828125 41.666664123535156Q145.33331298828125 45.666664123535156 141.33331298828125 45.666664123535156L4.0 45.666664123535156Q0.0 45.666664123535156 0.0 41.666664123535156Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1058"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,13.458332061767578)">
+					<text class="sData playsCountSm" fill="#333300" font-size="15"
+						x="61.666656494140625" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">互动数：</text></g></g>
+					<g id="ProcessOnG1060"
+						transform="matrix(1.0,0.0,0.0,1.0,801.0,763.0)" opacity="1.0">
+					<path id="ProcessOnPath1061"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L141.33331298828125 0.0Q145.33331298828125 0.0 145.33331298828125 4.0L145.33331298828125 43.666664123535156Q145.33331298828125 47.666664123535156 141.33331298828125 47.666664123535156L4.0 47.666664123535156Q0.0 47.666664123535156 0.0 43.666664123535156Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1062"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,14.458332061767578)">
+					<text class="sData usersInviteCountSm" fill="#333300" font-size="15"
+						x="61.666656494140625" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">用户数：</text></g></g>
+					<g id="ProcessOnG1064"
+						transform="matrix(1.0,0.0,0.0,1.0,801.0,833.0)" opacity="1.0">
+					<path id="ProcessOnPath1065"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L141.33331298828125 0.0Q145.33331298828125 0.0 145.33331298828125 4.0L145.33331298828125 42.666664123535156Q145.33331298828125 46.666664123535156 141.33331298828125 46.666664123535156L4.0 46.666664123535156Q0.0 46.666664123535156 0.0 42.666664123535156Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1066"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,13.958332061767578)">
+					<text class="sData invitesCountSm" fill="#333300" font-size="15"
+						x="61.666656494140625" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">邀请数：</text></g></g>
+					<g id="ProcessOnG1068"
+						transform="matrix(1.0,0.0,0.0,1.0,1032.5,800.710075378418)"
+						opacity="1.0">
+					<path id="ProcessOnPath1069"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L181.33331298828125 0.0Q185.33331298828125 0.0 185.33331298828125 4.0L185.33331298828125 42.33332824707031Q185.33331298828125 46.33332824707031 181.33331298828125 46.33332824707031L4.0 46.33332824707031Q0.0 46.33332824707031 0.0 42.33332824707031Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1070"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,13.791664123535156)">
+					<text class="sData beinviteCreateUsersCountSm" fill="#333300" font-size="15"
+						x="81.66665649414062" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">创建人数：</text></g></g>
+					<g id="ProcessOnG1072"
+						transform="matrix(1.0,0.0,0.0,1.0,1032.5,871.710075378418)"
+						opacity="1.0">
+					<path id="ProcessOnPath1073"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L181.33331298828125 0.0Q185.33331298828125 0.0 185.33331298828125 4.0L185.33331298828125 42.33332824707031Q185.33331298828125 46.33332824707031 181.33331298828125 46.33332824707031L4.0 46.33332824707031Q0.0 46.33332824707031 0.0 42.33332824707031Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1074"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,13.791664123535156)">
+					<text class="sData beinviteUploadUsersCountSm" fill="#333300" font-size="15"
+						x="81.66665649414062" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">上传人数：</text></g></g>
+					<g id="ProcessOnG1076"
+						transform="matrix(1.0,0.0,0.0,1.0,1032.5,947.710075378418)"
+						opacity="1.0">
+					<path id="ProcessOnPath1077"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L181.33331298828125 0.0Q185.33331298828125 0.0 185.33331298828125 4.0L185.33331298828125 43.33332824707031Q185.33331298828125 47.33332824707031 181.33331298828125 47.33332824707031L4.0 47.33332824707031Q0.0 47.33332824707031 0.0 43.33332824707031Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1078"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,14.291664123535156)">
+					<text class="sData beinvitePlayUsersCountSm" fill="#333300" font-size="15"
+						x="81.66665649414062" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">互动人数：</text></g></g>
+					<g id="ProcessOnG1080"
+						transform="matrix(1.0,0.0,0.0,1.0,1032.5,1025.710075378418)"
+						opacity="1.0">
+					<path id="ProcessOnPath1081"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L181.33331298828125 0.0Q185.33331298828125 0.0 185.33331298828125 4.0L185.33331298828125 43.33332824707031Q185.33331298828125 47.33332824707031 181.33331298828125 47.33332824707031L4.0 47.33332824707031Q0.0 47.33332824707031 0.0 43.33332824707031Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1082"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,14.291664123535156)">
+					<text class="sData beinviteInviteUsersCountSm" fill="#333300" font-size="15"
+						x="81.66665649414062" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">邀请人数：</text></g></g>
+					<g id="ProcessOnG1084">
+					<path id="ProcessOnPath1085"
+						d="M741.0 690.5L748.6666564941406 690.5L748.6666564941406 690.5L756.3333129882812 690.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1086">
+					<path id="ProcessOnPath1087"
+						d="M754.0 705.0L754.0 679.0L754.0 679.0L754.0 653.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1088">
+					<path id="ProcessOnPath1089"
+						d="M753.0 654.0L777.0 654.0L777.0 653.6666641235352L801.0 653.6666641235352"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1090">
+					<path id="ProcessOnPath1091"
+						d="M754.0 728.0L754.0 715.0L754.0 715.0L754.0 702.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1092">
+					<path id="ProcessOnPath1093"
+						d="M755.0 726.0L779.0 726.0L779.0 726.0L803.0 726.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1094">
+					<path id="ProcessOnPath1095"
+						d="M741.0 538.5L748.6666564941406 538.5L748.6666564941406 538.5L756.3333129882812 538.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1096">
+					<path id="ProcessOnPath1097"
+						d="M757.0 553.0L757.0 527.0L757.0 527.0L757.0 501.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1098">
+					<path id="ProcessOnPath1099"
+						d="M801.0 502.16666412353516L779.5 502.16666412353516L779.5 502.0L758.0 502.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1100">
+					<path id="ProcessOnPath1101"
+						d="M757.0 553.0L757.0 563.5L757.0 563.5L757.0 574.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1102">
+					<path id="ProcessOnPath1103"
+						d="M801.0 572.6666641235352L779.0 572.6666641235352L779.0 573.0L757.0 573.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1104">
+					<path id="ProcessOnPath1105"
+						d="M739.0 823.5L747.6666564941406 823.5L747.6666564941406 823.5L756.3333129882812 823.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1106">
+					<path id="ProcessOnPath1107"
+						d="M754.0138549804688 823.0312576293945L754.0138549804688 805.5312576293945L754.0138549804688 805.5312576293945L754.0138549804688 788.0312576293945"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1108">
+					<path id="ProcessOnPath1109"
+						d="M754.0138549804688 820.0312576293945L754.0138549804688 838.5312576293945L754.0138549804688 838.5312576293945L754.0138549804688 857.0312576293945"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1110">
+					<path id="ProcessOnPath1111"
+						d="M801.0 786.8333320617676L777.0069274902344 786.8333320617676L777.0069274902344 787.0L753.0138549804688 787.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1112">
+					<path id="ProcessOnPath1113"
+						d="M801.0 856.3333320617676L777.5069274902344 856.3333320617676L777.5069274902344 856.0L754.0138549804688 856.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1114">
+					<path id="ProcessOnPath1115"
+						d="M741.0 398.0L752.1666564941406 398.0L752.1666564941406 398.0L763.3333129882812 398.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1116">
+					<path id="ProcessOnPath1117"
+						d="M761.0138549804688 400.5867919921875L761.0138549804688 380.5867919921875L761.0138549804688 380.5867919921875L761.0138549804688 360.5867919921875"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1118">
+					<path id="ProcessOnPath1119"
+						d="M761.0138549804688 393.5867919921875L761.0138549804688 413.5867919921875L761.0138549804688 413.5867919921875L761.0138549804688 433.5867919921875"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1120">
+					<path id="ProcessOnPath1121"
+						d="M797.0 431.66666412353516L778.0069274902344 431.66666412353516L778.0069274902344 432.0L759.0138549804688 432.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1122">
+					<path id="ProcessOnPath1123"
+						d="M797.0 360.16666412353516L762.0138549804688 360.16666412353516L762.0138549804688 407.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1124">
+					<path id="ProcessOnPath1125"
+						d="M994.5138549804688 926.1857528686523L994.5138549804688 876.1857528686523L994.5138549804688 876.1857528686523L994.5138549804688 826.1857528686523"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1126">
+					<path id="ProcessOnPath1127"
+						d="M994.5138549804688 926.1857528686523L994.5138549804688 989.4479141235352L994.5138549804688 989.4479141235352L994.5138549804688 1052.710075378418"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1128">
+					<path id="ProcessOnPath1129"
+						d="M1032.5 823.8767395019531L1012.5069274902344 823.8767395019531L1012.5069274902344 823.710075378418L992.5138549804688 823.710075378418"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1130">
+					<path id="ProcessOnPath1131"
+						d="M1032.5 1049.3767395019531L1014.0069274902344 1049.3767395019531L1014.0069274902344 1049.710075378418L995.5138549804688 1049.710075378418"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1132">
+					<path id="ProcessOnPath1133"
+						d="M1032.5 894.8767395019531L1013.0069274902344 894.8767395019531L1013.0069274902344 894.710075378418L993.5138549804688 894.710075378418"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1134">
+					<path id="ProcessOnPath1135"
+						d="M1032.5 971.3767395019531L1014.0069274902344 971.3767395019531L1014.0069274902344 971.710075378418L995.5138549804688 971.710075378418"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1136"
+						transform="matrix(1.0,0.0,0.0,1.0,407.0,171.0)" opacity="1.0">
+					<path id="ProcessOnPath1137"
+						d="M0.0 38.626739501953125C0.0 -12.875579833984375 183.01385498046875 -12.875579833984375 183.01385498046875 38.626739501953125C183.01385498046875 90.12905883789062 0.0 90.12905883789062 0.0 38.626739501953125Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1138"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,29.251739501953125)">
+					<text class="sData usersCount" fill="#333300" font-size="15"
+						x="80.50692749023438" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">新用户数：</text></g></g>
+					<g id="ProcessOnG1140">
+					<path id="ProcessOnPath1141"
+						d="M526.3333129882812 398.33331298828125L553.1666564941406 398.33331298828125L553.1666564941406 398.0L564.7639320225002 398.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" marker-end="url(#ProcessOnMarker1142)" /></g>
+					<g id="ProcessOnG1144">
+					<path id="ProcessOnPath1145"
+						d="M524.3333129882812 823.3333358764648L551.1666564941406 823.3333358764648L551.1666564941406 823.5L562.7639320225002 823.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" marker-end="url(#ProcessOnMarker1146)" /></g>
+					<g id="ProcessOnG1148">
+					<path id="ProcessOnPath1149"
+						d="M525.3333129882812 690.6666564941406L552.6666564941406 690.6666564941406L552.6666564941406 690.5L564.7639320225002 690.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" marker-end="url(#ProcessOnMarker1150)" /></g>
+					<g id="ProcessOnG1152">
+					<path id="ProcessOnPath1153"
+						d="M526.3333129882812 538.3333129882812L553.1666564941406 538.3333129882812L553.1666564941406 538.5L564.7639320225002 538.5"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" marker-end="url(#ProcessOnMarker1154)" /></g>
+					<g id="ProcessOnG1156"
+						transform="matrix(1.0,0.0,0.0,1.0,805.0,906.2934074401855)"
+						opacity="1.0">
+					<path id="ProcessOnPath1157"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L137.33331298828125 0.0Q141.33331298828125 0.0 141.33331298828125 4.0L141.33331298828125 42.666664123535156Q141.33331298828125 46.666664123535156 137.33331298828125 46.666664123535156L4.0 46.666664123535156Q0.0 46.666664123535156 0.0 42.666664123535156Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1158"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,13.958332061767578)">
+					<text class="sData usersBeinviteCountSm" fill="#333300" font-size="15"
+						x="59.666656494140625" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">被邀请人数：</text></g></g>
+					<g id="ProcessOnG1160">
+					<path id="ProcessOnPath1161"
+						d="M754.3333129882812 853.0L754.3333129882812 892.0L754.3333129882812 892.0L754.3333129882812 931.0"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1162">
+					<path id="ProcessOnPath1163"
+						d="M755.3333129882812 930.0L780.1666564941406 930.0L780.1666564941406 929.6267395019531L805.0 929.6267395019531"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1164">
+					<path id="ProcessOnPath1165"
+						d="M498.5069274902344 248.25347900390625L498.5069274902344 289.96006774902344L498.5069274902344 289.96006774902344L498.5069274902344 331.6666564941406"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1166"
+						transform="matrix(1.0,0.0,0.0,1.0,1044.0,334.0)" opacity="1.0">
+					<path id="ProcessOnPath1167"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L181.33331298828125 0.0Q185.33331298828125 0.0 185.33331298828125 4.0L185.33331298828125 44.33332824707031Q185.33331298828125 48.33332824707031 181.33331298828125 48.33332824707031L4.0 48.33332824707031Q0.0 48.33332824707031 0.0 44.33332824707031Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1168"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,14.791664123535156)">
+					<text class="sData createUploadGroupsCount" fill="#333300" font-size="15"
+						x="81.66665649414062" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">非0上传：</text></g></g>
+					<g id="ProcessOnG1170"
+						transform="matrix(1.0,0.0,0.0,1.0,1044.0,407.8333282470703)"
+						opacity="1.0">
+					<path id="ProcessOnPath1171"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L181.33331298828125 0.0Q185.33331298828125 0.0 185.33331298828125 4.0L185.33331298828125 44.0Q185.33331298828125 48.0 181.33331298828125 48.0L4.0 48.0Q0.0 48.0 0.0 44.0Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1172"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,14.625)">
+					<text class="sData createPlayGroupsCount" fill="#333300" font-size="15"
+						x="81.66665649414062" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">非0互动：</text></g></g>
+					<g id="ProcessOnG1174"
+						transform="matrix(1.0,0.0,0.0,1.0,1044.0,483.0)" opacity="1.0">
+					<path id="ProcessOnPath1175"
+						d="M0.0 4.0Q0.0 0.0 4.0 0.0L181.33331298828125 0.0Q185.33331298828125 0.0 185.33331298828125 4.0L185.33331298828125 46.33332824707031Q185.33331298828125 50.33332824707031 181.33331298828125 50.33332824707031L4.0 50.33332824707031Q0.0 50.33332824707031 0.0 46.33332824707031Z"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						opacity="1.0" fill="#dddddd" />
+					<g id="ProcessOnG1176"
+						transform="matrix(1.0,0.0,0.0,1.0,10.0,15.791664123535156)">
+					<text class="sData createInviteGroupsCount" fill="#333300" font-size="15"
+						x="81.66665649414062" y="15.375" font-family="微软雅黑"
+						font-weight="bold" font-style="normal" text-decoration="none"
+						family="微软雅黑" text-anchor="middle" size="15">非0邀请：</text></g></g>
+					<g id="ProcessOnG1178">
+					<path id="ProcessOnPath1179"
+						d="M946.3333129882812 929.6267395019531L970.6735992431641 929.6267395019531L970.6735992431641 929.6267395019531L995.0138854980469 929.6267395019531"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1180">
+					<path id="ProcessOnPath1181"
+						d="M950.3333129882812 431.66666412353516L997.1666564941406 431.66666412353516L997.1666564941406 431.8333282470703L1044.0 431.8333282470703"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1182">
+					<path id="ProcessOnPath1183"
+						d="M999.0138854980469 431.9201354980469L999.0138854980469 395.4201354980469L999.0138854980469 395.4201354980469L999.0138854980469 358.9201354980469"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1184">
+					<path id="ProcessOnPath1185"
+						d="M998.0138854980469 357.9201354980469L1021.0069427490234 357.9201354980469L1021.0069427490234 358.16666412353516L1044.0 358.16666412353516"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1186">
+					<path id="ProcessOnPath1187"
+						d="M999.0138854980469 431.9201354980469L999.0138854980469 470.4201354980469L999.0138854980469 470.4201354980469L999.0138854980469 508.9201354980469"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g>
+					<g id="ProcessOnG1188">
+					<path id="ProcessOnPath1189"
+						d="M998.0138854980469 507.9201354980469L1021.0069427490234 507.9201354980469L1021.0069427490234 508.16666412353516L1044.0 508.16666412353516"
+						stroke="#8a8a8a" stroke-width="2.0" stroke-dasharray="none"
+						fill="none" /></g></g></g></svg>
+			</div>
+			
+			<div style="width:40%;float:right;">
+				<div class="bold">兑换数：<span id="dhcs"></span></div>
+				<div>
+					<div class="bold pd40">商品抢购分布</div>
+					<div class="grid1">
+						<table class="userGroupCnt greenHead" id="goods" width="100%">
+							<thead>
+								<tr>
+									<th>时间</th>
+									<th>忆年定制相框</th>
+									<th>小米充电宝</th>
+									<th>旅行箱</th>
+									<th>平衡车</th>
+									<th>ipad2</th>
+									<th>iPhoneX</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+							
+							</tbody>
+						</table>
+					</div>
+					
+					<div class="bold pd40">相册热度值区间</div>
+					<div class="grid1">
+						<table width="100%" class="greenHead" id="groupshot">
+							<thead>
+								<tr>
+									<th>热度值</th>
+									<th>1-200</th>
+									<th>201-500</th>
+									<th>501-1000</th>
+									<th>1001-2000</th>
+									<th>2001-5000</th>
+									<th>5001-10000</th>
+									<th>10001-20000</th>
+									<th>20000以上</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+							
+							</tbody>
+						</table>
+					</div>
+					
+					<div class="bold pd40">热度值获取方式</div>
+					<div class="grid1">
+						<table width="100%" class="greenHead" id="getHotFunc">
+							<thead>
+								<tr>
+									<th val="invite">方式</th>
+									<th val="invite">邀请</th>
+									<th val="joinAlbum">加入</th>
+									<th val="createAlbum">创建</th>
+									<th val="upload">上传</th>
+									<th val="comment">评论</th>
+									<th val="like">点赞</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+							
+							</tbody>
+						</table>
+					</div>
+					
+				</div>
+			</div>
+			</div>
+			
+			</div>
+		</div>
+	</div>
+</body>
+</html>

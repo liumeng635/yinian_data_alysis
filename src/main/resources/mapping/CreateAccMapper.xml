@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinian.alysis.model.CreateAccMapper" >
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.CreateAcc" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="group_type" property="groupType" jdbcType="INTEGER" />
+    <result column="users_cut" property="usersCut" jdbcType="VARCHAR" />
+    <result column="groups_count" property="groupsCount" jdbcType="INTEGER" />
+    <result column="period" property="period" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupid, group_type, users_cut, groups_count, period
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from create_acc
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from create_acc
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.CreateAcc" >
+    insert into create_acc (id, groupid, group_type, 
+      users_cut, groups_count, period
+      )
+    values (#{id,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{groupType,jdbcType=INTEGER}, 
+      #{usersCut,jdbcType=VARCHAR}, #{groupsCount,jdbcType=INTEGER}, #{period,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.CreateAcc" >
+    insert into create_acc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="groupType != null" >
+        group_type,
+      </if>
+      <if test="usersCut != null" >
+        users_cut,
+      </if>
+      <if test="groupsCount != null" >
+        groups_count,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="groupType != null" >
+        #{groupType,jdbcType=INTEGER},
+      </if>
+      <if test="usersCut != null" >
+        #{usersCut,jdbcType=VARCHAR},
+      </if>
+      <if test="groupsCount != null" >
+        #{groupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.CreateAcc" >
+    update create_acc
+    <set >
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="groupType != null" >
+        group_type = #{groupType,jdbcType=INTEGER},
+      </if>
+      <if test="usersCut != null" >
+        users_cut = #{usersCut,jdbcType=VARCHAR},
+      </if>
+      <if test="groupsCount != null" >
+        groups_count = #{groupsCount,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.CreateAcc" >
+    update create_acc
+    set groupid = #{groupid,jdbcType=INTEGER},
+      group_type = #{groupType,jdbcType=INTEGER},
+      users_cut = #{usersCut,jdbcType=VARCHAR},
+      groups_count = #{groupsCount,jdbcType=INTEGER},
+      period = #{period,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from create_acc
+  </select>
+  
+  <select id="findByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from create_acc where 1=1
+    <if test="groupid != null" >
+       and groupid = #{groupid,jdbcType=INTEGER}
+    </if>
+    <if test="period != null" >
+       and date_format(period, '%Y-%m-%d') = #{period}
+    </if>
+    <!-- <if test="groupType == null" >
+       and group_type is null
+    </if> -->
+  </select>
+  
+  <select id="initAllGroupType" resultType="java.util.HashMap">
+    SELECT
+		t.group_newtype AS type,
+		t.group_newtypename AS 'name'
+	FROM
+		group_type t
+	where group_newtype is not null
+	order by group_newtype asc
+  </select>
+  
+  <select id="createAccMap" parameterType="java.util.Map" resultType="java.util.HashMap">
+		    SELECT
+				a.aa as a,
+				a.bb as b,
+				(b.bb - a.bb) as c,
+				b.bb as d
+			FROM
+				(
+					SELECT
+						users_cut aa,
+						sum(groups_count) bb
+					FROM
+						`create_acc` t
+					WHERE
+						t.groupid = #{groupid,jdbcType=INTEGER}
+					AND DATE(t.period) = #{period}
+					AND group_type = #{groupType}
+					GROUP BY
+						users_cut
+				) a
+			JOIN (
+				SELECT
+					users_cut aa,
+					sum(groups_count) bb
+				FROM
+					`create_acc` t
+				WHERE
+					t.groupid = #{groupid,jdbcType=INTEGER}
+				AND DATE(t.period) = #{period}
+				GROUP BY
+					users_cut
+			) b ON a.aa = b.aa
+  </select>
+  
+</mapper>

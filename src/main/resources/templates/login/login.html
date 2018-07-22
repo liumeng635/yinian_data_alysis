@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>后台登录</title>
+<!-- Custom Theme files -->
+<!-- Custom Theme files -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="keywords" content="后台登录" />
+<link th:href="@{css/style.css}" rel="stylesheet" type="text/css" media="all"/>
+
+<script th:src="@{jquery.js}" type="text/javascript"></script>
+<script th:src="@{js/comm.js}" type="text/javascript"></script>
+<script th:src="@{layer/layer.js}" type="text/javascript"></script>
+<script th:src="@{js/login/login.js}" type="text/javascript"></script>
+
+</head>
+<body>
+<!--header start here-->
+<div class="login-form">
+			<div class="top-login">
+				<span><img th:src="@{img/group.png}" alt=""/></span>
+			</div>
+			<h1>登录</h1>
+			<div class="login-top">
+			<form id="loginForm">
+				<div class="login-ic">
+					<i ></i>
+					<input type="text" class="uName"  value="" placeholder="请输入帐号" /> 
+					<div class="clear"> </div>
+				</div>
+				<div class="login-ic">
+					<i class="icon"></i>
+					<input type="password" class="uPwd"  value=""  placeholder="请输入密码"/>
+					<div class="clear"> </div>
+				</div>
+			
+				<div class="log-bwn">
+					<input type="button" id="submitLogin" value="登录" />
+				</div>
+				</form>
+			</div>
+			<p class="copy">© 2018 武汉追忆那年网络科技有限公司</p>
+</div>		
+<!--header start here-->
+</body>
+</html>

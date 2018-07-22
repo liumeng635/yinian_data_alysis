@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinian.alysis.model.ActTargetMapper" >
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.ActTarget" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="users_total_now" property="usersTotalNow" jdbcType="INTEGER" />
+    <result column="users_total_yes" property="usersTotalYes" jdbcType="INTEGER" />
+    <result column="users_total" property="usersTotal" jdbcType="INTEGER" />
+    <result column="user_total_old" property="userTotalOld" jdbcType="INTEGER" />
+    <result column="user_total_new" property="userTotalNew" jdbcType="INTEGER" />
+    <result column="users_activite_all" property="usersActiviteAll" jdbcType="INTEGER" />
+    <result column="users_havhction_total_now" property="usersHavhctionTotalNow" jdbcType="INTEGER" />
+    <result column="users_havhction_total" property="usersHavhctionTotal" jdbcType="INTEGER" />
+    <result column="users_havhction_old" property="usersHavhctionOld" jdbcType="INTEGER" />
+    <result column="users_havhction_new" property="usersHavhctionNew" jdbcType="INTEGER" />
+    <result column="users_event_total" property="usersEventTotal" jdbcType="INTEGER" />
+    <result column="users_like_total" property="usersLikeTotal" jdbcType="INTEGER" />
+    <result column="users_comment_total" property="usersCommentTotal" jdbcType="INTEGER" />
+    <result column="events_total" property="eventsTotal" jdbcType="INTEGER" />
+    <result column="likes_total" property="likesTotal" jdbcType="INTEGER" />
+    <result column="comments_total" property="commentsTotal" jdbcType="INTEGER" />
+    <result column="pictures_total" property="picturesTotal" jdbcType="INTEGER" />
+    <result column="pictures_total_old" property="picturesTotalOld" jdbcType="INTEGER" />
+    <result column="pictures_total_new" property="picturesTotalNew" jdbcType="INTEGER" />
+    <result column="period" property="period" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupid, users_total_now, users_total_yes, users_total, user_total_old, user_total_new, 
+    users_activite_all, users_havhction_total_now, users_havhction_total, users_havhction_old, 
+    users_havhction_new, users_event_total, users_like_total, users_comment_total, events_total, 
+    likes_total, comments_total, pictures_total, pictures_total_old, pictures_total_new, 
+    period
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from activity_target
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activity_target
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.ActTarget" >
+    insert into activity_target (id, groupid, users_total_now, 
+      users_total_yes, users_total, user_total_old, 
+      user_total_new, users_activite_all, users_havhction_total_now, 
+      users_havhction_total, users_havhction_old, 
+      users_havhction_new, users_event_total, users_like_total, 
+      users_comment_total, events_total, likes_total, 
+      comments_total, pictures_total, pictures_total_old, 
+      pictures_total_new, period)
+    values (#{id,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{usersTotalNow,jdbcType=INTEGER}, 
+      #{usersTotalYes,jdbcType=INTEGER}, #{usersTotal,jdbcType=INTEGER}, #{userTotalOld,jdbcType=INTEGER}, 
+      #{userTotalNew,jdbcType=INTEGER}, #{usersActiviteAll,jdbcType=INTEGER}, #{usersHavhctionTotalNow,jdbcType=INTEGER}, 
+      #{usersHavhctionTotal,jdbcType=INTEGER}, #{usersHavhctionOld,jdbcType=INTEGER}, 
+      #{usersHavhctionNew,jdbcType=INTEGER}, #{usersEventTotal,jdbcType=INTEGER}, #{usersLikeTotal,jdbcType=INTEGER}, 
+      #{usersCommentTotal,jdbcType=INTEGER}, #{eventsTotal,jdbcType=INTEGER}, #{likesTotal,jdbcType=INTEGER}, 
+      #{commentsTotal,jdbcType=INTEGER}, #{picturesTotal,jdbcType=INTEGER}, #{picturesTotalOld,jdbcType=INTEGER}, 
+      #{picturesTotalNew,jdbcType=INTEGER}, #{period,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.ActTarget" >
+    insert into activity_target
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="usersTotalNow != null" >
+        users_total_now,
+      </if>
+      <if test="usersTotalYes != null" >
+        users_total_yes,
+      </if>
+      <if test="usersTotal != null" >
+        users_total,
+      </if>
+      <if test="userTotalOld != null" >
+        user_total_old,
+      </if>
+      <if test="userTotalNew != null" >
+        user_total_new,
+      </if>
+      <if test="usersActiviteAll != null" >
+        users_activite_all,
+      </if>
+      <if test="usersHavhctionTotalNow != null" >
+        users_havhction_total_now,
+      </if>
+      <if test="usersHavhctionTotal != null" >
+        users_havhction_total,
+      </if>
+      <if test="usersHavhctionOld != null" >
+        users_havhction_old,
+      </if>
+      <if test="usersHavhctionNew != null" >
+        users_havhction_new,
+      </if>
+      <if test="usersEventTotal != null" >
+        users_event_total,
+      </if>
+      <if test="usersLikeTotal != null" >
+        users_like_total,
+      </if>
+      <if test="usersCommentTotal != null" >
+        users_comment_total,
+      </if>
+      <if test="eventsTotal != null" >
+        events_total,
+      </if>
+      <if test="likesTotal != null" >
+        likes_total,
+      </if>
+      <if test="commentsTotal != null" >
+        comments_total,
+      </if>
+      <if test="picturesTotal != null" >
+        pictures_total,
+      </if>
+      <if test="picturesTotalOld != null" >
+        pictures_total_old,
+      </if>
+      <if test="picturesTotalNew != null" >
+        pictures_total_new,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="usersTotalNow != null" >
+        #{usersTotalNow,jdbcType=INTEGER},
+      </if>
+      <if test="usersTotalYes != null" >
+        #{usersTotalYes,jdbcType=INTEGER},
+      </if>
+      <if test="usersTotal != null" >
+        #{usersTotal,jdbcType=INTEGER},
+      </if>
+      <if test="userTotalOld != null" >
+        #{userTotalOld,jdbcType=INTEGER},
+      </if>
+      <if test="userTotalNew != null" >
+        #{userTotalNew,jdbcType=INTEGER},
+      </if>
+      <if test="usersActiviteAll != null" >
+        #{usersActiviteAll,jdbcType=INTEGER},
+      </if>
+      <if test="usersHavhctionTotalNow != null" >
+        #{usersHavhctionTotalNow,jdbcType=INTEGER},
+      </if>
+      <if test="usersHavhctionTotal != null" >
+        #{usersHavhctionTotal,jdbcType=INTEGER},
+      </if>
+      <if test="usersHavhctionOld != null" >
+        #{usersHavhctionOld,jdbcType=INTEGER},
+      </if>
+      <if test="usersHavhctionNew != null" >
+        #{usersHavhctionNew,jdbcType=INTEGER},
+      </if>
+      <if test="usersEventTotal != null" >
+        #{usersEventTotal,jdbcType=INTEGER},
+      </if>
+      <if test="usersLikeTotal != null" >
+        #{usersLikeTotal,jdbcType=INTEGER},
+      </if>
+      <if test="usersCommentTotal != null" >
+        #{usersCommentTotal,jdbcType=INTEGER},
+      </if>
+      <if test="eventsTotal != null" >
+        #{eventsTotal,jdbcType=INTEGER},
+      </if>
+      <if test="likesTotal != null" >
+        #{likesTotal,jdbcType=INTEGER},
+      </if>
+      <if test="commentsTotal != null" >
+        #{commentsTotal,jdbcType=INTEGER},
+      </if>
+      <if test="picturesTotal != null" >
+        #{picturesTotal,jdbcType=INTEGER},
+      </if>
+      <if test="picturesTotalOld != null" >
+        #{picturesTotalOld,jdbcType=INTEGER},
+      </if>
+      <if test="picturesTotalNew != null" >
+        #{picturesTotalNew,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.ActTarget" >
+    update activity_target
+    <set >
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="usersTotalNow != null" >
+        users_total_now = #{usersTotalNow,jdbcType=INTEGER},
+      </if>
+      <if test="usersTotalYes != null" >
+        users_total_yes = #{usersTotalYes,jdbcType=INTEGER},
+      </if>
+      <if test="usersTotal != null" >
+        users_total = #{usersTotal,jdbcType=INTEGER},
+      </if>
+      <if test="userTotalOld != null" >
+        user_total_old = #{userTotalOld,jdbcType=INTEGER},
+      </if>
+      <if test="userTotalNew != null" >
+        user_total_new = #{userTotalNew,jdbcType=INTEGER},
+      </if>
+      <if test="usersActiviteAll != null" >
+        users_activite_all = #{usersActiviteAll,jdbcType=INTEGER},
+      </if>
+      <if test="usersHavhctionTotalNow != null" >
+        users_havhction_total_now = #{usersHavhctionTotalNow,jdbcType=INTEGER},
+      </if>
+      <if test="usersHavhctionTotal != null" >
+        users_havhction_total = #{usersHavhctionTotal,jdbcType=INTEGER},
+      </if>
+      <if test="usersHavhctionOld != null" >
+        users_havhction_old = #{usersHavhctionOld,jdbcType=INTEGER},
+      </if>
+      <if test="usersHavhctionNew != null" >
+        users_havhction_new = #{usersHavhctionNew,jdbcType=INTEGER},
+      </if>
+      <if test="usersEventTotal != null" >
+        users_event_total = #{usersEventTotal,jdbcType=INTEGER},
+      </if>
+      <if test="usersLikeTotal != null" >
+        users_like_total = #{usersLikeTotal,jdbcType=INTEGER},
+      </if>
+      <if test="usersCommentTotal != null" >
+        users_comment_total = #{usersCommentTotal,jdbcType=INTEGER},
+      </if>
+      <if test="eventsTotal != null" >
+        events_total = #{eventsTotal,jdbcType=INTEGER},
+      </if>
+      <if test="likesTotal != null" >
+        likes_total = #{likesTotal,jdbcType=INTEGER},
+      </if>
+      <if test="commentsTotal != null" >
+        comments_total = #{commentsTotal,jdbcType=INTEGER},
+      </if>
+      <if test="picturesTotal != null" >
+        pictures_total = #{picturesTotal,jdbcType=INTEGER},
+      </if>
+      <if test="picturesTotalOld != null" >
+        pictures_total_old = #{picturesTotalOld,jdbcType=INTEGER},
+      </if>
+      <if test="picturesTotalNew != null" >
+        pictures_total_new = #{picturesTotalNew,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.ActTarget" >
+    update activity_target
+    set groupid = #{groupid,jdbcType=INTEGER},
+      users_total_now = #{usersTotalNow,jdbcType=INTEGER},
+      users_total_yes = #{usersTotalYes,jdbcType=INTEGER},
+      users_total = #{usersTotal,jdbcType=INTEGER},
+      user_total_old = #{userTotalOld,jdbcType=INTEGER},
+      user_total_new = #{userTotalNew,jdbcType=INTEGER},
+      users_activite_all = #{usersActiviteAll,jdbcType=INTEGER},
+      users_havhction_total_now = #{usersHavhctionTotalNow,jdbcType=INTEGER},
+      users_havhction_total = #{usersHavhctionTotal,jdbcType=INTEGER},
+      users_havhction_old = #{usersHavhctionOld,jdbcType=INTEGER},
+      users_havhction_new = #{usersHavhctionNew,jdbcType=INTEGER},
+      users_event_total = #{usersEventTotal,jdbcType=INTEGER},
+      users_like_total = #{usersLikeTotal,jdbcType=INTEGER},
+      users_comment_total = #{usersCommentTotal,jdbcType=INTEGER},
+      events_total = #{eventsTotal,jdbcType=INTEGER},
+      likes_total = #{likesTotal,jdbcType=INTEGER},
+      comments_total = #{commentsTotal,jdbcType=INTEGER},
+      pictures_total = #{picturesTotal,jdbcType=INTEGER},
+      pictures_total_old = #{picturesTotalOld,jdbcType=INTEGER},
+      pictures_total_new = #{picturesTotalNew,jdbcType=INTEGER},
+      period = #{period,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activity_target
+  </select>
+  
+  <select id="findByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activity_target where 1=1
+    <if test="groupid != null" >
+       and groupid = #{groupid,jdbcType=INTEGER}
+    </if>
+    <if test="period != null" >
+       and date_format(period, '%Y-%m-%d') = #{period}
+    </if>
+  </select>
+  
+  
+  <select id="actlineData" parameterType="java.util.Map" resultType="java.util.HashMap">
+		    SELECT
+		    	date_format(date_add(tt.period,INTERVAL -1 DAY), '%Y-%m-%d') as aa,
+				tt.users_havhction_total_now*100/tt.users_total_yes bb
+			FROM
+				activity_target tt
+			WHERE
+				tt.groupid  = #{groupid,jdbcType=INTEGER}
+  </select>
+  
+</mapper>

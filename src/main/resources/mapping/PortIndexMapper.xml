@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinian.alysis.model.PortIndexMapper" >
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.PortIndex" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="port_name" property="portName" jdbcType="VARCHAR" />
+    <result column="port_type" property="portType" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="isValue" property="isvalue" jdbcType="INTEGER" />
+    <result column="system_time" property="systemTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, port_name, port_type, start_time, isValue, system_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from port_index
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from port_index
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.PortIndex" >
+    insert into port_index (id, port_name, port_type, 
+      start_time, isValue, system_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{portName,jdbcType=VARCHAR}, #{portType,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{isvalue,jdbcType=INTEGER}, #{systemTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.PortIndex" >
+    insert into port_index
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="portName != null" >
+        port_name,
+      </if>
+      <if test="portType != null" >
+        port_type,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="isvalue != null" >
+        isValue,
+      </if>
+      <if test="systemTime != null" >
+        system_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="portName != null" >
+        #{portName,jdbcType=VARCHAR},
+      </if>
+      <if test="portType != null" >
+        #{portType,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isvalue != null" >
+        #{isvalue,jdbcType=INTEGER},
+      </if>
+      <if test="systemTime != null" >
+        #{systemTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.PortIndex" >
+    update port_index
+    <set >
+      <if test="portName != null" >
+        port_name = #{portName,jdbcType=VARCHAR},
+      </if>
+      <if test="portType != null" >
+        port_type = #{portType,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isvalue != null" >
+        isValue = #{isvalue,jdbcType=INTEGER},
+      </if>
+      <if test="systemTime != null" >
+        system_time = #{systemTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.PortIndex" >
+    update port_index
+    set port_name = #{portName,jdbcType=VARCHAR},
+      port_type = #{portType,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      isValue = #{isvalue,jdbcType=INTEGER},
+      system_time = #{systemTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from port_index
+  </select>
+  
+  <select id="listAllportIndex" parameterType="java.util.Map" resultType="java.util.Map">
+  	SELECT
+		t1.id AS id,
+		t1.port_name AS portName,
+		t2.type_name AS typeName,
+		t1.start_time AS startTime
+	FROM
+		port_index t1,
+		port_type t2
+	WHERE
+	t1.port_type = t2.type
+  </select>
+  
+</mapper>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinian.alysis.model.HotMapper">
+  <resultMap id="BaseResultMap" type="com.yinian.alysis.model.Hot">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="date" jdbcType="DATE" property="date" />
+    <result column="cut" jdbcType="VARCHAR" property="cut" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="period" jdbcType="TIMESTAMP" property="period" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, date, cut, count, period
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hot
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hot
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinian.alysis.model.Hot">
+    insert into hot (id, type, date, 
+      cut, count, period
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, 
+      #{cut,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, #{period,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinian.alysis.model.Hot">
+    insert into hot
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="cut != null">
+        cut,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="period != null">
+        period,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="cut != null">
+        #{cut,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="period != null">
+        #{period,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinian.alysis.model.Hot">
+    update hot
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="cut != null">
+        cut = #{cut,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="period != null">
+        period = #{period,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinian.alysis.model.Hot">
+    update hot
+    set type = #{type,jdbcType=VARCHAR},
+      date = #{date,jdbcType=DATE},
+      cut = #{cut,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      period = #{period,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findHotByMapParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hot where 1=1
+    <if test="type != null" >
+       and type = #{type,jdbcType=VARCHAR}
+    </if>
+    <if test="startTime != null and endTime != null" >
+  		and period >= str_to_date(#{startTime},'%Y-%m-%d %H:%m:%s')
+  		and period <![CDATA[<]]> str_to_date(#{endTime},'%Y-%m-%d %H:%m:%s')
+    </if>
+  </select>
+  
+</mapper>

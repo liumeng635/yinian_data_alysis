@@ -1,0 +1,228 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>渠道(新)用户质量平台</title>
+<link th:href="@{bootstrap/css/bootstrap.css}" rel="stylesheet" />
+<link th:href="@{bootstrap/css/bootstrap-responsive.css}" rel="stylesheet" />
+<link th:href="@{css/main.css}" rel="stylesheet" />
+<link th:href="@{layer/theme/default/layer.css}" rel="stylesheet" />
+
+<script th:src="@{jquery.js}" type="text/javascript"></script>
+<script th:src="@{js/comm.js}" type="text/javascript"></script>
+<script th:src="@{bootstrap/js/bootstrap.js}" type="text/javascript"></script>
+<script th:src="@{layer/layer.js}" type="text/javascript"></script>
+<script th:src="@{laydate/laydate.js}" type="text/javascript"></script>
+<script th:src="@{echarts/echarts.min.js}" type="text/javascript"></script>
+<script th:src="@{js/market/qualityOfChannelUsers.js}" type="text/javascript"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="headTitle">渠道(新)用户质量平台</div>
+		<div>
+			<div class="" style="width:30%;float:left;">
+				<!--活动相册列表&用户活跃度-->
+				<div class="block h300" style="width:100%">
+					<div>
+						<span>渠道选择:</span> <select class="ipt" id="portSelect">
+
+						</select> <span>时间选择:</span> <input type="text" class="ipt" id="timeSelect" />
+						<input type="button" id="searchIndex" value="查询" class="searchBtn" />
+					</div>
+					<div style="margin-left: 10px;">
+						<span class="title">渠道列表</span>
+						<ul class="ullst1" id="listPortTypeAll">
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="center" style="width:70%;float:right;">
+			<div style="min-height:800px;">
+				<div class="flow-cub1 bgGray">
+					渠道新用户
+				</div>		
+				<div class="flow-cub2 bgGray">
+					<div style="padding-top: 12%;">
+						<div class="itm1">引进用户数：<span class="usersCount chData"></span></div>
+						<div class="itm1">复用用户数：<span class="usersCountReuse chData"></span></div>
+						<div class="itm1">复用率：<span class="sData chData" val="usersCountReuse/usersCount" fmt="p"></span></div>
+					</div>
+				</div>
+				<div class="block">
+					<div class="borderR" style="height:50px;width:50%;float:left;"></div>
+				</div>		
+				<div  style="width:100%">
+					<span class="block borderL" style="height:50px;width:19.8%;float:left;"></span>
+					<span class="block borderL borderT" style="height:50px;width:19.8%;float:left;"></span>
+					<span class="block borderL borderT" style="height:50px;width:19.8%;float:left;"></span>
+					<span class="block borderL borderT" style="height:50px;width:19.8%;float:left;"></span>
+					<span class="block" style="height:50px;float:left;"></span>
+				</div>		
+				<div  style="width:100%;display: inline-table;">
+					<span class="block itm2 bgGray" style="margin-right: 4%;">
+							创建
+					</span>
+					
+					<span class="block itm2 bgGray" style="margin-right: 4%;">
+							上传
+					</span>
+					
+					<span class="block itm2 bgGray" style="margin-right: 4%;">
+							互动
+					</span>
+					<span class="block itm2 bgGray">
+							邀请
+					</span>
+				</div>		
+				<div  style="width:100%;display: inline-table;margin-top:20px;">
+					<span class="block bgGray" style="height:160px;width:16%;margin-right: 4%;">
+						<div class="itm" style="padding-top:4%;">创建相册数：<span class="groupsCount"></span></div>
+						<div class="itm">创建相册人数：<span class="usersCreateCount chData"></span></div>
+						<div class="itm">3日后有行为人数：<span class="usersCreate3dCount chData"></span></div>
+						<div class="itm">人均创建相册数：<span class="sData chData" val="groupsCount/usersCreateCount"></span></div>
+						<div class="itm">创建相册人数比：<span class="sData chData" val="usersCreateCount/usersCount" fmt="p"></span></div>
+					</span>
+					<span class="block bgGray" style="height:160px;width:16%;margin-right: 4%;">
+						<div class="itm" style="padding-top:4%;">相册上传数：<span class="eventsCount chData"></span></div>
+						<div class="itm">相册上传人数：<span class="usersUploadCount chData"></span></div>
+						<div class="itm">3日后有行为人数：<span class="usersUpload3dCount chData"></span></div>
+						<div class="itm">人均相册上传数：<span class="sData chData" val="eventsCount/usersUploadCount"></span></div>
+						<div class="itm">相册上传人数比：<span class="sData chData" val="usersUploadCount/usersCount" fmt="p"></span></div>
+					</span>
+					<span class="block bgGray" style="height:160px;width:16%;margin-right: 4%;">
+						<div class="itm" style="padding-top:4%;">相册互动数：<span class="playsCount chData"></span></div>
+						<div class="itm">相册互动人数：<span class="usersPlayCount chData"></span></div>
+						<div class="itm">3日后有行为人数：<span class="usersPlay3dCount chData"></span></div>
+						<div class="itm">人均相册互动数：<span class="sData chData" val="playsCount/usersPlayCount"></span></div>
+						<div class="itm">相册互动人数比：<span class="sData chData" val="usersPlayCount/usersCount" fmt="p"></span></div>
+					</span>
+					<span class="block bgGray" style="height:160px;width:16%;">
+						<div class="itm" style="padding-top:4%;">相册邀请数：<span class="invitesCount chData"></span></div>
+						<div class="itm">相册邀请人数：<span class="usersInviteCount chData"></span></div>
+						<div class="itm">3日后有行为人数：<span class="usersInvite3dCount chData"></span></div>
+						<div class="itm">人均相册邀请数：<span class="sData chData" val="invitesCount/usersInviteCount"></span></div>
+						<div class="itm">相册邀请人数比：<span class="sData chData" val="usersInviteCount/usersCount" fmt="p"></span></div>
+					</span>
+				</div>		
+				<div  style="width:100%;display: inline-table;">
+					<span class="block" style="height:50px;width:16%;margin-right: 4%;text-align: left;">
+						<span class="block borderR" style="width:50%;height:50px;"></span>
+					</span>
+					<span class="block" style="height:50px;width:16%;margin-left: 40%;text-align: left;">
+						<span class="block borderR" style="width:50%;height:50px;"></span>
+					</span>
+				</div>
+				<div  style="width:100%">
+					<span class="block borderL" style="height:50px;width:10%;float:left;"></span>
+					<span class="block borderL borderT" style="height:50px;width:9.8%;float:left;"></span>
+					<span class="block borderL borderT" style="height:50px;width:9.8%;float:left;"></span>
+					<span class="block" style="height:50px;width:9.8%;float:left;"></span>
+					<span class="block" style="height:50px;width:9.8%;float:left;"></span>
+					<span class="block" style="height:50px;width:9.8%;float:left;"></span>
+					<span class="block borderL" style="height:50px;width:10.5%;float:left;"></span>
+					<span class="block borderL borderT" style="height:50px;width:9.5%;float:left;"></span>
+					<span class="block borderL borderT" style="height:50px;width:9.8%;float:left;"></span>
+					<span class="block" style="height:50px;float:left;"></span>
+				</div>
+				<!-- 999999 -->
+				<div  style="width:100%;display: inline-table;">
+					<div style="width:45%;display: inline-table;float: left;text-align: left;margin-left: 5%;">
+						<span class="block bgGray itm3">
+								上传
+						</span>
+						<span class="block bgGray itm3">
+								互动
+						</span>
+						<span class="block bgGray itm3">
+								邀请
+						</span>
+					</div>
+					<div style="width:45%;display: inline-table;float: right;text-align: right;margin-right: 2.5%;">
+						<span class="block bgGray itm3">
+							上传
+						</span>
+						<span class="block bgGray itm3">
+							互动
+						</span>
+						<span class="block bgGray itm3">
+							邀请
+						</span>
+					</div>
+				</div>
+				<div  style="width:100%;display: inline-table;">
+					<div style="width:45%;display: inline-table;float: left;text-align: left;margin-left: -5.8%;">
+						<span class="block itm3" >
+							<div class="itm" style="padding-top:15%;color:#4c8838;"><span style="display: table;">有行为相册人数:</span></div>
+						</span>
+						<span class="block bgGray itm3">
+							<div class="itm" style="padding-top:4%;"><span class="createUploadGroupsCount chData"></span></div>
+						</span>
+						<span class="block bgGray itm3">
+							<div class="itm" style="padding-top:4%;"><span class="createPlayGroupsCount chData"></span></div>
+						</span>
+						<span class="block bgGray itm3">
+							<div class="itm" style="padding-top:4%;"><span class="createInviteGroupsCount chData"></span></div>
+						</span>
+					</div>
+					<div style="width:45%;display: inline-table;float: right;text-align: right;margin-right: 2.5%;margin-top:20px;">
+						<span class="block bgGray itm3">
+							<div class="itm" style="padding-top:4%;"><span class="createUploadUsersCount chData"></span></div>
+						</span>
+						<span class="block bgGray itm3">
+							<div class="itm" style="padding-top:4%;"><span class="createPlayUsersCount chData"></span></div>
+						</span>
+						<span class="block bgGray itm3">
+							<div class="itm" style="padding-top:4%;"><span class="createInviteUsersCount chData"></span></div>
+						</span>
+					</div>
+				</div>
+				<div  style="width:100%;display: inline-table;">
+					<div style="width:45%;display: inline-table;float: left;text-align: left;margin-left: 5%;margin-left: -5.8%;">
+						<span class="block itm3">
+							<div class="itm" style="padding-top:15%;color:#4c8838;"><span style="display: table;">有行为创建者数:</span></div>
+						</span>
+						<span class="block bgGray itm3">
+							<div class="itm" style="padding-top:4%;"><span class="beinviteUploadUsersCount chData"></span></div>
+						</span>
+						<span class="block bgGray itm3">
+							<div class="itm" style="padding-top:4%;"><span class="beinvitePlayUsersCount chData"></span></div>
+						</span>
+						<span class="block bgGray itm3">
+							<div class="itm" style="padding-top:4%;"><span class="beinviteInviteUsersCount chData"></span></div>
+						</span>
+					</div>
+				</div>
+				
+						
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(function(){
+			if(isIE()){
+				$(".flow-cub1").css({"margin-left":"44%"});
+				$(".flow-cub2").css({"margin-left":"44%"});
+			}
+		})
+	</script>
+
+	<!-- <div th:if="${not #lists.isEmpty(people)}">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">列表</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" th:each="person:${people}">
+                    <span th:text="${person.name}"></span>
+                    <span th:text="${person.age}"></span>
+                    <button class="btn" th:onclick="'getName(\''+${person.name}+'\');'">获得名字</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div> -->
+</body>
+</html>
